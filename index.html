@@ -62,6 +62,10 @@
 
                     <script>
                         document.getElementById('custom-subscribe-form').addEventListener('submit', function () {
+                            gtag('event', 'generate_lead', {
+                                'event_category': 'form',
+                                'event_label': 'newsletter_signup'
+                            });
                             setTimeout(function () {
                                 document.getElementById('custom-subscribe-form').reset();
                                 document.getElementById('success-message').style.display = 'block';
