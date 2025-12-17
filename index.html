@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny Edit - My Tiny Home Hub</title>
+    <meta name="description"
+        content="Tiny Edit is where America’s next housing playbook gets written. Subscribe for updates on modular, affordable living.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="page">
+        <div class="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="logo-slot">
+                    <img src="./logo.png" alt="My Tiny Home Hub Logo">
+                </div>
+                <div class="hero-text">
+                    <h1>Tiny Edit is where America’s next tiny‑living playbook gets written.</h1>
+                    <p>Weekly editor’s notes from My Tiny Home Hub on the most compelling modular builds, discreet land
+                        plays, and financing paths so you can move into elevated tiny living with confidence.</p>
+                </div>
+                <div class="subscribe-card">
+                    <h3 class="card-title">Get the Tiny Edit newsletter</h3>
+                    <p class="helper-text">
+                        While we rebuild My Tiny Home Hub, get the weekly Tiny Edit brief with design inspiration,
+                        tours, and expert tips.
+                    </p>
+
+                    <!-- Custom Beehiiv Form -->
+                    <form action="https://subscribe-forms.beehiiv.com/api/submit" method="POST" target="hidden-iframe"
+                        id="custom-subscribe-form" class="custom-form">
+                        <input type="hidden" name="form_id" value="1707f6a6-7f94-46e2-a94b-07e6d351d33a">
+                        <input type="hidden" name="authenticity_token"
+                            value="NlDrXEKzS-QDCToeYFY9QQ2yqDhzp-yKtPPY51MR3TG1uRwrjglQAp1K_H_OrQHfv8J31CRfO3CVQQPKUMNTUw">
+
+                        <div class="input-group">
+                            <input type="email" name="form[email]" placeholder="Enter your email" required
+                                class="email-input">
+                            <button type="submit" class="submit-button">Get The Tiny Edit</button>
+                        </div>
+
+                        <p class="trust-indicator">Curated for tiny‑living buyers and design lovers. No spam.</p>
+
+                        <div id="success-message"
+                            style="display:none; margin-top: 12px; color: var(--color-green); font-weight: 600; font-size: 0.9rem;">
+                            Success! Check your email to confirm.
+                        </div>
+                    </form>
+
+                    <iframe name="hidden-iframe" style="display:none;"></iframe>
+
+                    <script>
+                        document.getElementById('custom-subscribe-form').addEventListener('submit', function () {
+                            setTimeout(function () {
+                                document.getElementById('custom-subscribe-form').reset();
+                                document.getElementById('success-message').style.display = 'block';
+                            }, 1000);
+                        });
+                    </script>
+                </div>
+                <p class="footer-note">Built by <a href="https://mytinyhomehub.com" target="_blank">My Tiny Home Hub</a>
+                    · Less home, more living.</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

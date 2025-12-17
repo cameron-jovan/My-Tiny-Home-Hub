@@ -1,0 +1,309 @@
+/* Reset & Base Styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Brand Colors */
+    --color-navy: #1b4073;
+    --color-navy-light: #06799b;
+    --color-green: #59853b;
+    --color-green-light: #8cc540;
+    --color-grey: #7a9492;
+
+    /* UI Colors */
+    --color-white: #FFFFFF;
+    --color-card-bg: rgba(255, 255, 255, 0.96);
+    --font-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --shadow-card: 0 22px 40px rgba(0, 0, 0, 0.35);
+    --shadow-text: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+body {
+    font-family: var(--font-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    line-height: 1.5;
+}
+
+/* Layout */
+.page {
+    min-height: 100vh;
+    display: flex;
+    align-items: stretch;
+}
+
+.hero {
+    background-image: url('./tiny_edit_hero.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.8) 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo */
+.logo-slot {
+    height: 84px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-slot img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.3));
+}
+
+/* Typography */
+.hero-text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    text-shadow: var(--shadow-text);
+    letter-spacing: -0.02em;
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 600px;
+    margin: 0 auto;
+    text-shadow: var(--shadow-text);
+    line-height: 1.6;
+}
+
+/* Subscribe Card */
+.subscribe-card {
+    margin-top: 40px;
+    padding: 40px 32px;
+    background: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-navy);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--color-navy);
+    text-align: center;
+    letter-spacing: -0.01em;
+}
+
+.helper-text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 32px;
+    padding: 0 8px;
+    color: rgba(27, 64, 115, 0.8);
+}
+
+.subscribe-card iframe {
+    border-radius: 12px;
+    background-color: #ffffff;
+    display: block;
+}
+
+/* Footer Note */
+.footer-note {
+    margin-top: 32px;
+    font-size: 0.875rem;
+    color: var(--color-grey);
+    font-weight: 500;
+    text-shadow: none;
+}
+
+.footer-note a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: border-color 0.2s;
+}
+
+.footer-note a:hover {
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text p {
+        font-size: 1.125rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 40px 20px;
+        align-items: center;
+        /* Keep centered on mobile for better balance */
+        justify-content: flex-start;
+    }
+
+    .logo-slot {
+        height: 64px;
+        /* Slightly smaller but still prominent */
+        margin-bottom: 24px;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+        margin-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+        padding: 0 8px;
+    }
+
+    .subscribe-card {
+        margin-top: 32px;
+        padding: 32px 20px;
+        /* More breathing room than before */
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: 1.35rem;
+    }
+
+    .helper-text {
+        font-size: 0.95rem;
+        margin-bottom: 24px;
+    }
+}
+
+/* Custom Form Styles */
+.custom-form {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.email-input {
+    flex: 1;
+    padding: 14px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--font-primary);
+    color: var(--color-navy);
+    outline: none;
+    transition: border-color 0.2s;
+    background: #f9fafb;
+    -webkit-appearance: none;
+    /* Remove iOS shadow */
+}
+
+.email-input:focus {
+    border-color: var(--color-navy);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(27, 64, 115, 0.1);
+}
+
+.submit-button {
+    background-color: var(--color-navy);
+    color: var(--color-white);
+    border: none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.submit-button:hover {
+    background-color: #14305a;
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+}
+
+.trust-indicator {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 4px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* Mobile adjustments for form */
+@media (max-width: 480px) {
+    .input-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 16px;
+        /* Comfortable touch target */
+    }
+
+    .email-input {
+        width: 100%;
+    }
+}
