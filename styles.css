@@ -248,6 +248,7 @@ body {
     transition: border-color 0.2s;
     background: #f9fafb;
     -webkit-appearance: none;
+    appearance: none;
     /* Remove iOS shadow */
 }
 
