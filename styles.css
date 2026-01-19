@@ -291,6 +291,34 @@ body {
     line-height: 1.4;
 }
 
+/* Conversion Checklist */
+.conversion-checklist {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+}
+
+.checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-navy);
+    line-height: 1.4;
+    text-align: left;
+}
+
+.checkmark {
+    color: var(--color-green);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+
 /* Mobile adjustments for form */
 @media (max-width: 480px) {
     .input-group {
