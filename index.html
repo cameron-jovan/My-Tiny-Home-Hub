@@ -132,31 +132,6 @@
 
                     <iframe name="hidden-iframe" style="display:none;"></iframe>
 
-                    <script>
-                        // Randomize subscriber count
-                        document.getElementById('subscriber-count').textContent = Math.floor(Math.random() * (45 - 12 + 1)) + 12;
-
-                        // FAQ Toggle Logic
-                        document.querySelectorAll('.faq-header').forEach(header => {
-                            header.addEventListener('click', () => {
-                                const item = header.parentElement;
-                                item.classList.toggle('active');
-                                const plus = header.querySelector('.plus');
-                                plus.textContent = item.classList.contains('active') ? '−' : '+';
-                            });
-                        });
-
-                        document.getElementById('custom-subscribe-form').addEventListener('submit', function () {
-                            gtag('event', 'generate_lead', {
-                                'event_category': 'form',
-                                'event_label': 'newsletter_signup'
-                            });
-                            setTimeout(function () {
-                                document.getElementById('custom-subscribe-form').reset();
-                                document.getElementById('success-message').style.display = 'block';
-                            }, 1000);
-                        });
-                    </script>
                 </div>
 
                 <!-- FAQ Accordion -->
@@ -251,6 +226,45 @@
             </div>
         </div>
     </div>
+    <script>
+        // Initialize once DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Randomize subscriber count
+            const subCount = document.getElementById('subscriber-count');
+            if (subCount) {
+                subCount.textContent = Math.floor(Math.random() * (45 - 12 + 1)) + 12;
+            }
+
+            // FAQ Toggle Logic
+            document.querySelectorAll('.faq-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const item = header.parentElement;
+                    item.classList.toggle('active');
+                    const plus = header.querySelector('.plus');
+                    if (plus) {
+                        plus.textContent = item.classList.contains('active') ? '−' : '+';
+                    }
+                });
+            });
+
+            // Form Submit Tracking
+            const form = document.getElementById('custom-subscribe-form');
+            if (form) {
+                form.addEventListener('submit', function () {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'generate_lead', {
+                            'event_category': 'form',
+                            'event_label': 'newsletter_signup'
+                        });
+                    }
+                    setTimeout(function () {
+                        form.reset();
+                        document.getElementById('success-message').style.display = 'block';
+                    }, 1000);
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
