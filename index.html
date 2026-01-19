@@ -18,6 +18,62 @@
 
         gtag('config', 'G-JT53K4C5WG');
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is My Tiny Home Hub changing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We realized that selling homes wasn't enough. The demand for alternative housing is massive, but the resources to navigate it are broken. We are currently rebuilding our platform to be both a high-performance housing marketplace and a world-class media company. By building Tiny Edit alongside our platform, we’re ensuring that when you're ready to buy, you’re backed by the design intelligence and financial clarity required to actually succeed in this industry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is the My Tiny Home Hub store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The shop is currently in 'stealth mode' as we integrate our new $10M+ pipeline of inventory with our media resources. We’re moving away from being just a transactional store to becoming an end-to-end housing ecosystem. While the platform is under construction, Tiny Edit is where we release our design and financing playbooks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the long-term vision for Tiny Edit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tiny Edit is the editorial heart of our ecosystem. We are building a media engine that treats tiny living with the same rigor as traditional luxury real estate. Our goal is to provide a category-defining resource that educates the market while our platform provides the tools to house it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you still sell tiny homes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. While the public storefront is offline for upgrades, our Concierge team is active and matching high-intent buyers with vetted builders and financing partners. We’re prioritizing the 5,000+ families in our subscriber community for our current inventory and financing flows."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who writes Tiny Edit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tiny Edit is led by Cameron Jo’van and a cross-functional team of architects, financing modelers, and zoning strategists who focus on long-term ROI and 'category king' design standards."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get the free ADU Zoning Checklist?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Simply enter your email in any signup box on this page. As a media-first company, we believe in leading with value. This checklist helps you determine property eligibility in 5 minutes so you can stop guessing and start building."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -31,7 +87,7 @@
                 <div class="hero-text">
                     <h1>Tiny Edit is where America's next tiny-living playbook gets written.</h1>
                     <p>Every Tuesday, get luxury tiny home tours, financing strategies, and zoning intel that actually
-                        works. Join 5,000+ readers who don't wait for housing to make sense.</p>
+                        works.</p>
                 </div>
                 <div class="subscribe-card">
                     <h3 class="card-title">Get the Tiny Edit newsletter</h3>
@@ -50,11 +106,12 @@
                             <button type="submit" class="submit-button">Get The Tiny Edit</button>
                         </div>
 
-                        <p class="trust-indicator">Curated for tiny‑living buyers and design lovers. No spam.</p>
+                        <p class="urgency-tag">Next edition drops Tuesday at 9:00 AM EST. Join <span
+                                id="subscriber-count">12</span> others who signed up today.</p>
 
                         <div id="success-message"
                             style="display:none; margin-top: 12px; color: var(--color-green); font-weight: 600; font-size: 0.9rem;">
-                            Success! Check your email to confirm.
+                            Check your email in 60 seconds for your free ADU Zoning Checklist.
                         </div>
 
                         <div class="conversion-checklist">
@@ -76,6 +133,19 @@
                     <iframe name="hidden-iframe" style="display:none;"></iframe>
 
                     <script>
+                        // Randomize subscriber count
+                        document.getElementById('subscriber-count').textContent = Math.floor(Math.random() * (45 - 12 + 1)) + 12;
+
+                        // FAQ Toggle Logic
+                        document.querySelectorAll('.faq-header').forEach(header => {
+                            header.addEventListener('click', () => {
+                                const item = header.parentElement;
+                                item.classList.toggle('active');
+                                const plus = header.querySelector('.plus');
+                                plus.textContent = item.classList.contains('active') ? '−' : '+';
+                            });
+                        });
+
                         document.getElementById('custom-subscribe-form').addEventListener('submit', function () {
                             gtag('event', 'generate_lead', {
                                 'event_category': 'form',
@@ -88,6 +158,94 @@
                         });
                     </script>
                 </div>
+
+                <!-- FAQ Accordion -->
+                <div class="faq-section section-underneath">
+                    <h2 class="faq-title">Frequently Asked Questions</h2>
+                    <div class="faq-accordion">
+                        <div class="faq-item">
+                            <button class="faq-header">Why is My Tiny Home Hub changing? <span
+                                    class="plus">+</span></button>
+                            <div class="faq-content">
+                                <p>We realized that selling homes wasn't enough. The demand for alternative housing is
+                                    massive, but the resources to navigate it are broken. We are currently rebuilding
+                                    our
+                                    platform to be both a high-performance housing marketplace and a world-class media
+                                    company. By building Tiny Edit alongside our platform, we’re ensuring that when
+                                    you're
+                                    ready to buy, you’re backed by the design intelligence and financial clarity
+                                    required to
+                                    actually succeed in this industry.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-header">Where is the My Tiny Home Hub store? <span
+                                    class="plus">+</span></button>
+                            <div class="faq-content">
+                                <p>The shop is currently in "stealth mode" as we integrate our new $10M+ pipeline of
+                                    inventory with our media resources. We’re moving away from being just a
+                                    transactional
+                                    store to becoming an end-to-end housing ecosystem. While the platform is under
+                                    construction, Tiny Edit is where we release our design and financing playbooks.
+                                    Subscribers get the first notification when the full marketplace—and our new
+                                    financing
+                                    tools—goes live.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-header">What is the long-term vision for Tiny Edit? <span
+                                    class="plus">+</span></button>
+                            <div class="faq-content">
+                                <p>Tiny Edit is the editorial heart of our ecosystem. Most people fail in tiny living
+                                    because of bad data, poor design, or legal "red tape." We are building a media
+                                    engine
+                                    that treats tiny living with the same rigor as traditional luxury real estate. Our
+                                    goal
+                                    is to provide a category-defining resource that educates the market while our
+                                    platform
+                                    provides the tools to house it.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-header">Do you still sell tiny homes? <span
+                                    class="plus">+</span></button>
+                            <div class="faq-content">
+                                <p>Yes. While the public storefront is offline for upgrades, our Concierge team is
+                                    active
+                                    and matching high-intent buyers with vetted builders and financing partners. If you
+                                    are
+                                    ready to build now, join Tiny Edit and follow the "Concierge" link in your welcome
+                                    email. We’re prioritizing the 5,000+ families in our subscriber community for our
+                                    current inventory and financing flows.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-header">Who writes Tiny Edit? <span class="plus">+</span></button>
+                            <div class="faq-content">
+                                <p>Tiny Edit is led by Cameron Jo’van and a cross-functional team operating at the
+                                    intersection of tech, culture, and entrepreneurship. We don't do DIY hacks or
+                                    clickbait.
+                                    We build housing systems. Our team includes architects, financing modelers, and
+                                    zoning
+                                    strategists who focus on long-term ROI and "category king" design standards.</p>
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-header">How do I get the free ADU Zoning Checklist? <span
+                                    class="plus">+</span></button>
+                            <div class="faq-content">
+                                <p>Simply enter your email in any signup box on this page. As a media-first company, we
+                                    believe in leading with value. This checklist is the first step in our playbook,
+                                    helping
+                                    you determine property eligibility in 5 minutes so you can stop guessing and start
+                                    building.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://tinyedit.mytinyhomehub.com" class="archive-link">Browse the Tiny Edit Editorial
+                        Archive →</a>
+                </div>
+
                 <p class="footer-note">Built by <a href="https://mytinyhomehub.com" target="_blank">My Tiny Home Hub</a>
                     · Less home, more living.</p>
             </div>

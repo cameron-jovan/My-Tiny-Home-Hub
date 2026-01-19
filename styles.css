@@ -281,7 +281,7 @@ body {
     transform: scale(0.98);
 }
 
-.trust-indicator {
+.urgency-tag {
     font-size: 0.75rem;
     color: #6b7280;
     margin-top: 4px;
@@ -289,6 +289,90 @@ body {
     letter-spacing: 0.01em;
     text-align: center;
     line-height: 1.4;
+}
+
+/* FAQ Accordion */
+.faq-section {
+    width: 100%;
+    max-width: 480px;
+    margin-top: 48px;
+    text-align: center;
+}
+
+.faq-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    color: #fff;
+    letter-spacing: -0.01em;
+}
+
+.faq-accordion {
+    text-align: left;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.faq-header {
+    width: 100%;
+    padding: 16px 0;
+    background: transparent;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+    color: #fff;
+    cursor: pointer;
+    text-align: left;
+    transition: opacity 0.2s;
+}
+
+.faq-header:hover {
+    opacity: 0.8;
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease;
+}
+
+.faq-item.active .faq-content {
+    max-height: 500px;
+    padding-bottom: 24px;
+}
+
+.faq-content p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+.plus {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.archive-link {
+    display: inline-block;
+    margin-top: 40px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 4px;
+    transition: border-color 0.2s;
+}
+
+.archive-link:hover {
+    border-color: #fff;
 }
 
 /* Conversion Checklist */
