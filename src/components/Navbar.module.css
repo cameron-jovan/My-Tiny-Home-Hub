@@ -1,0 +1,152 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--navy);
+  transition: all var(--transition-base);
+  height: var(--nav-height);
+}
+
+.nav.scrolled {
+  background: var(--navy-dark);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+  height: 64px;
+}
+
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.link {
+  color: rgba(255,255,255,0.85);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: color var(--transition-fast);
+  padding: 4px 0;
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--lime);
+  transition: width var(--transition-base);
+}
+
+.link:hover {
+  color: var(--white);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.ctaDesktop {
+  flex-shrink: 0;
+  font-size: 0.8125rem !important;
+  padding: 10px 20px !important;
+}
+
+.ctaBtn {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  z-index: 1001;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.bar:nth-child(1).barOpen {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.bar:nth-child(2).barOpen {
+  opacity: 0;
+}
+
+.bar:nth-child(3).barOpen {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 968px) {
+  .links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: var(--navy-dark);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-xl);
+    padding: var(--space-2xl);
+    transition: right var(--transition-slow);
+    z-index: 1000;
+  }
+
+  .links.open {
+    right: 0;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+  }
+
+  .link {
+    font-size: 1.125rem;
+  }
+
+  .ctaDesktop {
+    display: none;
+  }
+
+  .ctaBtn {
+    display: inline-flex;
+    margin-top: var(--space-md);
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
