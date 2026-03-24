@@ -14,6 +14,7 @@ import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext({
   user: null,
+  userData: null,
   loading: true,
   loginWithGoogle: () => {},
   loginWithEmail: () => {},
@@ -23,11 +24,34 @@ const AuthContext = createContext({
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      if (user) {
+        // Fetch custom user data from Firestore
+        const userRef = doc(db, 'users', user.uid);
+        const snap = await getDoc(userRef);
+        if (snap.exists()) {
+          setUserData(snap.data());
+        } else {
+          // If profile doesn't exist, create it (e.g. for users who didn't use signup function)
+          const newUserProfile = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName || '',
+            photoURL: user.photoURL || '',
+            role: 'user',
+            createdAt: new Date(),
+          };
+          await setDoc(userRef, newUserProfile);
+          setUserData(newUserProfile);
+        }
+      } else {
+        setUserData(null);
+      }
       setLoading(false);
     });
     return () => unsubscribe();
@@ -42,7 +66,7 @@ export function AuthProvider({ children }) {
       const { email, displayName, photoURL } = user;
       const createdAt = new Date();
       try {
-        await setDoc(userRef, {
+        const profile = {
           uid: user.uid,
           email,
           displayName: displayName || additionalData.displayName || '',
@@ -50,7 +74,9 @@ export function AuthProvider({ children }) {
           role: 'user', // Default role
           createdAt,
           ...additionalData
-        });
+        };
+        await setDoc(userRef, profile);
+        setUserData(profile);
       } catch (error) {
         console.error("Error creating user profile", error);
       }
@@ -60,6 +86,8 @@ export function AuthProvider({ children }) {
   const loginWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      // Profile creation is now also handled in onAuthStateChanged as a fallback,
+      // but keeping this for explicit creation.
       await createUserProfile(result.user);
     } catch (error) {
       console.error("Error logging in with Google:", error);
@@ -100,7 +128,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, loginWithGoogle, loginWithEmail, signup, logout }}>
+    <AuthContext.Provider value={{ user, userData, loading, loginWithGoogle, loginWithEmail, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );
