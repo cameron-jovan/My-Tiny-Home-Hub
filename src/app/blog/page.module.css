@@ -1,0 +1,81 @@
+.page {
+  padding-top: var(--nav-height);
+  background: var(--off-white);
+}
+
+/* Featured Hero */
+.heroSection {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  padding: var(--space-3xl) 0;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 100%);
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+}
+
+.heroTag {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--lime);
+  color: var(--navy-dark);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-md);
+}
+
+.heroTitle {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: var(--space-md);
+}
+
+.heroTitle a {
+  color: inherit;
+  transition: opacity var(--transition-fast);
+}
+
+.heroTitle a:hover {
+  opacity: 0.85;
+}
+
+.heroMeta {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.875rem;
+}
+
+/* Posts Grid */
+.postsSection {
+  padding: var(--space-3xl) 0;
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 968px) {
+  .postsGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .postsGrid { grid-template-columns: 1fr; }
+  .heroSection { min-height: 40vh; }
+}
