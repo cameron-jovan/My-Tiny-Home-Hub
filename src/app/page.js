@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
+import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
 import { collection, query, getDocs, limit, where } from 'firebase/firestore';
 import styles from './page.module.css';
@@ -18,6 +19,7 @@ export default function HomePage() {
   const [categories, setCategories] = useState([]);
   const [topicHubs, setTopicHubs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showInquiry, setShowInquiry] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -238,12 +240,22 @@ export default function HomePage() {
             <p>
               Our experts handle the complex details so you can focus on finding your perfect home.
             </p>
-            <Link href="/#concierge" className="btn btn-primary btn-lg">
+            <button 
+              className="btn btn-primary btn-lg" 
+              onClick={() => setShowInquiry(true)}
+            >
               Book Tiny Home Concierge
-            </Link>
+            </button>
           </div>
         </div>
       </section>
+
+      {showInquiry && (
+        <InquiryModal 
+          onClose={() => setShowInquiry(false)} 
+          type="concierge" 
+        />
+      )}
 
       {/* ===== NEWSLETTER ===== */}
       <Newsletter variant="default" />

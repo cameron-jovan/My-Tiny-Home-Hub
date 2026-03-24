@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import Newsletter from '@/components/Newsletter';
+import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, collection, query, limit, getDocs } from 'firebase/firestore';
 import styles from './page.module.css';
@@ -16,6 +17,7 @@ export default function ListingDetailPage({ params }) {
   const [listing, setListing] = useState(null);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showInquiry, setShowInquiry] = useState(false);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -186,10 +188,18 @@ export default function ListingDetailPage({ params }) {
                     )}
                   </div>
                 </div>
-                <button className="btn btn-secondary" style={{ width: '100%' }}>
+                <button 
+                  className="btn btn-secondary" 
+                  style={{ width: '100%' }}
+                  onClick={() => setShowInquiry(true)}
+                >
                   Contact Seller
                 </button>
-                <button className="btn btn-outline" style={{ width: '100%', marginTop: '8px' }}>
+                <button 
+                  className="btn btn-outline" 
+                  style={{ width: '100%', marginTop: '8px' }}
+                  onClick={() => setShowInquiry(true)}
+                >
                   Schedule Tour
                 </button>
               </div>
@@ -235,6 +245,14 @@ export default function ListingDetailPage({ params }) {
         <Newsletter />
       </main>
       <Footer />
+
+      {showInquiry && (
+        <InquiryModal 
+          listing={listing} 
+          onClose={() => setShowInquiry(false)} 
+          type="listing" 
+        />
+      )}
 
       {/* Schema.org JSON-LD */}
       <script
