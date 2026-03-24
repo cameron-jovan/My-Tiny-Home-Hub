@@ -130,22 +130,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ===== PROOF STATS BAR ===== */}
-      <section className={styles.proofBar} id="proof-stats">
-        <div className="container">
-          <div className={styles.stats}>
-            <div className={styles.stat}>
-              <div className={styles.statValue}>$1M+</div>
-              <div className={styles.statLabel}>Homes Sold</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statValue}>$10M+</div>
-              <div className={styles.statLabel}>Pipeline Value</div>
-            </div>
-            <div className={styles.stat}>
-              <div className={styles.statValue}>5,000+</div>
-              <div className={styles.statLabel}>Trusted by Thousands</div>
-            </div>
+      {/* ===== AS SEEN ON ===== */}
+      <section className={styles.proofBar} id="as-seen-on">
+        <p className={styles.seenOnLabel}>As Seen On</p>
+        <div className={styles.marqueeWrapper}>
+          <div className={styles.marqueeTrack}>
+            {[
+              { name: 'Redfin',        style: { color: '#CC092F', fontWeight: 700 } },
+              { name: 'Built America', style: { color: '#1B4073', fontWeight: 700 } },
+              { name: 'FOX News',      style: { color: '#003399', fontWeight: 800 } },
+              { name: 'Google News',   style: { color: '#202124', fontWeight: 600 } },
+              { name: 'Redfin',        style: { color: '#CC092F', fontWeight: 700 } },
+              { name: 'Built America', style: { color: '#1B4073', fontWeight: 700 } },
+              { name: 'FOX News',      style: { color: '#003399', fontWeight: 800 } },
+              { name: 'Google News',   style: { color: '#202124', fontWeight: 600 } },
+            ].map((item, i) => (
+              <span key={i} className={styles.marqueeItem} style={item.style}>
+                {item.name}
+              </span>
+            ))}
           </div>
         </div>
       </section>

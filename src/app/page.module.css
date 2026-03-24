@@ -116,36 +116,59 @@
   font-weight: 600;
 }
 
-/* Proof Stats */
+/* As Seen On */
 .proofBar {
-  background: var(--navy);
-  padding: var(--space-xl) 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  background: #CDE8E6;
+  padding: 20px 0 22px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  overflow: hidden;
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-3xl);
-  flex-wrap: wrap;
-}
-
-.stat {
+.seenOnLabel {
   text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #5a8080;
+  margin: 0 0 14px;
 }
 
-.statValue {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: var(--lime);
+.marqueeWrapper {
+  overflow: hidden;
+  width: 100%;
 }
 
-.statLabel {
-  font-size: 0.8125rem;
-  color: rgba(255,255,255,0.6);
-  margin-top: 4px;
-  font-weight: 500;
+.marqueeTrack {
+  display: flex;
+  gap: 72px;
+  width: max-content;
+  align-items: center;
+  animation: marqueeScroll 22s linear infinite;
+}
+
+.marqueeWrapper:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.marqueeItem {
+  font-family: var(--font-display, 'DM Sans', 'Inter', sans-serif);
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0.8;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* keep these selectors present so responsive block below compiles */
+.stats { display: none; }
+.stat  { display: none; }
+.statValue { display: none; }
+.statLabel { font-size: 0.8125rem; color: transparent; margin-top: 4px; font-weight: 500;
 }
 
 /* Browse Categories */
@@ -380,11 +403,7 @@
     grid-template-columns: 1fr;
   }
 
-  .stats {
-    gap: var(--space-xl);
-  }
-
-  .statValue {
-    font-size: 1.5rem;
+  .marqueeTrack {
+    gap: 48px;
   }
 }
