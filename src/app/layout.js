@@ -1,4 +1,5 @@
 import { AuthProvider } from "@/context/AuthContext";
+import ComingSoonModal from "@/components/ComingSoonModal";
 import "./globals.css";
 
 export const metadata = {
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <AuthProvider>
+          <ComingSoonModal />
           {children}
         </AuthProvider>
       </body>

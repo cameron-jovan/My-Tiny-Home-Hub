@@ -1,0 +1,175 @@
+/* ─── Overlay ──────────────────────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  background: rgba(10, 20, 45, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  animation: fadeIn 0.35s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Modal card ───────────────────────────────────────────────────────────── */
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  max-height: 92vh;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 48px 44px 36px;
+  box-shadow: 0 32px 80px rgba(10, 20, 45, 0.35), 0 4px 16px rgba(10, 20, 45, 0.12);
+
+  animation: slideUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.05s;
+
+  /* Subtle top accent bar */
+  border-top: 4px solid var(--lime, #8CC540);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);    }
+}
+
+/* ─── Close button ─────────────────────────────────────────────────────────── */
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100, #f3f4f6);
+  color: var(--gray-500, #6b7280);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.close:hover {
+  background: var(--gray-200, #e5e7eb);
+  color: var(--gray-800, #1f2937);
+}
+
+/* ─── Badge ────────────────────────────────────────────────────────────────── */
+.eyebrow {
+  margin-bottom: 18px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--lime, #8CC540);
+  color: #fff;
+}
+
+/* ─── Headline ─────────────────────────────────────────────────────────────── */
+.headline {
+  font-family: var(--font-display, 'DM Sans', 'Inter', sans-serif);
+  font-size: clamp(22px, 4vw, 28px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--navy, #1B4073);
+  margin: 0 0 14px;
+}
+
+.accent {
+  color: var(--teal, #06799B);
+}
+
+/* ─── Subtext ──────────────────────────────────────────────────────────────── */
+.sub {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--gray-600, #4b5563);
+  margin: 0 0 28px;
+}
+
+/* ─── Form section ─────────────────────────────────────────────────────────── */
+.formWrap {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--navy, #1B4073);
+  margin: 0 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.beehiivFrame {
+  width: 100% !important;
+  height: 160px;
+  border: none;
+  display: block;
+  background: transparent;
+}
+
+/* ─── Trust signals ────────────────────────────────────────────────────────── */
+.trust {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--gray-500, #6b7280);
+  margin-bottom: 20px;
+}
+
+.dot {
+  color: var(--gray-300, #d1d5db);
+}
+
+/* ─── Ghost dismiss link ───────────────────────────────────────────────────── */
+.dismissText {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: var(--gray-400, #9ca3af);
+  text-align: center;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.dismissText:hover {
+  color: var(--gray-600, #4b5563);
+  text-decoration: underline;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .modal {
+    padding: 36px 24px 28px;
+    border-radius: 16px;
+  }
+
+  .beehiivFrame {
+    height: 180px;
+  }
+}
