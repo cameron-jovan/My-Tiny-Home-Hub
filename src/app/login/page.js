@@ -1,23 +1,25 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 import styles from './login.module.css';
 
-export default function LoginPage() {
+function LoginContent() {
   const { loginWithGoogle, loginWithEmail } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectPath = searchParams.get('redirect') || '/';
 
   const handleGoogleLogin = async () => {
     try {
       await loginWithGoogle();
-      router.push('/');
+      router.push(redirectPath);
     } catch (err) {
       setError('Failed to login with Google');
     }
@@ -27,7 +29,7 @@ export default function LoginPage() {
     e.preventDefault();
     try {
       await loginWithEmail(email, password);
-      router.push('/');
+      router.push(redirectPath);
     } catch (err) {
       setError('Failed to login with email. Check your credentials.');
     }
@@ -88,5 +90,13 @@ export default function LoginPage() {
         </p>
       </div>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }

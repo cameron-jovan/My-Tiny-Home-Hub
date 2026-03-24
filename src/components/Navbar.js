@@ -17,88 +17,98 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Browse', href: '/browse' },
-    { label: 'Guides', href: '/blog' },
-    { label: 'Financing', href: '/blog?category=Financing' },
-    { label: 'Design', href: '/blog?category=Design' },
-    { label: 'Lifestyle', href: '/blog?category=Lifestyle' },
+    { label: 'Browse', href: '/listings' },
+    { label: 'Categories', href: '/categories' },
+    { label: 'Hub', href: '/blog' },
   ];
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} id="main-nav">
       <div className={styles.inner}>
-        <Link href="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
-          <Image 
-            src="/logo-white.png" 
-            alt="My Tiny Home Hub" 
-            width={180} 
-            height={40}
-            priority
-          />
-        </Link>
+        <div className={styles.left}>
+          <Link href="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
+            <Image 
+              src="/logo-white.png" 
+              alt="My Tiny Home Hub" 
+              width={180} 
+              height={40}
+              priority
+              className={styles.logoImage}
+            />
+          </Link>
 
-        <div className={`${styles.links} ${mobileOpen ? styles.open : ''}`}>
+          <div className={styles.desktopLinks}>
+            {navLinks.map(link => (
+              <Link key={link.href} href={link.href} className={styles.link}>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.right}>
+          <div className={styles.authGroup}>
+            {user ? (
+              <>
+                <Link href="/dashboard" className={styles.link}>Dashboard</Link>
+                <div className={styles.userMenu}>
+                  <div className={styles.userAvatar}>
+                    {user.photoURL ? (
+                      <img src={user.photoURL} alt={user.displayName} />
+                    ) : (
+                      <span>{user.email?.[0].toUpperCase()}</span>
+                    )}
+                  </div>
+                  <button onClick={logout} className={`${styles.navBtn} btn btn-secondary`}>Sign Out</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <Link href="/login" className={styles.link}>Sign In</Link>
+                <Link href="/signup" className={`${styles.navBtn} btn btn-primary`}>Get Started</Link>
+              </>
+            )}
+          </div>
+
+          <button 
+            className={styles.hamburger}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle navigation menu"
+            id="mobile-menu-toggle"
+          >
+            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
+            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
+            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`${styles.mobileMenu} ${mobileOpen ? styles.mobileOpen : ''}`}>
+        <div className={styles.mobileLinks}>
           {navLinks.map(link => (
             <Link 
               key={link.href} 
               href={link.href} 
-              className={styles.link}
+              className={styles.mobileLink}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          
+          <hr />
           {user ? (
-            <div className={styles.userProfile}>
-              <span className={styles.userName}>{user.displayName || user.email}</span>
-              <button 
-                onClick={logout} 
-                className={`btn btn-secondary ${styles.ctaBtn}`}
-              >
-                Logout
-              </button>
-            </div>
+            <>
+              <Link href="/dashboard" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Dashboard</Link>
+              <button onClick={logout} className="btn btn-secondary">Sign Out</button>
+            </>
           ) : (
-            <button 
-              onClick={loginWithGoogle} 
-              className={`btn btn-secondary ${styles.ctaBtn}`}
-            >
-              Sign In
-            </button>
+            <>
+              <Link href="/login" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Sign In</Link>
+              <Link href="/signup" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Get Started</Link>
+            </>
           )}
-
-          <Link href="/#concierge" className={`btn btn-primary ${styles.ctaBtn}`}>
-            Book Tiny Home Concierge
-          </Link>
         </div>
-
-        <div className={styles.rightActions}>
-          {user ? (
-            <div className={styles.profileDesktop}>
-              <span className={styles.userName}>{user.displayName}</span>
-              <button onClick={logout} className={styles.plainBtn}>Logout</button>
-            </div>
-          ) : (
-            <button onClick={loginWithGoogle} className={styles.plainBtn}>Login</button>
-          )}
-          
-          <Link href="/#concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
-            Book Tiny Home Concierge
-          </Link>
-        </div>
-
-        <button 
-          className={styles.hamburger}
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle navigation menu"
-          id="mobile-menu-toggle"
-        >
-          <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
-          <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
-          <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
-        </button>
       </div>
     </nav>
   );
