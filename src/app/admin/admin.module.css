@@ -321,6 +321,22 @@
   padding-bottom: 0.5rem;
 }
 
+.statusSelect {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--white-smoke);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--navy);
+  background: var(--white);
+  cursor: pointer;
+}
+
+.statusSelect:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+
 @media (max-width: 768px) {
   .adminContainer {
     flex-direction: column;
