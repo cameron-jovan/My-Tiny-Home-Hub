@@ -1,41 +1,18 @@
-rules_version = '2';
+rules_version='2'
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper functions
-    function isAuthenticated() {
-      return request.auth != null;
-    }
-    function isAdmin() {
-      return isAuthenticated() && (
-        request.auth.token.email == 'cam@jovanconsulting.xyz' ||
-        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
-      );
-    }
-    function isOwner(userId) {
-      return isAuthenticated() && request.auth.uid == userId;
-    }
-
-    // Listings: Public Read, Auth Write (for now, eventually restricted to sellers)
-    match /listings/{listingId} {
-      allow read: if true;
-      allow write: if isAuthenticated();
-    }
-
-    // Blog Posts: Public Read, Admin Write
-    match /posts/{postId} {
-      allow read: if true;
-      allow write: if isAdmin();
-    }
-
-    // User Profiles: Private
-    match /users/{userId} {
-      allow read, write: if isOwner(userId);
-    }
-
-    // Newsletter: Public Create
-    match /subscribers/{email} {
-      allow create: if true;
-      allow read, update, delete: if isAdmin();
+    match /{document=**} {
+      // This rule allows anyone with your database reference to view, edit,
+      // and delete all data in your database. It is useful for getting
+      // started, but it is configured to expire after 30 days because it
+      // leaves your app open to attackers. At that time, all client
+      // requests to your database will be denied.
+      //
+      // Make sure to write security rules for your app before that time, or
+      // else all client requests to your database will be denied until you
+      // update your rules.
+      allow read, write: if request.time < timestamp.date(2026, 4, 23);
     }
   }
 }
