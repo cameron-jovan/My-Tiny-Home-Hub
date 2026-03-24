@@ -15,7 +15,7 @@ export default function Footer() {
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Guides</h4>
-            <Link href="/blog?category=Zoning">Zoning Laws</Link>
+            <Link href="/guides">Technical Guides</Link>
             <Link href="/blog?category=Financing">Financing 101</Link>
             <Link href="/blog?category=Lifestyle">Off-grid Guide</Link>
           </div>
