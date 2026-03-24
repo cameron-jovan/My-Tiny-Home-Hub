@@ -56,18 +56,13 @@ export default function Navbar() {
               <Link href="/dashboard" className={styles.link} onClick={() => setMobileOpen(false)}>Dashboard</Link>
               <button onClick={logout} className="btn btn-secondary">Sign Out</button>
             </>
-          ) : (
-            <>
-              <Link href="/login" className={styles.link} onClick={() => setMobileOpen(false)}>Sign In</Link>
-              <Link href="/signup" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Get Started</Link>
-            </>
-          )}
-          <Link 
-            href="/#concierge" 
+          ) : null}
+          <Link
+            href="/#concierge"
             className={`btn btn-primary ${styles.ctaBtn}`}
             onClick={() => setMobileOpen(false)}
           >
-            Book Concierge Service
+            Get Concierge Service
           </Link>
         </div>
 
@@ -84,7 +79,7 @@ export default function Navbar() {
           )}
 
           <Link href="/#concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
-            Book Concierge Service
+            Get Concierge Service
           </Link>
         </div>
 
