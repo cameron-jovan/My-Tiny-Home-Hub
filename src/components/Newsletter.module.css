@@ -1,0 +1,92 @@
+.section {
+  padding: var(--space-3xl) 0;
+  text-align: center;
+}
+
+.section.default {
+  background: var(--gray-50);
+}
+
+.section.dark {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+}
+
+.title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: var(--space-sm);
+}
+
+.dark .title {
+  color: var(--white);
+}
+
+.subtitle {
+  color: var(--gray-500);
+  font-size: 0.9375rem;
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
+
+.dark .subtitle {
+  color: rgba(255,255,255,0.6);
+}
+
+.form {
+  width: 100%;
+}
+
+.inputRow {
+  display: flex;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.emailInput {
+  flex: 1;
+}
+
+.disclaimer {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin-top: var(--space-md);
+}
+
+.dark .disclaimer {
+  color: rgba(255,255,255,0.35);
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: rgba(89, 133, 59, 0.1);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--forest);
+}
+
+.checkIcon {
+  font-size: 1.5rem;
+  color: var(--forest);
+  font-weight: bold;
+}
+
+.success p {
+  color: var(--forest);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+@media (max-width: 520px) {
+  .inputRow {
+    flex-direction: column;
+  }
+}
