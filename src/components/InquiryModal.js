@@ -53,7 +53,7 @@ export default function InquiryModal({ listing, onClose, type = 'general' }) {
           </div>
         ) : (
           <>
-            <h2>{type === 'listing' ? 'Enquire About Listing' : 'Book Concierge'}</h2>
+            <h2>{type === 'listing' ? 'Enquire About Listing' : 'Book Concierge Service'}</h2>
             <p className={styles.subtitle}>
               {type === 'listing' ? `Subject: ${listing?.title}` : 'Talk to a Tiny Home expert'}
             </p>

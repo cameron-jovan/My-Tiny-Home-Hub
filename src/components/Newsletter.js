@@ -22,7 +22,7 @@ export default function Newsletter({ variant = 'default' }) {
   return (
     <section className={`${styles.section} ${styles[variant]}`} id="newsletter-signup">
       <div className={`container ${styles.inner}`}>
-        <h2 className={styles.title}>Get the Tiny Living Dispatch</h2>
+        <h2 className={styles.title}>The Tiny Edit</h2>
         <p className={styles.subtitle}>
           Fresh listings, expert tips, and financing intel delivered to your inbox every Tuesday.
         </p>

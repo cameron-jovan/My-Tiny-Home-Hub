@@ -19,7 +19,7 @@ export default function Navbar() {
   const navLinks = [
     { label: 'Browse', href: '/browse' },
     { label: 'Categories', href: '/categories' },
-    { label: 'Hub', href: '/blog' },
+    { label: 'Blog', href: '/blog' },
   ];
 
   return (

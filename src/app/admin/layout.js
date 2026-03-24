@@ -12,6 +12,7 @@ export default function AdminLayout({ children }) {
     { name: 'Dashboard', href: '/admin' },
     { name: 'Listings', href: '/admin/listings' },
     { name: 'Blog Posts', href: '/admin/posts' },
+    { name: 'Guides', href: '/admin/guides' },
     { name: 'Categories', href: '/admin/categories' },
     { name: 'Inquiries', href: '/admin/inquiries' },
   ];

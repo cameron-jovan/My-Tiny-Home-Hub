@@ -204,7 +204,7 @@ export default function HomePage() {
       <section className={styles.editorialSection} id="editorial-dispatch">
         <div className="container">
           <div className="section-header">
-            <h2>The Editorial Dispatch</h2>
+            <h2>The Tiny Edit</h2>
             <Link href="/blog" className="view-all-link">
               View All Stories →
             </Link>
@@ -244,7 +244,7 @@ export default function HomePage() {
               className="btn btn-primary btn-lg" 
               onClick={() => setShowInquiry(true)}
             >
-              Book Tiny Home Concierge
+              Book Concierge Service
             </button>
           </div>
         </div>
