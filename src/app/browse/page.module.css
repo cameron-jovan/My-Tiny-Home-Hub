@@ -1,0 +1,247 @@
+.page {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+  background: var(--off-white);
+}
+
+/* Search Header */
+.searchHeader {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+  padding: var(--space-xl) 0;
+}
+
+.searchRow {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-xl);
+}
+
+.searchLabel {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-500);
+  margin-bottom: var(--space-sm);
+}
+
+.searchInputWrap {
+  display: flex;
+  align-items: center;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 0 var(--space-md);
+  min-width: 400px;
+}
+
+.searchIcon {
+  font-size: 1rem;
+  margin-right: var(--space-sm);
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 14px 0;
+  font-size: 0.9375rem;
+  outline: none;
+  color: var(--gray-800);
+}
+
+.sortWrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.sortLabel {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gray-500);
+}
+
+.sortSelect {
+  padding: 14px 40px 14px 16px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  background: var(--white);
+  color: var(--gray-800);
+  cursor: pointer;
+  appearance: auto;
+  font-weight: 500;
+}
+
+/* Layout */
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0 var(--space-3xl);
+}
+
+/* Filter Sidebar */
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-lg));
+  height: fit-content;
+}
+
+.filterTitle {
+  font-size: 1.25rem;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+
+.filterSubtitle {
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+  margin-bottom: var(--space-xl);
+}
+
+.filterGroup {
+  margin-bottom: var(--space-xl);
+}
+
+.filterLabel {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: var(--space-md);
+}
+
+.priceInputs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.priceTag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  white-space: nowrap;
+}
+
+.rangeSlider {
+  flex: 1;
+  accent-color: var(--navy);
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.8125rem;
+  color: var(--gray-700);
+  padding: 6px 0;
+  cursor: pointer;
+}
+
+.checkbox {
+  accent-color: var(--navy);
+  width: 16px;
+  height: 16px;
+}
+
+.sqftGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.sqftBtn {
+  padding: 10px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gray-600);
+  background: var(--white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+}
+
+.sqftBtn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+}
+
+.sqftActive {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+
+/* Results */
+.results {
+  min-width: 0;
+}
+
+.listingsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-xl);
+}
+
+.empty {
+  text-align: center;
+  padding: var(--space-3xl);
+  color: var(--gray-500);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .listingsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .searchInputWrap {
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md) var(--space-xl);
+  }
+
+  .filterTitle,
+  .filterSubtitle {
+    grid-column: span 2;
+  }
+
+  .searchRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-md);
+  }
+
+  .searchInputWrap {
+    min-width: unset;
+  }
+
+  .listingsGrid {
+    grid-template-columns: 1fr;
+  }
+}

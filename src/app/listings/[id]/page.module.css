@@ -1,0 +1,292 @@
+.page {
+  padding-top: var(--nav-height);
+  background: var(--off-white);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) 0;
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+}
+
+.breadcrumb a {
+  color: var(--navy);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover { color: var(--teal); }
+
+.current { color: var(--gray-400); }
+
+/* Gallery */
+.gallery {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+}
+
+.mainImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
+  background: var(--gray-100);
+}
+
+/* Detail Grid */
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-3xl);
+}
+
+.mainCol { min-width: 0; }
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  margin-bottom: 4px;
+}
+
+.location {
+  font-size: 0.9375rem;
+  color: var(--gray-500);
+}
+
+.priceBlock {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--navy);
+  display: block;
+}
+
+.priceSub {
+  font-size: 0.875rem;
+  color: var(--forest);
+  font-weight: 600;
+}
+
+/* Quick Specs */
+.quickSpecs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-xl);
+}
+
+.quickSpec {
+  text-align: center;
+}
+
+.qsValue {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+
+.qsLabel {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+}
+
+.statusGreen { color: var(--forest); }
+
+/* Sections */
+.descSection, .specsSection, .amenitiesSection {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+  margin-bottom: var(--space-lg);
+}
+
+.descSection h2, .specsSection h2, .amenitiesSection h2 {
+  font-size: 1.25rem;
+  margin-bottom: var(--space-md);
+}
+
+.descSection p {
+  color: var(--gray-600);
+  line-height: 1.7;
+}
+
+.specsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.specKey {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  text-transform: capitalize;
+}
+
+.specVal {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.amenitiesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.amenityTag {
+  padding: 8px 16px;
+  background: rgba(89, 133, 59, 0.08);
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--forest);
+}
+
+/* Sidebar */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-lg));
+  height: fit-content;
+}
+
+.sellerCard, .financeCard {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+}
+
+.sellerHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.sellerAvatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.sellerName {
+  font-size: 1rem;
+  color: var(--navy);
+}
+
+.verifiedBadge {
+  font-size: 0.75rem;
+  color: var(--forest);
+  font-weight: 600;
+}
+
+.financeCard h4 {
+  font-size: 1rem;
+  color: var(--navy);
+  margin-bottom: var(--space-md);
+}
+
+.financeRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 0.875rem;
+}
+
+.financeRow span { color: var(--gray-500); }
+.financeRow strong { color: var(--navy); }
+
+.monthlyHighlight {
+  color: var(--forest) !important;
+  font-size: 1.125rem;
+}
+
+.financeNote {
+  font-size: 0.6875rem;
+  color: var(--gray-400);
+  margin: var(--space-md) 0;
+  line-height: 1.4;
+}
+
+/* Related */
+.relatedSection {
+  background: var(--white);
+  padding: var(--space-3xl) 0;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+  }
+
+  .mainImage { aspect-ratio: 16 / 8; }
+}
+
+@media (max-width: 640px) {
+  .titleRow { flex-direction: column; }
+  .priceBlock { text-align: left; }
+  .quickSpecs { grid-template-columns: repeat(2, 1fr); }
+  .specsGrid { grid-template-columns: 1fr; }
+  .sidebar { grid-template-columns: 1fr; }
+  .relatedGrid { grid-template-columns: 1fr; }
+}
