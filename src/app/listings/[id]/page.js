@@ -1,30 +1,59 @@
+'use client';
+
+import { use, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import Newsletter from '@/components/Newsletter';
-import { seedListings } from '@/lib/seedData';
+import { db } from '@/lib/firebase';
+import { doc, getDoc, collection, query, limit, getDocs } from 'firebase/firestore';
 import styles from './page.module.css';
 
-export function generateStaticParams() {
-  return seedListings.map(listing => ({ id: listing.id }));
-}
+export default function ListingDetailPage({ params }) {
+  const { id } = use(params);
+  const [listing, setListing] = useState(null);
+  const [related, setRelated] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-export async function generateMetadata({ params }) {
-  const { id } = await params;
-  const listing = seedListings.find(l => l.id === id);
-  if (!listing) return { title: 'Listing Not Found' };
+  useEffect(() => {
+    const fetchListing = async () => {
+      try {
+        const docRef = doc(db, 'listings', id);
+        const docSnap = await getDoc(docRef);
+        
+        if (docSnap.exists()) {
+          setListing({ id: docSnap.id, ...docSnap.data() });
+          
+          // Fetch related
+          const q = query(collection(db, 'listings'), limit(4));
+          const relSnap = await getDocs(q);
+          const relData = relSnap.docs
+            .map(d => ({ id: d.id, ...d.data() }))
+            .filter(d => d.id !== id)
+            .slice(0, 3);
+          setRelated(relData);
+        }
+      } catch (err) {
+        console.error('Error fetching listing:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchListing();
+  }, [id]);
 
-  return {
-    title: `${listing.title} - $${listing.price.toLocaleString()} | My Tiny Home Hub`,
-    description: listing.description,
-  };
-}
+  if (loading) return (
+    <>
+      <Navbar />
+      <main style={{ paddingTop: 'var(--nav-height)', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className={styles.loadingSpinner}>Loading home details...</div>
+      </main>
+      <Footer />
+    </>
+  );
 
-export default async function ListingDetailPage({ params }) {
-  const { id } = await params;
-  const listing = seedListings.find(l => l.id === id);
   if (!listing) {
     return (
       <>
@@ -42,8 +71,7 @@ export default async function ListingDetailPage({ params }) {
     );
   }
 
-  const related = seedListings.filter(l => l.id !== listing.id).slice(0, 3);
-  const monthlyPayment = Math.round(listing.price * 0.008); // ~0.8% rough estimate
+  const monthlyPayment = Math.round(listing.price * 0.008); 
 
   return (
     <>

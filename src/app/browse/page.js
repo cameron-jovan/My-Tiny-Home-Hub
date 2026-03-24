@@ -1,10 +1,11 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
-import { seedListings } from '@/lib/seedData';
+import { db } from '@/lib/firebase';
+import { collection, query, getDocs } from 'firebase/firestore';
 import styles from './page.module.css';
 
 const HOME_TYPES = ['Tiny House on Wheels', 'Modular Foundation', 'ADU / Backyard Suite', 'Container Home', 'Park Model'];
@@ -17,6 +18,8 @@ const SQ_FT_RANGES = [
 const AMENITIES = ['Off-grid Ready', 'Solar Packages', 'Smart Home Tech'];
 
 export default function BrowsePage() {
+  const [listings, setListings] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('popular');
   const [priceRange, setPriceRange] = useState([30000, 250000]);
@@ -25,6 +28,25 @@ export default function BrowsePage() {
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [location, setLocation] = useState('');
   const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    const fetchListings = async () => {
+      try {
+        const q = query(collection(db, 'listings'));
+        const querySnapshot = await getDocs(q);
+        const results = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setListings(results);
+      } catch (err) {
+        console.error('Error fetching listings:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchListings();
+  }, []);
 
   const toggleType = (type) => {
     setSelectedTypes(prev =>
@@ -45,7 +67,7 @@ export default function BrowsePage() {
   };
 
   const filtered = useMemo(() => {
-    let results = [...seedListings];
+    let results = [...listings];
 
     if (search) {
       const q = search.toLowerCase();
@@ -82,9 +104,19 @@ export default function BrowsePage() {
     if (sortBy === 'sqft') results.sort((a, b) => b.sqft - a.sqft);
 
     return results;
-  }, [search, sortBy, priceRange, selectedTypes, selectedSqFt, selectedAmenities]);
+  }, [listings, search, sortBy, priceRange, selectedTypes, selectedSqFt, selectedAmenities]);
 
   const displayed = showAll ? filtered : filtered.slice(0, 6);
+
+  if (loading) return (
+    <>
+      <Navbar />
+      <main className={styles.loadingPage}>
+        <div className={styles.loadingSpinner}>Loading listings...</div>
+      </main>
+      <Footer />
+    </>
+  );
 
   return (
     <>

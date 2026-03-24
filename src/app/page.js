@@ -1,3 +1,5 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
@@ -5,13 +7,56 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
-import { seedListings, seedPosts, categories, topicHubs } from '@/lib/seedData';
+import { db } from '@/lib/firebase';
+import { collection, query, getDocs, limit, where } from 'firebase/firestore';
 import styles from './page.module.css';
 
 export default function HomePage() {
-  const featuredListings = seedListings.slice(0, 6);
-  const featuredPosts = seedPosts.filter(p => p.featured).slice(0, 3);
-  const latestGuides = seedPosts.slice(0, 4);
+  const [featuredListings, setFeaturedListings] = useState([]);
+  const [featuredPosts, setFeaturedPosts] = useState([]);
+  const [latestGuides, setLatestGuides] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [topicHubs, setTopicHubs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch listings
+        const lSnap = await getDocs(query(collection(db, 'listings'), limit(6)));
+        setFeaturedListings(lSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+
+        // Fetch posts
+        const pSnap = await getDocs(query(collection(db, 'posts'), limit(6)));
+        const allPosts = pSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        setFeaturedPosts(allPosts.filter(p => p.featured).slice(0, 3));
+        setLatestGuides(allPosts.slice(0, 4));
+
+        // Fetch categories
+        const cSnap = await getDocs(collection(db, 'categories'));
+        setCategories(cSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+
+        // Fetch topicHubs
+        const tSnap = await getDocs(collection(db, 'topicHubs'));
+        setTopicHubs(tSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+      } catch (err) {
+        console.error('Error fetching homepage data:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  if (loading) return (
+    <>
+      <Navbar />
+      <main className={styles.loadingPage}>
+        <div className={styles.loadingSpinner}>Crafting your tiny future...</div>
+      </main>
+      <Footer />
+    </>
+  );
 
   return (
     <>

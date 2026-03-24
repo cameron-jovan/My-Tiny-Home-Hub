@@ -1,19 +1,49 @@
+'use client';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
-import { seedPosts } from '@/lib/seedData';
+import { db } from '@/lib/firebase';
+import { collection, query, getDocs, orderBy } from 'firebase/firestore';
 import styles from './page.module.css';
 
-export const metadata = {
-  title: 'Tiny Living Guides & Stories | My Tiny Home Hub Blog',
-  description: 'Expert guides on tiny home financing, zoning, design, and lifestyle. Get the knowledge you need to make your tiny living dream a reality.',
-};
-
 export default function BlogPage() {
-  const featured = seedPosts.find(p => p.featured);
-  const rest = seedPosts.filter(p => p.id !== featured?.id);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const q = query(collection(db, 'posts'), orderBy('date', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const results = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setPosts(results);
+      } catch (err) {
+        console.error('Error fetching blog posts:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  const featured = posts.find(p => p.featured) || posts[0];
+  const rest = posts.filter(p => p.id !== featured?.id);
+
+  if (loading) return (
+    <>
+      <Navbar />
+      <main className={styles.loadingPage}>
+        <div className={styles.loadingSpinner}>Loading blog...</div>
+      </main>
+      <Footer />
+    </>
+  );
 
   return (
     <>

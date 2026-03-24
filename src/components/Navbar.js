@@ -17,7 +17,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: 'Browse', href: '/listings' },
+    { label: 'Browse', href: '/browse' },
     { label: 'Categories', href: '/categories' },
     { label: 'Hub', href: '/blog' },
   ];
