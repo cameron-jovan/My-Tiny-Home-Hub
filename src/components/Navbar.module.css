@@ -120,13 +120,8 @@
   color: var(--white);
 }
 
-.userProfile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-sm);
-  color: var(--white);
-  margin-bottom: var(--space-md);
+.mobileDivider {
+  display: none;
 }
 
 .hamburger {
@@ -194,6 +189,14 @@
 
   .rightActions {
     display: none;
+  }
+
+  .mobileDivider {
+    display: block;
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    width: 100%;
+    margin: var(--space-sm) 0;
   }
 
   .hamburger {

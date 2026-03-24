@@ -17,98 +17,89 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { label: 'Home', href: '/' },
     { label: 'Browse', href: '/browse' },
-    { label: 'Categories', href: '/categories' },
+    { label: 'Guides', href: '/guides' },
+    { label: 'Financing', href: '/blog?category=Financing' },
+    { label: 'Design', href: '/blog?category=Design' },
     { label: 'Blog', href: '/blog' },
+    { label: 'Concierge', href: '/#concierge' },
   ];
 
   return (
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} id="main-nav">
       <div className={styles.inner}>
-        <div className={styles.left}>
-          <Link href="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
-            <Image 
-              src="/logo-white.png" 
-              alt="My Tiny Home Hub" 
-              width={180} 
-              height={40}
-              priority
-              className={styles.logoImage}
-            />
-          </Link>
+        <Link href="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
+          <Image 
+            src="/logo-white.png" 
+            alt="My Tiny Home Hub" 
+            width={180} 
+            height={40}
+            priority
+          />
+        </Link>
 
-          <div className={styles.desktopLinks}>
-            {navLinks.map(link => (
-              <Link key={link.href} href={link.href} className={styles.link}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.right}>
-          <div className={styles.authGroup}>
-            {user ? (
-              <>
-                <Link href="/dashboard" className={styles.link}>Dashboard</Link>
-                <div className={styles.userMenu}>
-                  <div className={styles.userAvatar}>
-                    {user.photoURL ? (
-                      <img src={user.photoURL} alt={user.displayName} />
-                    ) : (
-                      <span>{user.email?.[0].toUpperCase()}</span>
-                    )}
-                  </div>
-                  <button onClick={logout} className={`${styles.navBtn} btn btn-secondary`}>Sign Out</button>
-                </div>
-              </>
-            ) : (
-              <>
-                <Link href="/login" className={styles.link}>Sign In</Link>
-                <Link href="/signup" className={`${styles.navBtn} btn btn-primary`}>Get Started</Link>
-              </>
-            )}
-          </div>
-
-          <button 
-            className={styles.hamburger}
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle navigation menu"
-            id="mobile-menu-toggle"
-          >
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
-            <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <div className={`${styles.mobileMenu} ${mobileOpen ? styles.mobileOpen : ''}`}>
-        <div className={styles.mobileLinks}>
+        <div className={`${styles.links} ${mobileOpen ? styles.open : ''}`}>
           {navLinks.map(link => (
             <Link 
-              key={link.href} 
+              key={link.href + link.label} 
               href={link.href} 
-              className={styles.mobileLink}
+              className={styles.link}
               onClick={() => setMobileOpen(false)}
             >
               {link.label}
             </Link>
           ))}
-          <hr />
+
+          {/* Mobile-only auth & CTA */}
+          <hr className={styles.mobileDivider} />
           {user ? (
             <>
-              <Link href="/dashboard" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Dashboard</Link>
+              <Link href="/dashboard" className={styles.link} onClick={() => setMobileOpen(false)}>Dashboard</Link>
               <button onClick={logout} className="btn btn-secondary">Sign Out</button>
             </>
           ) : (
             <>
-              <Link href="/login" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Sign In</Link>
+              <Link href="/login" className={styles.link} onClick={() => setMobileOpen(false)}>Sign In</Link>
               <Link href="/signup" className="btn btn-primary" onClick={() => setMobileOpen(false)}>Get Started</Link>
             </>
           )}
+          <Link 
+            href="/#concierge" 
+            className={`btn btn-primary ${styles.ctaBtn}`}
+            onClick={() => setMobileOpen(false)}
+          >
+            Book Concierge Service
+          </Link>
         </div>
+
+        <div className={styles.rightActions}>
+          {user ? (
+            <div className={styles.profileDesktop}>
+              <span className={styles.userName}>
+                {user.displayName || user.email?.split('@')[0]}
+              </span>
+              <button onClick={logout} className={styles.plainBtn}>Sign Out</button>
+            </div>
+          ) : (
+            <Link href="/login" className={styles.link}>Sign In</Link>
+          )}
+
+          <Link href="/#concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
+            Book Concierge Service
+          </Link>
+        </div>
+
+        <button 
+          className={styles.hamburger}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle navigation menu"
+          id="mobile-menu-toggle"
+        >
+          <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
+          <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
+          <span className={`${styles.bar} ${mobileOpen ? styles.barOpen : ''}`} />
+        </button>
       </div>
     </nav>
   );
