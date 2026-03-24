@@ -9,7 +9,8 @@ import {
   signOut,
   updateProfile
 } from 'firebase/auth';
-import { auth, googleProvider } from '@/lib/firebase';
+import { auth, googleProvider, db } from '@/lib/firebase';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
 
 const AuthContext = createContext({
   user: null,
@@ -32,9 +33,34 @@ export function AuthProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
+  const createUserProfile = async (user, additionalData = {}) => {
+    if (!user) return;
+    const userRef = doc(db, 'users', user.uid);
+    const snap = await getDoc(userRef);
+
+    if (!snap.exists()) {
+      const { email, displayName, photoURL } = user;
+      const createdAt = new Date();
+      try {
+        await setDoc(userRef, {
+          uid: user.uid,
+          email,
+          displayName: displayName || additionalData.displayName || '',
+          photoURL: photoURL || '',
+          role: 'user', // Default role
+          createdAt,
+          ...additionalData
+        });
+      } catch (error) {
+        console.error("Error creating user profile", error);
+      }
+    }
+  };
+
   const loginWithGoogle = async () => {
     try {
-      await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      await createUserProfile(result.user);
     } catch (error) {
       console.error("Error logging in with Google:", error);
       throw error;
@@ -56,6 +82,7 @@ export function AuthProvider({ children }) {
       if (displayName) {
         await updateProfile(userCredential.user, { displayName });
       }
+      await createUserProfile(userCredential.user, { displayName });
       return userCredential.user;
     } catch (error) {
       console.error("Error signing up:", error);

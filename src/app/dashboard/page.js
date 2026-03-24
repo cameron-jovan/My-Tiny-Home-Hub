@@ -3,6 +3,7 @@
 import React from 'react';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import { useAuth } from '@/context/AuthContext';
+import Link from 'next/link';
 import styles from './dashboard.module.css';
 
 function DashboardContent() {
@@ -16,7 +17,10 @@ function DashboardContent() {
             <h1>Dashboard</h1>
             <p>Welcome back, {user?.displayName || user?.email}</p>
           </div>
-          <button onClick={logout} className="btn btn-secondary">Sign Out</button>
+          <div className={styles.headerActions}>
+            <Link href="/profile" className="btn btn-secondary" style={{marginRight: '1rem'}}>Manage Profile</Link>
+            <button onClick={logout} className="btn btn-outline">Sign Out</button>
+          </div>
         </header>
 
         <section className={styles.statsGrid}>
