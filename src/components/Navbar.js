@@ -19,11 +19,9 @@ export default function Navbar() {
   const navLinks = [
     { label: 'Home', href: '/' },
     { label: 'Browse', href: '/browse' },
-    { label: 'Guides', href: '/guides' },
     { label: 'Financing', href: '/blog?category=Financing' },
-    { label: 'Design', href: '/blog?category=Design' },
+    { label: 'Guides', href: '/guides' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Concierge', href: '/#concierge' },
   ];
 
   return (
