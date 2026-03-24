@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAuth } from '@/context/AuthContext';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
+  const { user, loginWithGoogle, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -21,7 +23,6 @@ export default function Navbar() {
     { label: 'Financing', href: '/blog?category=Financing' },
     { label: 'Design', href: '/blog?category=Design' },
     { label: 'Lifestyle', href: '/blog?category=Lifestyle' },
-    { label: 'Concierge', href: '/#concierge' },
   ];
 
   return (
@@ -48,14 +49,45 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          
+          {user ? (
+            <div className={styles.userProfile}>
+              <span className={styles.userName}>{user.displayName || user.email}</span>
+              <button 
+                onClick={logout} 
+                className={`btn btn-secondary ${styles.ctaBtn}`}
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <button 
+              onClick={loginWithGoogle} 
+              className={`btn btn-secondary ${styles.ctaBtn}`}
+            >
+              Sign In
+            </button>
+          )}
+
           <Link href="/#concierge" className={`btn btn-primary ${styles.ctaBtn}`}>
             Book Tiny Home Concierge
           </Link>
         </div>
 
-        <Link href="/#concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
-          Book Tiny Home Concierge
-        </Link>
+        <div className={styles.rightActions}>
+          {user ? (
+            <div className={styles.profileDesktop}>
+              <span className={styles.userName}>{user.displayName}</span>
+              <button onClick={logout} className={styles.plainBtn}>Logout</button>
+            </div>
+          ) : (
+            <button onClick={loginWithGoogle} className={styles.plainBtn}>Login</button>
+          )}
+          
+          <Link href="/#concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
+            Book Tiny Home Concierge
+          </Link>
+        </div>
 
         <button 
           className={styles.hamburger}
