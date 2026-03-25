@@ -5,7 +5,9 @@
 
 /* ===== HERO ===== */
 .hero {
-  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--teal) 100%);
+  /* background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--teal) 100%); — replaced by photo + overlay */
+  position: relative;
+  overflow: hidden;
   padding: var(--space-3xl) 0;
 }
 

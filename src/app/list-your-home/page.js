@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -35,6 +36,15 @@ export default function ListYourHomePage() {
 
         {/* ===== HERO ===== */}
         <section className={styles.hero}>
+          <Image
+            src="/images/hero-list.jpg"
+            alt="Hero background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+            quality={85}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(18,43,80,0.82) 0%, rgba(27,64,115,0.65) 60%, rgba(6,121,155,0.55) 100%)' }} aria-hidden="true" />
           <div className={styles.heroInner}>
             <span className={styles.eyebrow}>Free to List</span>
             <h1 className={styles.heroTitle}>
