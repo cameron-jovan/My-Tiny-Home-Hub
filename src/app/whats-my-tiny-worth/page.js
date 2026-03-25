@@ -51,7 +51,7 @@ const HOME_TYPES = [
   )},
 ];
 
-const YEAR_RANGES = ['Before 2015', '2015–2018', '2019–2021', '2022–2023', '2024+'];
+const YEAR_RANGES = ['Before 2015', '2015\u20132018', '2019\u20132021', '2022\u20132023', '2024+'];
 
 const CONDITIONS = [
   { id: 'like-new', name: 'Like New', desc: 'Essentially brand new or fully restored', bars: [1,1,1,1] },
@@ -66,7 +66,7 @@ const FEATURES = [
   'Utilities included', 'Smart home tech', 'Steel frame', 'Metal roof',
 ];
 
-const TOTAL_STEPS = 7;
+const TOTAL_STEPS = 6;
 
 function fmt(n) {
   return '$' + n.toLocaleString('en-US');
@@ -80,11 +80,15 @@ export default function WhatsMine() {
   const [condition, setCondition] = useState('');
   const [state, setState] = useState('');
   const [features, setFeatures] = useState([]);
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
+
+  // Email capture (soft, post-result)
+  const [captureEmail, setCaptureEmail] = useState('');
+  const [captureName, setCaptureName] = useState('');
+  const [captureSaved, setCaptureSaved] = useState(false);
+  const [captureLoading, setCaptureLoading] = useState(false);
 
   const progress = (step / TOTAL_STEPS) * 100;
 
@@ -92,8 +96,7 @@ export default function WhatsMine() {
     setFeatures(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f]);
   }
 
-  async function submit() {
-    if (!email) return;
+  async function calculateValuation() {
     setLoading(true);
     setError('');
     try {
@@ -104,22 +107,47 @@ export default function WhatsMine() {
       });
       const data = await res.json();
       if (data.error) throw new Error(data.error);
-
-      await addDoc(collection(db, 'valuationLeads'), {
-        name, email, homeType, sqft, yearRange, condition, state, features,
-        valuationLow: data.low,
-        valuationMid: data.mid,
-        valuationHigh: data.high,
-        createdAt: serverTimestamp(),
-      });
-
       setResult(data);
     } catch (err) {
       setError('Something went wrong. Please try again.');
       console.error(err);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
+  }
+
+  async function saveEmailCapture(e) {
+    e.preventDefault();
+    if (!captureEmail || captureLoading) return;
+    setCaptureLoading(true);
+    try {
+      await addDoc(collection(db, 'valuationLeads'), {
+        name: captureName,
+        email: captureEmail,
+        homeType, sqft, yearRange, condition, state, features,
+        valuationLow: result.low,
+        valuationMid: result.mid,
+        valuationHigh: result.high,
+        createdAt: serverTimestamp(),
+      });
+      setCaptureSaved(true);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setCaptureLoading(false);
+    }
+  }
+
+  function share(platform) {
+    const url = 'https://mytinyhomehub.com/whats-my-tiny-worth';
+    const text = `My tiny home was valued at ${fmt(result.mid)} by the AI tool at My Tiny Home Hub. What's yours worth?`;
+    const links = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+      threads: `https://www.threads.net/intent/post?text=${encodeURIComponent(text + ' ' + url)}`,
+    };
+    window.open(links[platform], '_blank', 'noopener,noreferrer');
   }
 
   const jsonLd = {
@@ -203,6 +231,64 @@ export default function WhatsMine() {
               </div>
             )}
 
+            {/* Social sharing */}
+            <div className={styles.shareSection}>
+              <p className={styles.shareLabel}>Share your result</p>
+              <div className={styles.shareBtns}>
+                <button className={styles.shareBtn} onClick={() => share('facebook')} aria-label="Share on Facebook">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                  Facebook
+                </button>
+                <button className={styles.shareBtn} onClick={() => share('twitter')} aria-label="Share on X">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  X / Twitter
+                </button>
+                <button className={styles.shareBtn} onClick={() => share('threads')} aria-label="Share on Threads">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.086.713 5.496 2.051 7.164 1.43 1.783 3.631 2.698 6.54 2.717 1.327-.009 2.519-.195 3.553-.554 1.29-.447 2.312-1.178 3.036-2.17l1.65 1.179c-.905 1.27-2.21 2.268-3.88 2.861-1.289.448-2.73.685-4.358.803zm8.593-11.79h-8.59v-2.04h10.63c.065.556.098 1.125.098 1.704-.001 4.645-1.31 7.86-3.9 9.553l-1.647-1.176c2.086-1.37 3.05-3.857 3.409-8.04z"/></svg>
+                  Threads
+                </button>
+              </div>
+            </div>
+
+            {/* Email capture (soft) */}
+            <div className={styles.emailCapture}>
+              {captureSaved ? (
+                <p className={styles.emailCaptureConfirm}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Report saved to your inbox.
+                </p>
+              ) : (
+                <>
+                  <p className={styles.emailCaptureLabel}>Want a copy sent to your inbox?</p>
+                  <form className={styles.emailCaptureForm} onSubmit={saveEmailCapture}>
+                    <input
+                      type="text"
+                      className={styles.emailCaptureInput}
+                      placeholder="Your name"
+                      value={captureName}
+                      onChange={e => setCaptureName(e.target.value)}
+                    />
+                    <input
+                      type="email"
+                      className={styles.emailCaptureInput}
+                      placeholder="Email address"
+                      value={captureEmail}
+                      onChange={e => setCaptureEmail(e.target.value)}
+                      required
+                    />
+                    <button
+                      type="submit"
+                      className={styles.emailCaptureBtn}
+                      disabled={!captureEmail || captureLoading}
+                    >
+                      {captureLoading ? 'Saving...' : 'Send Me a Copy'}
+                    </button>
+                  </form>
+                  <p className={styles.emailCaptureNote}>No spam. Unsubscribe anytime.</p>
+                </>
+              )}
+            </div>
+
             <div className={styles.resultsCta}>
               <div className={styles.resultsCtaCopy}>
                 <h3>Ready to find your buyer?</h3>
@@ -276,7 +362,7 @@ export default function WhatsMine() {
                   <input
                     type="range"
                     min={80}
-                    max={600}
+                    max={1000}
                     step={10}
                     value={sqft}
                     onChange={e => setSqft(Number(e.target.value))}
@@ -284,7 +370,7 @@ export default function WhatsMine() {
                   />
                   <div className={styles.sliderLabels}>
                     <span>80 sq ft</span>
-                    <span>600 sq ft</span>
+                    <span>1,000 sq ft</span>
                   </div>
                 </div>
                 <button className={styles.nextBtn} onClick={() => setStep(3)}>Continue</button>
@@ -371,43 +457,10 @@ export default function WhatsMine() {
                     </div>
                   ))}
                 </div>
-                <button className={styles.nextBtn} onClick={() => setStep(7)} style={{ marginTop: '32px' }}>
-                  {features.length > 0 ? `Continue with ${features.length} feature${features.length > 1 ? 's' : ''}` : 'Skip — no special features'}
+                {error && <p style={{ color: 'var(--error)', fontSize: '0.875rem', textAlign: 'center', marginTop: '16px' }}>{error}</p>}
+                <button className={styles.nextBtn} onClick={calculateValuation} style={{ marginTop: '32px' }}>
+                  {features.length > 0 ? `Get My Valuation` : 'Get My Valuation'}
                 </button>
-              </>
-            )}
-
-            {/* Step 7: Email Gate */}
-            {step === 7 && (
-              <>
-                <h1 className={styles.question}>Where should we send your valuation?</h1>
-                <p className={styles.questionSub}>Your estimate is ready. We&apos;ll also keep you updated on market trends.</p>
-                <div className={styles.emailWrap}>
-                  <input
-                    type="text"
-                    className={styles.emailInput}
-                    placeholder="Your name"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                  />
-                  <input
-                    type="email"
-                    className={styles.emailInput}
-                    placeholder="Your email address"
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                    required
-                  />
-                  <button
-                    className={styles.emailSubmit}
-                    disabled={!email}
-                    onClick={submit}
-                  >
-                    Get My Valuation
-                  </button>
-                  {error && <p style={{ color: 'var(--error)', fontSize: '0.875rem', textAlign: 'center' }}>{error}</p>}
-                  <p className={styles.emailNote}>No spam. Unsubscribe anytime.</p>
-                </div>
               </>
             )}
 

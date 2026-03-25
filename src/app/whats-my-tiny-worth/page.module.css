@@ -726,6 +726,136 @@
   flex-shrink: 0;
 }
 
+/* ===== SOCIAL SHARING ===== */
+.shareSection {
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.shareLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin: 0 0 var(--space-md);
+}
+
+.shareBtns {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.shareBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-full);
+  background: var(--white);
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.shareBtn:hover {
+  border-color: var(--navy);
+  color: var(--navy);
+  background: var(--gray-50);
+}
+
+/* ===== EMAIL CAPTURE (post-result) ===== */
+.emailCapture {
+  border: 1.5px solid var(--gray-100);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  text-align: center;
+  background: var(--off-white);
+}
+
+.emailCaptureLabel {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 0 0 var(--space-md);
+}
+
+.emailCaptureForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.emailCaptureInput {
+  height: 48px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  padding: 0 16px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: var(--gray-800);
+  background: var(--white);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast);
+}
+
+.emailCaptureInput:focus {
+  border-color: var(--navy);
+}
+
+.emailCaptureInput::placeholder {
+  color: var(--gray-400);
+}
+
+.emailCaptureBtn {
+  height: 48px;
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition-fast);
+}
+
+.emailCaptureBtn:hover:not(:disabled) {
+  background: var(--navy-light);
+}
+
+.emailCaptureBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.emailCaptureNote {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  margin: var(--space-xs) 0 0;
+}
+
+.emailCaptureConfirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--forest);
+  margin: 0;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .typeGrid {
