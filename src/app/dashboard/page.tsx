@@ -10,12 +10,13 @@ import Footer from '@/components/Footer';
 function DashboardContent() {
   const { user } = useAuth();
   const userName = user?.displayName?.split(' ')[0] || 'Julian';
-  const userPhoto = user?.photoURL || "https://lh3.googleusercontent.com/aida-public/AB6AXuAqIZtwpTdMRgcCWrJDVheSJThmacoY8CAYwlpLajwDkFLkgoa-K-IFs2bzv-jRKK2GUZshjbBinBeLRKdwVnZhW3HX7hHG_3dTAmgmDEQDn-E2swT2vlDXQH4yEVQBjuXg6cTttFgOX6h47fOUWAbpalpIkgR0JfBUQo3Eq8lS_M9azQPEGywkHYvLkEoyXyX4hqOmB6f0B1NJbAN0Cv9c3d0jc5rZlEb55z-zigm7SMODWmMUcMdYajTRGvKX4RZTSO_9xmWWxg";
+  const userPhoto = user?.photoURL || "https://lh3.googleusercontent.com/aida-public/AB6AXuAqIZtwpTdMRgcCWrJDVheSJThmacoY8CAYwlpLajwDkFLkgoa-K-IFs2bzv-jRKK2GUZshjbBinBeLRKdwVnZhW3HX7hHG_3dTAmgmDEQDn-E2swT2vlDXQH4yEVQBjuXg6cTttFgOX6h47fOUWAbpalpIkgR0JfBUQo3Eq8lS_M9axQPEGywkHYvLkEoyXyX4hqOmB6f0B1NJbAN0Cv9c3d0jc5rZlEb55z-zigm7SMODWmMUcMdYajTRGvKX4RZTSO_9xmWWxg";
 
   return (
-    <div className="bg-[#F9FBFC] min-h-screen text-on-surface antialiased font-body">
+    <div className="bg-[#F9FBFC] text-on-surface antialiased font-body min-h-screen">
+      {/* Navigation - Note: We use our shared Navbar component instead of the bare HTML nav to ensure auth states work */}
       <Navbar />
-      
+
       <div className="flex">
         {/* Sidebar */}
         <aside className="h-screen w-64 fixed left-0 top-0 pt-24 bg-white border-r border-slate-100 flex flex-col hidden lg:flex z-40">
@@ -37,11 +38,11 @@ function DashboardContent() {
               <span>Payments</span>
             </Link>
             <div className="h-px bg-slate-100 my-4 mx-4"></div>
-            <Link href="/EDITORIAL" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link href="/editorial" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">auto_awesome</span>
               <span>Editorial Hub</span>
             </Link>
-            <Link href="/profile" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link href="/settings" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">settings</span>
               <span>Account Settings</span>
             </Link>
@@ -56,22 +57,21 @@ function DashboardContent() {
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 lg:ml-64 pt-24 px-6 md:px-10 pb-12">
+        <main className="lg:ml-64 pt-28 px-4 md:px-10 pb-12 flex-1">
           {/* Hero / Intelligence Hub */}
           <header className="mb-10 relative rounded-3xl overflow-hidden bg-[#1B4073] text-white">
             <div className="absolute inset-0 opacity-20 pointer-events-none">
               <img 
                 alt="Architecture Background" 
                 className="w-full h-full object-cover" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt5D75AEleT6dcAWbVWqS2W0uD8FX4TtR4offH9-jU665TzATiGaZHba4YWudst0jgZDmQkfjnafpQ6QyiWZoQBoDlTXNp1vF4T7p2g1TeJcPzSt4tRl4BwUT0tIKRf7wfuMJTdvmfrx5anki06HoLj6iJf1L2c8Bm8TzI4BOx41RgTbxC8iWLJjyGLxmBBp_1SLqfS_mEm_jG3TIMmrZB3QqAWD1AvDnTEecA2LLfWmltT3HIyLf6A32LsF8E9seggWXb7qQFvQ" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt5D75AEleT6dcAWbVWqS2W0uD8FX4TtR4offH9-jU665TzATiGaZHba4YWudst0jgZDmQkfjnafpQ6QyiWZoQBoDlTXNp1vF4T7p2g1TeJcPzSt4tRl4BwUT0tIKRf7wfuMJTdvmfrx5anki06HoLj6iJf1L2c8Bm8TzI4BOx41RgTbxC8iWLJjyGLxmBBp_1SLqfS_mEm_jG3TIMmrZB3QqAWD1AvDnTEecA2LLfWmltT3HIyLf6A32LsF8E9seggWXb7qQFvQ"
               />
             </div>
             <div className="relative z-10 p-8 md:p-12 flex flex-col xl:flex-row xl:items-center justify-between gap-12">
               <div>
                 <span className="bg-[#8CC540] text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block">Member Dashboard</span>
-                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">Welcome back, {userName}</h1>
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">Welcome back, {userName}</h1>
                 <p className="text-slate-300 max-w-lg text-lg opacity-90 leading-relaxed font-light">Your pathway to minimalist living is accelerating. Explore market insights below.</p>
-                
                 {/* Progress Checklist */}
                 <div className="mt-8 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10">
                   <div className="flex justify-between items-center mb-4">
@@ -97,7 +97,6 @@ function DashboardContent() {
                   </div>
                 </div>
               </div>
-              
               {/* Market Intelligence Strip */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xl:w-1/3">
                 <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/5 hover:bg-white/15 transition-all">
@@ -151,10 +150,10 @@ function DashboardContent() {
                   </Link>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  {/* Property Card 1 */}
+                  {/* Property Card */}
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100">
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img alt="Cabin" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtSoXkIAs1u8Cnr5gc_yxvFJtNeocpVKj5__ZE9D7UBRi217ip_clrQ61DfxL3oblY10yuoAx0CZFQ26ZDOiLPTIrASP6yrxh7EDJQt7fFJWBPkjkZO_3E2DP6s8AA20lRBLonHXd99dnFctCgo-tXOluqzJv87LXO8k0zZM_WDSZukgDavogJbfWth24-v-2_f_8ocHfpihJd8r7cBp-OgQfvnZEekLg1--hfvzq08cIiESCUPIAqr3XnOAnUhOIWQMnkOAmyxQ" />
+                      <img alt="Cabin" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtSoXkIAs1u8Cnr5gc_yxvFJtNeocpVKj5__ZE9D7UBRi217ip_clrQ61DfxL3oblY10yuoAx0CZFQ26ZDOiLPTIrASP6yrxh7EDJQt7fFJWBPkjkZO_3E2DP6s8AA20lRBLonHXd99dnFctCgo-tXOluqzJv87LXO8k0zZM_WDSZukgDavogJbfWth24-v-2_f_8ocHfpihJd8r7cBp-OgQfvnZEekLg1--hfvzq08cIiESCUPIAqr3XnOAnUhOIWQMnkOAmyxQ"/>
                       <div className="absolute top-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-black text-[#1B4073] shadow-lg">FROM $84,000</div>
                       <button className="absolute bottom-4 right-4 bg-white/20 backdrop-blur p-2 rounded-full text-white hover:bg-white hover:text-red-500 transition-all">
                         <span className="material-symbols-outlined">favorite</span>
@@ -174,10 +173,10 @@ function DashboardContent() {
                       </p>
                     </div>
                   </div>
-                  {/* Property Card 2 */}
+                  {/* Property Card */}
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100">
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img alt="Tiny Home" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI7mwRFIwh3pkjwEVDxNc7qgLy1h-Kgff4CnTdHRanACcvemC7ka4llLJdOSBXqkEshotUUzejQoQu8lSVWmx79O0V0hg04y_P_rUw1ycUOcHCCRuzEk9TGKJXV3Y6wfVWI6awhYlJJwCooqYvF4b5qMUHofVjlE9Ty0orv0d68_rDdYD-20jQ3Ern5WTJFoCPqZMsHpGuwoT2gQxNa9z2nmNwSv-98Fu-vzI8SdmoRlt_cDhCKh8m0uxvEwbV67OPVKTdTjVR9Q" />
+                      <img alt="Tiny Home" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI7mwRFIwh3pkjwEVDxNc7qgLy1h-Kgff4CnTdHRanACcvemC7ka4llLJdOSBXqkEshotUUzejQoQu8lSVWmx79O0V0hg04y_P_rUw1ycUOcHCCRuzEk9TGKJXV3Y6wfVWI6awhYlJJwCooqYvF4b5qMUHofVjlE9Ty0orv0d68_rDdYD-20jQ3Ern5WTJFoCPqZMsHpGuwoT2gQxNa9z2nmNwSv-98Fu-vzI8SdmoRlt_cDhCKh8m0uxvEwbV67OPVKTdTjVR9Q"/>
                       <div className="absolute top-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-black text-[#1B4073] shadow-lg">FROM $112,000</div>
                       <button className="absolute bottom-4 right-4 bg-white/20 backdrop-blur p-2 rounded-full text-white hover:bg-white hover:text-red-500 transition-all">
                         <span className="material-symbols-outlined">favorite</span>
@@ -207,7 +206,7 @@ function DashboardContent() {
                     <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-1 block">Seller's Portal</span>
                     <h2 className="text-3xl font-extrabold text-[#1B4073] tracking-tight">Inventory & Performance</h2>
                   </div>
-                  <Link href="/list-your-home" className="bg-[#8CC540] text-center text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-xs shadow-xl hover:-translate-y-1 transition-all">
+                  <Link href="/list-your-home" className="bg-[#8CC540] text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-xs shadow-xl hover:-translate-y-1 transition-all text-center">
                     Launch New Listing
                   </Link>
                 </div>
@@ -226,11 +225,11 @@ function DashboardContent() {
                     </div>
                   </div>
                   <div className="divide-y divide-slate-100">
-                    {/* Listing Row 1 */}
+                    {/* Enhanced Listing Row 1 */}
                     <div className="p-6 flex flex-col md:flex-row md:items-center justify-between hover:bg-slate-50/50 transition-colors gap-6">
                       <div className="flex items-center gap-5">
                         <div className="w-20 h-16 rounded-xl overflow-hidden bg-slate-100">
-                          <img alt="Listing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7wiikrbe-UJ_fpA5JGBLXfJyPNIHv5SdkBng66HY7Lu8rtHINaVnS0l3jvwi79IzFAtchjGmQkyEhsYM_AGyK5wNd9jA6o7w2Q4xJs3UMfFuP_jBtY5vitJMvX9EZ1PsoRhYtPzlHOGqE-lpKxs-ezJJps2fUS7lWcEkXFk-FvnR1w5HHPzGQsWI4K-tzIA7rb35i9NCipAHtXLPn2av7Lr5V2LXPjUZsLncW5WOtT3L-5TYr0IVzJHWhW9ZvCI805b-QkKjRrw" />
+                          <img alt="Listing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7wiikrbe-UJ_fpA5JGBLXfJyPNIHv5SdkBng66HY7Lu8rtHINaVnS0l3jvwi79IzFAtchjGmQkyEhsYM_AGyK5wNd9jA6o7w2Q4xJs3UMfFuP_jBtY5vitJMvX9EZ1PsoRhYtPzlHOGqE-lpKxs-ezJJps2fUS7lWcEkXFk-FvnR1w5HHPzGQsWI4K-tzIA7rb35i9NCipAHtXLPn2av7Lr5V2LXPjUZsLncW5WOtT3L-5TYr0IVzJHWhW9ZvCI805b-QkKjRrw"/>
                         </div>
                         <div>
                           <p className="font-bold text-[#1B4073] text-lg">Skyline Loft Studio</p>
@@ -258,11 +257,11 @@ function DashboardContent() {
                         </button>
                       </div>
                     </div>
-                    {/* Listing Row 2 */}
+                    {/* Enhanced Listing Row 2 */}
                     <div className="p-6 flex flex-col md:flex-row md:items-center justify-between hover:bg-slate-50/50 transition-colors gap-6">
                       <div className="flex items-center gap-5">
                         <div className="w-20 h-16 rounded-xl overflow-hidden bg-slate-100">
-                          <img alt="Listing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXsqFK_Lmq2ktj5Hso6AnEUi_3j9z4bcC72DZcAUhHV--Jl5fdGHjXMi6yy9j8QeJtJYhnk5lQ1WbFznIF257LbA85zzxR5sxWeld646gyHG7VdqclBTEiqra7pb0Ni3MzVjL-TpIR-Uk6DsaND7xQGUMWBd4VAHHzVIyp60RE_FEz4OVgPz7h7oYAj54CAFYeofe7oFe0ZMOaDrh_siEP_aHe67mS6kPAQMh0srB2T3B0653elD5bDSU1rTiRM1ebrh9jOmtCTQ" />
+                          <img alt="Listing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXsqFK_Lmq2ktj5Hso6AnEUi_3j9z4bcC72DZcAUhHV--Jl5fdGHjXMi6yy9j8QeJtJYhnk5lQ1WbFznIF257LbA85zzxR5sxWeld646gyHG7VdqclBTEiqra7pb0Ni3MzVjL-TpIR-Uk6DsaND7xQGUMWBd4VAHHzVIyp60RE_FEz4OVgPz7h7oYAj54CAFYeofe7oFe0ZMOaDrh_siEP_aHe67mS6kPAQMh0srB2T3B0653elD5bDSU1rTiRM1ebrh9jOmtCTQ"/>
                         </div>
                         <div>
                           <p className="font-bold text-[#1B4073] text-lg">The Artisan Hideaway</p>
@@ -293,7 +292,6 @@ function DashboardContent() {
                   </div>
                 </div>
               </section>
-
               {/* Community Pulse & Editorial */}
               <section>
                 <div className="flex justify-between items-end mb-8 border-l-4 border-[#8CC540] pl-6">
@@ -303,7 +301,7 @@ function DashboardContent() {
                   </div>
                 </div>
                 <div className="grid md:grid-cols-2 gap-8">
-                  <div className="bg-[#ECFDF5] p-8 rounded-3xl border border-emerald-100 relative overflow-hidden group hover:shadow-md transition-all">
+                  <div className="bg-[#ECFDF5] p-8 rounded-3xl border border-emerald-100 relative overflow-hidden group">
                     <div className="relative z-10">
                       <div className="flex items-center gap-2 mb-4">
                         <div className="flex -space-x-2">
@@ -319,7 +317,7 @@ function DashboardContent() {
                       </button>
                     </div>
                   </div>
-                  <div className="bg-[#FEF2F2] p-8 rounded-3xl border border-rose-100 relative overflow-hidden group hover:shadow-md transition-all">
+                  <div className="bg-[#FEF2F2] p-8 rounded-3xl border border-rose-100 relative overflow-hidden group">
                     <div className="relative z-10">
                       <span className="bg-rose-500 text-[10px] text-white font-black px-2 py-0.5 rounded uppercase tracking-tighter mb-4 inline-block">Hot Topic</span>
                       <h3 className="text-xl font-bold text-[#1B4073] leading-tight mb-4">Off-Grid Solar: The 2024 Readiness Guide</h3>
@@ -331,7 +329,6 @@ function DashboardContent() {
                 </div>
               </section>
             </div>
-
             {/* Right: Premium Widgets */}
             <div className="xl:col-span-4 space-y-10">
               {/* Premium Concierge Profile */}
@@ -343,7 +340,7 @@ function DashboardContent() {
                     <img 
                       alt="Concierge" 
                       className="w-full h-full object-cover" 
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8QTRfPMMjRRxv2iVgFpQ9dauAZgUj_5Zdz5kCKNIwqbUBYq_WM6eWCxa14A-58D629qi8N3_cqW2TtAwiC6hDpjCpFO10LLgjxskDNr7Bf1iO0iYezbX-Mj_RCKr6djypAuHJPsWZFaTunk1gbnoiIkzpPXozxKobCQRG3-CgzWlSd6OE1rjQIKo-qnQEAWgI3GqdiWvOPYDD3iEQtxK86fPWdg1pc13TZ1MfoddSMB-K_pGMyCjlsKMqfvEDR-dsiBgLyy_C0Q" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8QTRfPMMjRRxv2iVgFpQ9dauAZgUj_5Zdz5kCKNIwqbUBYq_WM6eWCxa14A-58D629qi8N3_cqW2TtAwiC6hDpjCpFO10LLgjxskDNr7Bf1iO0iYezbX-Mj_RCKr6djypAuHJPsWZFaTunk1gbnoiIkzpPXozxKobCQRG3-CgzWlSd6OE1rjQIKo-qnQEAWgI3GqdiWvOPYDD3iEQtxK86fPWdg1pc13TZ1MfoddSMB-K_pGMyCjlsKMqfvEDR-dsiBgLyy_C0Q"
                     />
                   </div>
                   <div>
@@ -362,7 +359,6 @@ function DashboardContent() {
                   <button className="bg-white border-2 border-[#1B4073] text-[#1B4073] py-3 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-[#1B4073]/5">Book Strategy</button>
                 </div>
               </section>
-
               {/* Search Intelligence */}
               <section className="bg-[#F8FAFC] rounded-3xl p-8 border border-slate-200/60">
                 <div className="flex items-center justify-between mb-6">
@@ -391,7 +387,6 @@ function DashboardContent() {
                   </button>
                 </div>
               </section>
-
               {/* Notification Feed */}
               <section>
                 <div className="flex items-center justify-between mb-6 px-2">
@@ -409,7 +404,7 @@ function DashboardContent() {
                       <p className="text-[10px] font-bold text-slate-400 mt-3 uppercase">12 mins ago</p>
                     </div>
                   </div>
-                  <div className="flex gap-4 p-5 rounded-2xl hover:bg-slate-50 transition-all group">
+                  <div className="flex gap-4 p-5 rounded-2xl hover:bg-white transition-all group">
                     <div className="w-12 h-12 rounded-2xl bg-slate-100 flex-shrink-0 flex items-center justify-center text-slate-400">
                       <span className="material-symbols-outlined">account_balance</span>
                     </div>
@@ -421,8 +416,7 @@ function DashboardContent() {
                   </div>
                 </div>
               </section>
-
-              {/* CRO Widget */}
+              {/* CRO Footer Widget */}
               <div className="bg-[#1B4073] p-8 rounded-3xl relative overflow-hidden text-white">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -mr-20 -mt-20"></div>
                 <div className="relative z-10">
@@ -435,7 +429,7 @@ function DashboardContent() {
           </div>
         </main>
       </div>
-      
+
       <Footer />
     </div>
   );
