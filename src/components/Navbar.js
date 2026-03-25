@@ -28,11 +28,11 @@ export default function Navbar() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} id="main-nav">
       <div className={styles.inner}>
         <Link href="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
-          <Image 
-            src="/logo-white.png" 
-            alt="My Tiny Home Hub" 
-            width={180} 
-            height={40}
+          <Image
+            src="/logo-color.png"
+            alt="My Tiny Home Hub"
+            width={202}
+            height={36}
             priority
           />
         </Link>

@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
+import NewsTicker from '@/components/NewsTicker';
 import { db } from '@/lib/firebase';
 import { collection, query, getDocs, limit, addDoc, serverTimestamp } from 'firebase/firestore';
 import styles from './page.module.css';
@@ -193,6 +194,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <NewsTicker />
 
       {/* ===== AS SEEN ON ===== */}
       <section className={styles.proofBar} id="as-seen-on">

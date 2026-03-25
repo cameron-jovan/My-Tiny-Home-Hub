@@ -51,5 +51,21 @@ service cloud.firestore {
       allow create: if true; // Allow anonymous inquiries too, why not
       allow read, update, delete: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
     }
+
+    // Lead capture collections: public write, admin read only
+    match /sellerLeads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /valuationLeads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /rentalWaitlist/{entryId} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
   }
 }
