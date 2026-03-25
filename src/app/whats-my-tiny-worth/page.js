@@ -181,21 +181,23 @@ export default function WhatsMine() {
       return (
         <div className={styles.resultCard}>
           <p className={styles.resultEyebrow}>Your Valuation</p>
-          <p className={styles.resultLabel}>Estimated Market Value</p>
-          <p className={styles.resultMid}>{fmt(result.mid)}</p>
-          <div className={styles.rangeBar}>
-            <div className={styles.rangeBarFill} />
-            <div className={styles.rangeBarMid} />
-          </div>
-          <div className={styles.rangeRow}>
-            <div className={styles.rangeEnd}>
-              <span className={styles.rangeAmount}>{fmt(result.low)}</span>
-              <span className={styles.rangeText}>Conservative</span>
+          <div className={styles.valuationCard}>
+            <p className={styles.resultLabel}>Estimated Market Value</p>
+            <p className={styles.resultMid}>{fmt(result.mid)}</p>
+            <div className={styles.rangeBar}>
+              <div className={styles.rangeBarFill} />
+              <div className={styles.rangeBarMid} />
             </div>
-            <span className={styles.confidenceBadge}>{result.confidence} confidence</span>
-            <div className={styles.rangeEnd} style={{ textAlign: 'right' }}>
-              <span className={styles.rangeAmount}>{fmt(result.high)}</span>
-              <span className={styles.rangeText}>Optimistic</span>
+            <div className={styles.rangeRow}>
+              <div className={styles.rangeEnd}>
+                <span className={styles.rangeAmount}>{fmt(result.low)}</span>
+                <span className={styles.rangeText}>Conservative</span>
+              </div>
+              <span className={styles.confidenceBadge}>{result.confidence} confidence</span>
+              <div className={styles.rangeEnd} style={{ textAlign: 'right' }}>
+                <span className={styles.rangeAmount}>{fmt(result.high)}</span>
+                <span className={styles.rangeText}>Optimistic</span>
+              </div>
             </div>
           </div>
 
@@ -250,6 +252,10 @@ export default function WhatsMine() {
                 </form>
               </>
             )}
+          </div>
+          <div className={styles.resultListCta}>
+            <p className={styles.resultListCtaText}>Ready to act on your valuation?</p>
+            <a href="/list-your-home" className={styles.resultListCtaBtn}>List Your Home Free →</a>
           </div>
         </div>
       );
@@ -574,6 +580,11 @@ export default function WhatsMine() {
             </div>
             <p className={styles.heroJoined}>Trusted by 12,000+ tiny home owners</p>
           </div>
+        </div>
+        <div className={styles.heroScroll} aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
         </div>
       </section>
 
