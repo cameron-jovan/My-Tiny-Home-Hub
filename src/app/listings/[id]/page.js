@@ -10,6 +10,7 @@ import Newsletter from '@/components/Newsletter';
 import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, collection, query, limit, getDocs } from 'firebase/firestore';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
 export default function ListingDetailPage({ params }) {

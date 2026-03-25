@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './guides.module.css';
 
 export default function GuidesPage() {
@@ -67,6 +68,9 @@ export default function GuidesPage() {
   return (
     <>
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Guides' }]} />
+      </div>
       <main className={styles.main}>
         <section className={styles.hero}>
           <div className="container">

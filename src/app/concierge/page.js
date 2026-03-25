@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -46,6 +47,9 @@ export default function ConciergePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Concierge Service' }]} />
+      </div>
       <div className={styles.page}>
 
         {/* Hero */}

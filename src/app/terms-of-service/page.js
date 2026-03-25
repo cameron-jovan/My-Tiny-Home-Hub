@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from '../legal.module.css';
 
 export const metadata = {
@@ -12,6 +13,9 @@ export default function TermsOfServicePage() {
   return (
     <>
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Terms of Service' }]} />
+      </div>
       <div className={styles.page}>
         <header className={styles.header}>
           <div className={styles.headerInner}>

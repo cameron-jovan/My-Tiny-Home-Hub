@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
 const jsonLd = {
@@ -27,6 +28,9 @@ export default function ListYourHomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'List Your Home' }]} />
+      </div>
       <div className={styles.page}>
 
         {/* ===== HERO ===== */}
