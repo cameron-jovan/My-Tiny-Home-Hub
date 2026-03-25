@@ -138,9 +138,9 @@ export default function HomePage() {
           <div className={styles.heroContent}>
             <div className={styles.heroEyebrow}>Less Home, More Living</div>
             <h1>
-              Buying a tiny home<br />
+              <span>Buying a tiny home</span><br />
               should be as easy as<br />
-              <span>buying a car.</span>
+              buying a car.
             </h1>
             <p className={styles.heroSubtitle}>
               Browse curated tiny homes, ADUs, and off-grid spaces built for the way you want to live, work, and dream.

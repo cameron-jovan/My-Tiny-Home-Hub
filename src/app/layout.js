@@ -1,6 +1,7 @@
 import { AuthProvider } from "@/context/AuthContext";
 import ComingSoonModal from "@/components/ComingSoonModal";
 import ChatWidget from "@/components/ChatWidget";
+import NewsTicker from "@/components/NewsTicker";
 import Script from "next/script";
 import "./globals.css";
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <AuthProvider>
+          <NewsTicker />
           <ComingSoonModal />
           {children}
           <ChatWidget />

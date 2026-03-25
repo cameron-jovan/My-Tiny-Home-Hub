@@ -1,7 +1,7 @@
 .page {
   background: var(--white);
   min-height: 100vh;
-  padding-top: var(--nav-height);
+  padding-top: calc(var(--nav-height) + var(--ticker-height));
 }
 
 .header {

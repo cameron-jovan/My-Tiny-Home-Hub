@@ -78,6 +78,7 @@
   /* Layout */
   --max-width: 1280px;
   --nav-height: 72px;
+  --ticker-height: 44px;
 }
 
 /* ===== BASE STYLES ===== */
