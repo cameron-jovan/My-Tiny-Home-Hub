@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Heart } from 'lucide-react';
 import styles from './ListingCard.module.css';
 
 export default function ListingCard({ listing }) {
@@ -29,7 +30,7 @@ export default function ListingCard({ listing }) {
           onClick={() => setSaved(!saved)}
           aria-label={saved ? 'Remove from saved' : 'Save listing'}
         >
-          {saved ? '❤️' : '🤍'}
+          <Heart className={saved ? 'fill-primary' : ''} size={20} />
         </button>
       </div>
 
