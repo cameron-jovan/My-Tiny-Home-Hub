@@ -1,0 +1,222 @@
+.hero {
+  margin-bottom: var(--space-2xl);
+}
+
+.mainCard {
+  background: linear-gradient(135deg, #1A365D 0%, #0D1F35 100%);
+  border-radius: 24px;
+  padding: var(--space-2xl);
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-2xl);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Background Pattern Simulation */
+.mainCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.welcomeInfo {
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-block;
+  background: #94D82D;
+  color: #2D5A00;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.title {
+  color: var(--white);
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  margin: 0 0 12px;
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.6);
+  font-size: 1.125rem;
+  max-width: 500px;
+  line-height: 1.6;
+  margin: 0 0 40px;
+}
+
+.progressSection {
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 540px;
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.percent {
+  color: rgba(255,255,255,0.5);
+}
+
+.progressTrack {
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 100px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: #94D82D;
+  border-radius: 100px;
+  box-shadow: 0 0 12px rgba(148, 216, 45, 0.4);
+}
+
+.steps {
+  display: flex;
+  gap: 24px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.8);
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dot.completed {
+  background: var(--white);
+  border-color: var(--white);
+  color: #1A365D;
+}
+
+/* Stats Area */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.statCard {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.statCard:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateX(4px);
+}
+
+.statLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+}
+
+.trendIcon {
+  color: #94D82D;
+}
+
+.statValue {
+  color: var(--white);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+
+.statSub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.3);
+  font-style: italic;
+}
+
+@media (max-width: 1280px) {
+  .mainCard {
+    grid-template-columns: 1fr;
+    padding: var(--space-xl);
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .steps {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,7 +1,7 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background: var(--white);
+  background: #F8F9FA;
 }
 
 .mainWrapper {
@@ -11,8 +11,8 @@
 }
 
 .content {
-  padding: var(--space-xl);
-  max-width: 1400px;
+  padding: var(--space-xl) var(--space-2xl);
+  max-width: 1600px;
   width: 100%;
   margin: 0 auto;
 }
@@ -29,120 +29,159 @@
   gap: var(--space-2xl);
 }
 
-.welcomeHead {
-  margin-bottom: var(--space-sm);
-}
-
-.welcomeText h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin: 0 0 4px;
-}
-
-.welcomeText p {
-  color: var(--gray-500);
-  font-size: 0.9375rem;
-}
-
 .rightCol {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-2xl);
 }
 
 .section {
   display: block;
 }
 
-.communitySection {
-  background: var(--gray-50);
-  border-radius: var(--radius-lg);
-  padding: var(--space-xl);
-  border: 1px solid var(--gray-100);
-}
-
 .sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.eyebrow {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #ADB5BD;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
 }
 
 .sectionHeader h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--navy);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1A314D;
+  letter-spacing: -0.02em;
 }
 
 .viewLink {
   font-size: 0.8125rem;
   font-weight: 700;
-  color: var(--teal);
+  color: #228BE6;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.communityPulse {
+  margin-top: var(--space-2xl);
 }
 
 .pulseGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
 .pulseCard {
   background: var(--white);
-  padding: var(--space-lg);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--gray-100);
-  transition: box-shadow 0.15s;
+  padding: 32px;
+  border-radius: 20px;
+  border: 1px solid #E9ECEF;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .pulseCard:hover {
-  box-shadow: var(--shadow-sm);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+}
+
+.pulseCard.green {
+  background-color: #F4FCF0;
+  border-color: #D3F2C2;
+}
+
+.pulseCard.pink {
+  background-color: #FFF5F5;
+  border-color: #FFE3E3;
 }
 
 .pulseTag {
   display: inline-block;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  color: var(--navy);
-  background: var(--gray-50);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-bottom: 12px;
+  color: var(--white);
+  background: var(--navy);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.pulseCard.green .pulseTag {
+  display: none; /* In mockup there are avatar clusters instead */
+}
+
+.avatarCluster {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  background: #DEE2E6;
+  margin-right: -8px;
+}
+
+.avatarCount {
+  font-size: 11px;
+  font-weight: 600;
+  color: #82C91E;
+  margin-left: 16px;
+  align-self: center;
+}
+
+.avatarCount span {
+  color: #495057;
 }
 
 .pulseCard h4 {
-  font-size: 0.9375rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1A314D;
+  margin: 0 0 20px;
+}
+
+.hotTopic {
+  color: #FF6B6B;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.pulseLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
   font-weight: 700;
-  line-height: 1.4;
-  margin: 0 0 12px;
+  color: #228BE6;
+  text-decoration: none;
 }
 
-.pulseMeta {
-  font-size: 0.75rem;
-  color: var(--gray-400);
-}
-
-@media (max-width: 1280px) {
+@media (max-width: 1400px) {
   .grid {
     grid-template-columns: 1fr;
-  }
-  
-  .rightCol {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .layout {
-    flex-direction: column;
-  }
-  
-  .rightCol {
-    grid-template-columns: 1fr;
-  }
-  
   .pulseGrid {
     grid-template-columns: 1fr;
   }
