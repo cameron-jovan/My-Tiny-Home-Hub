@@ -786,11 +786,11 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--gray-400);
   margin: 0 0 var(--space-sm);
 }
 
-/* Value display card */
+/* Value display — dark card wrapper inside resultCard */
 .valuationCard {
   background: var(--navy-dark);
   border-radius: var(--radius-xl);
@@ -799,20 +799,26 @@
   margin-bottom: var(--space-lg);
 }
 
+/* When resultMid sits directly in resultCard (no .valuationCard wrapper), use navy color */
+.resultCard > .resultMid {
+  text-align: center;
+}
+
 .resultMid {
   font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 900;
-  color: var(--white);
+  color: var(--navy);
   letter-spacing: -0.04em;
   line-height: 1;
   margin: 0 0 var(--space-xl);
+  text-align: center;
 }
 
 /* Range bar */
 .rangeBar {
   position: relative;
   height: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--gray-100);
   border-radius: 4px;
   margin: 0 0 var(--space-md);
 }
@@ -823,7 +829,7 @@
   left: 8%;
   right: 8%;
   bottom: 0;
-  background: linear-gradient(to right, rgba(140, 197, 64, 0.45), var(--lime), rgba(140, 197, 64, 0.45));
+  background: linear-gradient(to right, var(--lime-light), var(--lime), var(--lime-light));
   border-radius: 4px;
 }
 
@@ -855,7 +861,7 @@
 .rangeAmount {
   font-size: 1rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--navy);
 }
 
 .rangeText {
@@ -863,7 +869,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.32);
+  color: var(--gray-400);
 }
 
 .confidenceBadge {
@@ -872,8 +878,9 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--lime);
-  border: 1px solid rgba(140, 197, 64, 0.3);
+  color: var(--forest);
+  background: rgba(89, 133, 59, 0.08);
+  border: 1px solid rgba(89, 133, 59, 0.2);
   border-radius: var(--radius-full);
   padding: 4px 14px;
   align-self: center;
