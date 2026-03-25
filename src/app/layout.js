@@ -1,5 +1,6 @@
 import { AuthProvider } from "@/context/AuthContext";
 import ComingSoonModal from "@/components/ComingSoonModal";
+import Script from "next/script";
 import "./globals.css";
 
 export const metadata = {
@@ -36,6 +37,18 @@ export default function RootLayout({ children }) {
           <ComingSoonModal />
           {children}
         </AuthProvider>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JT53K4C5WG"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JT53K4C5WG');
+          `}
+        </Script>
       </body>
     </html>
   );
