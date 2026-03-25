@@ -1,97 +1,114 @@
 .sidebar {
-  width: 260px;
+  width: 240px;
   background: var(--white);
-  border-right: 1px solid var(--gray-100);
+  border-right: 1px solid #E9ECEF;
   padding: var(--space-xl) var(--space-md);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2xl);
-  height: calc(100vh - var(--nav-height));
+  height: calc(100vh - 80px);
   position: sticky;
-  top: var(--nav-height);
+  top: 80px;
 }
 
 .navGroup {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  border-radius: var(--radius-md);
-  color: var(--gray-500);
-  font-size: 0.875rem;
-  font-weight: 600;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: #868E96;
+  font-size: 0.8125rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 
 .navItem:hover {
-  background: var(--gray-50);
+  background: #F8F9FA;
   color: var(--navy);
 }
 
 .navItem.active {
-  background: var(--gray-50);
+  background: #F1F3F5;
   color: var(--navy);
 }
 
 .icon {
   flex-shrink: 0;
-  transition: fill 0.15s ease;
+  color: #ADB5BD;
+  transition: all 0.2s ease;
 }
 
 .active .icon {
-  fill: var(--navy);
+  color: #228BE6; /* Blue icon for active state */
 }
 
 .helpBox {
   margin-top: auto;
-  background: var(--gray-50);
-  border-radius: var(--radius-lg);
+  background: #F8F9FA;
+  border-radius: 16px;
   padding: var(--space-lg);
-  border: 1px solid var(--gray-100);
+  border: 1px solid #E9ECEF;
 }
 
 .helpEyebrow {
   display: block;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--gray-400);
+  letter-spacing: 0.08em;
+  color: #ADB5BD;
   margin-bottom: 8px;
 }
 
 .helpBox p {
   font-size: 0.75rem;
-  color: var(--gray-500);
+  color: #868E96;
   line-height: 1.5;
-  margin: 0 0 var(--space-md);
+  margin: 0 0 16px;
+  font-weight: 500;
 }
 
 .chatBtn {
   width: 100%;
-  padding: 8px;
-  background: var(--navy);
+  padding: 10px;
+  background: #183153; /* Darker navy for help button */
   color: var(--white);
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 8px;
   font-size: 0.8125rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: all 0.2s ease;
 }
 
 .chatBtn:hover {
-  background: var(--navy-dark);
+  background: #0D1F35;
+  transform: translateY(-1px);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
+  .sidebar {
+    width: 80px;
+    padding: var(--space-xl) var(--space-xs);
+  }
+  
+  .navItem span {
+    display: none;
+  }
+  
+  .helpBox {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
   .sidebar {
     display: none;
   }
