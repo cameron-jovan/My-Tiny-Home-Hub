@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
+import CalInlineEmbed from '@/components/CalInlineEmbed';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -150,11 +151,7 @@ export default function ConciergePage() {
 
             {CAL_LINK ? (
               <div className={styles.calEmbed}>
-                <iframe
-                  src={`https://cal.com/${CAL_LINK}?embed=true`}
-                  title="Book a concierge consultation"
-                  loading="lazy"
-                />
+                <CalInlineEmbed calLink={CAL_LINK} />
               </div>
             ) : (
               <div className={styles.setupPlaceholder}>
