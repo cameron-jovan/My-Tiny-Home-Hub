@@ -14,7 +14,7 @@ interface PostSnippet {
 
 interface EditorialCardProps {
   post: PostSnippet;
-  variant?: 'default' | 'large' | 'compact';
+  variant?: 'default' | 'large' | 'compact' | 'wide';
 }
 
 export default function EditorialCard({ post, variant = 'default' }: EditorialCardProps) {
