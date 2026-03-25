@@ -79,17 +79,10 @@ export default function ListingDetailPage({ params }) {
   return (
     <>
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Browse', href: '/browse' }, { label: listing?.title || 'Listing' }]} />
+      </div>
       <main className={styles.page}>
-        {/* Breadcrumb */}
-        <div className="container">
-          <nav className={styles.breadcrumb} aria-label="Breadcrumb">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <Link href="/browse">Browse</Link>
-            <span>/</span>
-            <span className={styles.current}>{listing.title}</span>
-          </nav>
-        </div>
 
         {/* Hero Image */}
         <div className="container">

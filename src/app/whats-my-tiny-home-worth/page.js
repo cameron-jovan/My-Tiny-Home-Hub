@@ -563,6 +563,9 @@ export default function WhatsMine() {
 
         <div className={styles.heroOverlay}/>
         <div className={styles.heroContent}>
+            <div className={styles.heroBreadcrumb}>
+              <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: "What's My Tiny Home Worth?" }]} />
+            </div>
           <div className={styles.heroInner}>
             <span className={styles.heroEyebrow}>AI-Powered Valuation</span>
             <h1 className={styles.heroH1}>
