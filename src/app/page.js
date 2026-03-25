@@ -199,19 +199,50 @@ export default function HomePage() {
         <p className={styles.seenOnLabel}>As Seen On</p>
         <div className={styles.marqueeWrapper}>
           <div className={styles.marqueeTrack}>
-            {[
-              { name: 'Redfin',        style: { color: '#CC092F', fontWeight: 700 } },
-              { name: 'Built America', style: { color: '#1B4073', fontWeight: 700 } },
-              { name: 'FOX News',      style: { color: '#003399', fontWeight: 800 } },
-              { name: 'Google News',   style: { color: '#202124', fontWeight: 600 } },
-              { name: 'Redfin',        style: { color: '#CC092F', fontWeight: 700 } },
-              { name: 'Built America', style: { color: '#1B4073', fontWeight: 700 } },
-              { name: 'FOX News',      style: { color: '#003399', fontWeight: 800 } },
-              { name: 'Google News',   style: { color: '#202124', fontWeight: 600 } },
-            ].map((item, i) => (
-              <span key={i} className={styles.marqueeItem} style={item.style}>
-                {item.name}
-              </span>
+            {[...Array(2)].map((_, set) => (
+              <div key={set} className={styles.marqueeSet}>
+                {/* Redfin */}
+                <span className={styles.marqueeItem}>
+                  <svg height="22" viewBox="0 0 90 22" fill="none" aria-label="Redfin">
+                    <circle cx="11" cy="11" r="11" fill="#CC092F"/>
+                    <path d="M8 7h4a3 3 0 010 6H8V7zm0 6h3l3 4h-2.5L9 13H8v4H6V7h2v6z" fill="white" stroke="none"/>
+                    <text x="26" y="16" fontFamily="DM Sans, sans-serif" fontWeight="700" fontSize="14" fill="#CC092F" letterSpacing="-0.3">edfin</text>
+                  </svg>
+                </span>
+                {/* Wall Street Journal */}
+                <span className={styles.marqueeItem}>
+                  <svg height="22" viewBox="0 0 170 22" fill="none" aria-label="Wall Street Journal">
+                    <text x="0" y="16" fontFamily="Georgia, 'Times New Roman', serif" fontWeight="700" fontSize="15" fill="#1A1A1A" letterSpacing="0.5">Wall Street Journal</text>
+                  </svg>
+                </span>
+                {/* FOX News */}
+                <span className={styles.marqueeItem}>
+                  <svg height="22" viewBox="0 0 95 22" fill="none" aria-label="FOX News">
+                    <rect x="0" y="3" width="42" height="17" rx="2" fill="#003399"/>
+                    <text x="5" y="16" fontFamily="DM Sans, sans-serif" fontWeight="900" fontSize="13" fill="white" letterSpacing="1">FOX</text>
+                    <text x="47" y="16" fontFamily="DM Sans, sans-serif" fontWeight="700" fontSize="14" fill="#003399" letterSpacing="0.2">News</text>
+                  </svg>
+                </span>
+                {/* Built America */}
+                <span className={styles.marqueeItem}>
+                  <svg height="22" viewBox="0 0 130 22" fill="none" aria-label="Built America">
+                    <text x="0" y="16" fontFamily="DM Sans, sans-serif" fontWeight="800" fontSize="14" fill="#1B4073" letterSpacing="0.5">BUILT</text>
+                    <text x="50" y="16" fontFamily="DM Sans, sans-serif" fontWeight="400" fontSize="14" fill="#1B4073" letterSpacing="0.5">AMERICA</text>
+                  </svg>
+                </span>
+                {/* Google News */}
+                <span className={styles.marqueeItem}>
+                  <svg height="22" viewBox="0 0 125 22" fill="none" aria-label="Google News">
+                    <text x="0" y="16" fontFamily="DM Sans, sans-serif" fontWeight="700" fontSize="14" fill="#4285F4" letterSpacing="-0.2">G</text>
+                    <text x="12" y="16" fontFamily="DM Sans, sans-serif" fontWeight="400" fontSize="14" fill="#EA4335" letterSpacing="-0.2">o</text>
+                    <text x="21" y="16" fontFamily="DM Sans, sans-serif" fontWeight="400" fontSize="14" fill="#FBBC05" letterSpacing="-0.2">o</text>
+                    <text x="30" y="16" fontFamily="DM Sans, sans-serif" fontWeight="400" fontSize="14" fill="#4285F4" letterSpacing="-0.2">g</text>
+                    <text x="39" y="16" fontFamily="DM Sans, sans-serif" fontWeight="400" fontSize="14" fill="#34A853" letterSpacing="-0.2">l</text>
+                    <text x="44" y="16" fontFamily="DM Sans, sans-serif" fontWeight="400" fontSize="14" fill="#EA4335" letterSpacing="-0.2">e</text>
+                    <text x="54" y="16" fontFamily="DM Sans, sans-serif" fontWeight="600" fontSize="14" fill="#202124">News</text>
+                  </svg>
+                </span>
+              </div>
             ))}
           </div>
         </div>

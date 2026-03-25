@@ -22,8 +22,8 @@ export default function Footer() {
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Platform</h4>
             <Link href="/browse" className={styles.activeLink}>Inventory</Link>
-            <Link href="/list-your-home">Sell Your Tiny</Link>
-            <Link href="/concierge">Affiliates</Link>
+            <Link href="/list-your-home">List Your Home</Link>
+            <Link href="/concierge">Concierge Service</Link>
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Legal</h4>
