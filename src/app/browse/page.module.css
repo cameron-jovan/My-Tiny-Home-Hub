@@ -6,9 +6,19 @@
 
 /* Search Header */
 .searchHeader {
-  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  background: var(--navy-dark);
   border-bottom: 1px solid var(--gray-100);
-  padding: var(--space-xl) 0;
+  padding: var(--space-2xl) 0;
+}
+
+.searchHeaderBg {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.3;
 }
 
 .searchRow {
@@ -22,7 +32,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--gray-500);
+  color: rgba(255,255,255,0.7);
   margin-bottom: var(--space-sm);
 }
 
@@ -62,7 +72,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--gray-500);
+  color: rgba(255,255,255,0.7);
 }
 
 .sortSelect {

@@ -129,7 +129,15 @@ export default function BrowsePage() {
       <main className={styles.page}>
         {/* Search Header */}
         <div className={styles.searchHeader}>
-          <div className="container">
+          <Image
+            src="/images/hero-browse.jpg"
+            alt=""
+            fill
+            className={styles.searchHeaderBg}
+            priority
+            quality={80}
+          />
+          <div className="container" style={{ position: 'relative' }}>
             <div className={styles.searchRow}>
               <div>
                 <p className={styles.searchLabel}>SEARCH YOUR DREAM HOME</p>
