@@ -1,115 +1,149 @@
-.dashboardPage {
+.layout {
+  display: flex;
   min-height: 100vh;
-  padding-top: 120px;
-  background: var(--white-off);
+  background: var(--white);
 }
 
-.container {
-  max-width: var(--container-width);
+.mainWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: var(--space-xl);
+  max-width: 1400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 var(--space-2xl);
 }
 
-.header {
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-2xl);
+}
+
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.welcomeHead {
+  margin-bottom: var(--space-sm);
+}
+
+.welcomeText h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0 0 4px;
+}
+
+.welcomeText p {
+  color: var(--gray-500);
+  font-size: 0.9375rem;
+}
+
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.section {
+  display: block;
+}
+
+.communitySection {
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  border: 1px solid var(--gray-100);
+}
+
+.sectionHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: var(--space-4xl);
+  margin-bottom: var(--space-lg);
 }
 
-.header h1 {
-  font-size: 2.5rem;
-  color: var(--navy-dark);
-  margin-bottom: var(--space-xs);
-}
-
-.header p {
-  color: var(--gray);
-  font-size: 1.125rem;
-}
-
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
-  margin-bottom: var(--space-6xl);
-}
-
-.statCard {
-  background: var(--white);
-  padding: var(--space-2xl);
-  border-radius: 20px;
-  border: 1px solid var(--white-smoke);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-}
-
-.statCard h3 {
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--gray);
-  margin-bottom: var(--space-md);
-}
-
-.statNumber {
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--navy);
-}
-
-.recentActivity h2 {
-  font-size: 1.5rem;
-  color: var(--navy-dark);
-  margin-bottom: var(--space-xl);
-}
-
-.activityList {
-  background: var(--white);
-  border-radius: 20px;
-  border: 1px solid var(--white-smoke);
-  overflow: hidden;
-}
-
-.activityItem {
-  display: flex;
-  align-items: center;
-  padding: var(--space-xl);
-  border-bottom: 1px solid var(--white-smoke);
-}
-
-.activityItem:last-child {
-  border-bottom: none;
-}
-
-.activityIcon {
-  width: 48px;
-  height: 48px;
-  background: var(--white-off);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  margin-right: var(--space-xl);
-}
-
-.activityDetails {
-  flex: 1;
-}
-
-.activityTitle {
+.sectionHeader h3 {
+  font-size: 1rem;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: var(--space-3xs);
 }
 
-.activityTime {
-  font-size: 0.875rem;
-  color: var(--gray-light);
+.viewLink {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--teal);
 }
 
-@media (max-width: 992px) {
-  .statsGrid {
+.pulseGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.pulseCard {
+  background: var(--white);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-100);
+  transition: box-shadow 0.15s;
+}
+
+.pulseCard:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.pulseTag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: var(--gray-50);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.pulseCard h4 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+
+.pulseMeta {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+@media (max-width: 1280px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .rightCol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .rightCol {
+    grid-template-columns: 1fr;
+  }
+  
+  .pulseGrid {
     grid-template-columns: 1fr;
   }
 }
