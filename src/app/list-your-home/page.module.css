@@ -1,6 +1,6 @@
 .page {
   background: var(--white);
-  padding-top: var(--nav-height);
+  padding-top: calc(var(--nav-height) + var(--ticker-height));
 }
 
 /* ===== HERO ===== */

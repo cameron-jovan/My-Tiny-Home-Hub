@@ -23,6 +23,7 @@ export default function Footer() {
             <h4 className={styles.colTitle}>Platform</h4>
             <Link href="/browse" className={styles.activeLink}>Inventory</Link>
             <Link href="/list-your-home">List Your Home</Link>
+            <Link href="/whats-my-tiny-worth">What&apos;s My Tiny Worth?</Link>
             <Link href="/concierge">Concierge Service</Link>
           </div>
           <div className={styles.col}>
