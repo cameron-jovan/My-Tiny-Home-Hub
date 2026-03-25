@@ -1,0 +1,97 @@
+.container {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--gray-100);
+  margin-bottom: var(--space-md);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.header h3 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(140,197,64,0.1);
+  color: var(--lime);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--gray-50);
+}
+
+.alertInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.alertTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.alertLabel {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+.alertCount {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.addBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 4px 0;
+  color: var(--gray-400);
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.addBtn:hover {
+  color: var(--teal);
+}
+
+.plusIcon {
+  width: 20px;
+  height: 20px;
+  background: var(--gray-50);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}

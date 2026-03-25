@@ -1,0 +1,114 @@
+.header {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-xl);
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+  gap: var(--space-xl);
+}
+
+.searchBar {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md);
+  padding: 8px 14px;
+}
+
+.searchBar input {
+  background: none;
+  border: none;
+  width: 100%;
+  font-size: 0.875rem;
+  color: var(--gray-700);
+  outline: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.createBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  transition: background 0.15s;
+}
+
+.createBtn:hover {
+  background: var(--navy-dark);
+}
+
+.iconBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--gray-500);
+  transition: background 0.15s;
+}
+
+.iconBtn:hover {
+  background: var(--gray-50);
+}
+
+.notificationDot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  background: var(--lime);
+  border: 2px solid var(--white);
+  border-radius: 50%;
+}
+
+.userDropdown {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  background: var(--gray-100);
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--navy);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .searchBar {
+    display: none;
+  }
+}

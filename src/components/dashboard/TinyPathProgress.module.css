@@ -1,0 +1,81 @@
+.container {
+  background: var(--navy-dark);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  color: var(--white);
+}
+
+.header {
+  margin-bottom: var(--space-xl);
+}
+
+.titleGroup h3 {
+  color: var(--white);
+  font-size: 1.125rem;
+  margin: 0 0 4px;
+}
+
+.titleGroup p {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.8125rem;
+  margin: 0 0 var(--space-md);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: var(--lime);
+  border-radius: 999px;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.steps {
+  display: flex;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+}
+
+.stepDot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.completed {
+  color: var(--white);
+}
+
+.completed .stepDot {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--navy-dark);
+}
+
+.pending {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.pending:hover {
+  color: var(--white);
+}
