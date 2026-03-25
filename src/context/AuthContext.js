@@ -1,9 +1,11 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { 
-  onAuthStateChanged, 
-  signInWithPopup, 
+import {
+  onAuthStateChanged,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -28,6 +30,15 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Handle redirect result from signInWithRedirect (Google OAuth)
+    getRedirectResult(auth).then(async (result) => {
+      if (result?.user) {
+        await createUserProfile(result.user);
+      }
+    }).catch((error) => {
+      console.error("Redirect sign-in error:", error);
+    });
+
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
       if (user) {
@@ -85,13 +96,16 @@ export function AuthProvider({ children }) {
 
   const loginWithGoogle = async () => {
     try {
+      // Try popup first; fall back to redirect if blocked
       const result = await signInWithPopup(auth, googleProvider);
-      // Profile creation is now also handled in onAuthStateChanged as a fallback,
-      // but keeping this for explicit creation.
       await createUserProfile(result.user);
     } catch (error) {
-      console.error("Error logging in with Google:", error);
-      throw error;
+      if (error.code === 'auth/popup-blocked' || error.code === 'auth/popup-closed-by-user') {
+        await signInWithRedirect(auth, googleProvider);
+      } else {
+        console.error("Error logging in with Google:", error);
+        throw error;
+      }
     }
   };
 

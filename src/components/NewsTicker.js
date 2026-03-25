@@ -9,7 +9,7 @@ export default function NewsTicker() {
         height: '44px',
         overflow: 'hidden',
         position: 'relative',
-        zIndex: 999,
+        zIndex: 1,
       }}
     >
       <div
