@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
 import EditorialCard from '@/components/EditorialCard';
 import { seedPosts } from '@/lib/seedData';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
 export function generateStaticParams() {
@@ -46,6 +47,9 @@ export default async function ArticlePage({ params }) {
   return (
     <>
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog', href: '/blog' }, { label: post?.title || 'Post' }]} />
+      </div>
       <main className={styles.page}>
         {/* Hero */}
         <section className={styles.hero}>

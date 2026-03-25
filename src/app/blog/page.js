@@ -7,6 +7,7 @@ import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
 import { db } from '@/lib/firebase';
 import { collection, query, getDocs, orderBy } from 'firebase/firestore';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
 export default function BlogPage() {
@@ -48,6 +49,9 @@ export default function BlogPage() {
   return (
     <>
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Blog' }]} />
+      </div>
       <main className={styles.page}>
         {/* Featured Hero */}
         {featured && (

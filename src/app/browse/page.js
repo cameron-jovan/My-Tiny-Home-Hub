@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import { db } from '@/lib/firebase';
 import { collection, query, getDocs } from 'firebase/firestore';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
 const HOME_TYPES = ['Tiny House on Wheels', 'Modular Foundation', 'ADU / Backyard Suite', 'Container Home', 'Park Model'];
@@ -121,6 +122,9 @@ export default function BrowsePage() {
   return (
     <>
       <Navbar />
+      <div className="container">
+        <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Browse Listings' }]} />
+      </div>
       <main className={styles.page}>
         {/* Search Header */}
         <div className={styles.searchHeader}>
