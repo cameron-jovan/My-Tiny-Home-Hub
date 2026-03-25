@@ -165,14 +165,52 @@
   display: block;
 }
 
-.pulseLink {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.pulseLink svg {
+  transition: transform 0.2s ease;
+}
+
+.pulseLink:hover svg {
+  transform: translateX(4px);
+}
+
+.goProBanner {
+  background: linear-gradient(135deg, #183153 0%, #0D1F35 100%);
+  padding: 32px;
+  border-radius: 20px;
+  color: var(--white);
+  text-align: center;
+}
+
+.goProBanner h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.goProBanner p {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.proBtn {
+  width: 100%;
+  padding: 12px;
+  background: #94D82D;
+  color: #2D5A00;
+  border: none;
+  border-radius: 10px;
   font-size: 0.875rem;
-  font-weight: 700;
-  color: #228BE6;
-  text-decoration: none;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.proBtn:hover {
+  background: #A9E34B;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(148, 216, 45, 0.3);
 }
 
 @media (max-width: 1400px) {
