@@ -9,7 +9,7 @@ import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
 import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
-import { collection, query, getDocs, limit } from 'firebase/firestore';
+import { collection, query, getDocs, limit, addDoc, serverTimestamp } from 'firebase/firestore';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -20,6 +20,25 @@ export default function HomePage() {
   const [topicHubs, setTopicHubs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showInquiry, setShowInquiry] = useState(false);
+  const [rentalEmail, setRentalEmail] = useState('');
+  const [rentalRole, setRentalRole] = useState('owner');
+  const [rentalStatus, setRentalStatus] = useState('idle');
+
+  async function handleRentalWaitlist(e) {
+    e.preventDefault();
+    if (!rentalEmail || rentalStatus === 'loading') return;
+    setRentalStatus('loading');
+    try {
+      await addDoc(collection(db, 'rentalWaitlist'), {
+        email: rentalEmail,
+        role: rentalRole,
+        createdAt: serverTimestamp(),
+      });
+      setRentalStatus('success');
+    } catch {
+      setRentalStatus('error');
+    }
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -244,6 +263,82 @@ export default function HomePage() {
                 <div className={styles.topicDesc}>{hub.description}</div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== RENTAL WAITLIST ===== */}
+      <section className={styles.rentalBand} id="rental-waitlist">
+        <div className={styles.rentalInner}>
+          <div className={styles.rentalCopy}>
+            <span className={styles.rentalBadge}>Coming Soon</span>
+            <h2 className={styles.rentalHeadline}>
+              Your backyard could be<br />
+              <span className={styles.rentalAccent}>someone&apos;s next home.</span>
+            </h2>
+            <p className={styles.rentalSub}>
+              We&apos;re building a rental marketplace for tiny homes and ADUs. Whether you have a space to list or you&apos;re searching for one, join the waitlist and be first in.
+            </p>
+            <div className={styles.rentalPills}>
+              <div className={styles.rentalPill}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                ADUs and backyard tiny homes
+              </div>
+              <div className={styles.rentalPill}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.16 6.16l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                Qualified, verified renters
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.rentalForm}>
+            <div className={styles.rentalFormCard}>
+              {rentalStatus === 'success' ? (
+                <div className={styles.rentalSuccess}>
+                  <p className={styles.rentalSuccessTitle}>You&apos;re on the list.</p>
+                  <p className={styles.rentalSuccessSub}>We&apos;ll reach out when My Tiny Rent launches.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleRentalWaitlist} noValidate>
+                  <p className={styles.rentalFormLabel}>I am a...</p>
+                  <div className={styles.rentalToggle}>
+                    <button
+                      type="button"
+                      className={`${styles.rentalToggleBtn} ${rentalRole === 'owner' ? styles.rentalToggleActive : ''}`}
+                      onClick={() => setRentalRole('owner')}
+                    >
+                      Property Owner
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.rentalToggleBtn} ${rentalRole === 'renter' ? styles.rentalToggleActive : ''}`}
+                      onClick={() => setRentalRole('renter')}
+                    >
+                      Looking to Rent
+                    </button>
+                  </div>
+                  <input
+                    type="email"
+                    className={styles.rentalInput}
+                    placeholder="Your email address"
+                    value={rentalEmail}
+                    onChange={e => setRentalEmail(e.target.value)}
+                    required
+                    autoComplete="email"
+                  />
+                  <button
+                    type="submit"
+                    className={styles.rentalSubmit}
+                    disabled={rentalStatus === 'loading'}
+                  >
+                    {rentalStatus === 'loading' ? 'Joining...' : 'Join the Waitlist'}
+                  </button>
+                  {rentalStatus === 'error' && (
+                    <p className={styles.rentalError}>Something went wrong. Please try again.</p>
+                  )}
+                </form>
+              )}
+            </div>
           </div>
         </div>
       </section>

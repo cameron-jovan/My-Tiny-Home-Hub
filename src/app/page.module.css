@@ -365,6 +365,194 @@
   color: var(--gray-500);
 }
 
+/* Rental Waitlist */
+.rentalBand {
+  background: #F5F3EF;
+  padding: var(--space-3xl) 0;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.rentalInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+}
+
+.rentalBadge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal, #06799B);
+  border: 1px solid rgba(6,121,155,0.35);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  margin-bottom: 16px;
+}
+
+.rentalHeadline {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--navy);
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.rentalAccent {
+  color: var(--teal, #06799B);
+}
+
+.rentalSub {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--gray-600, #4b5563);
+  margin: 0 0 24px;
+  max-width: 440px;
+}
+
+.rentalPills {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rentalPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--navy);
+}
+
+.rentalPill svg {
+  color: var(--teal, #06799B);
+  flex-shrink: 0;
+}
+
+/* Form card */
+.rentalFormCard {
+  background: var(--white);
+  border-radius: var(--radius-xl, 24px);
+  padding: 36px 32px;
+  box-shadow: 0 8px 32px rgba(27,64,115,0.08), 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.rentalFormLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.rentalToggle {
+  display: flex;
+  background: var(--gray-100, #f3f4f6);
+  border-radius: 8px;
+  padding: 3px;
+  margin-bottom: 16px;
+  gap: 3px;
+}
+
+.rentalToggleBtn {
+  flex: 1;
+  padding: 9px 12px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500, #6b7280);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.rentalToggleActive {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.rentalInput {
+  width: 100%;
+  height: 46px;
+  padding: 0 14px;
+  border: 1.5px solid var(--gray-200, #e5e7eb);
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--gray-900);
+  background: var(--white);
+  outline: none;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast);
+}
+
+.rentalInput::placeholder {
+  color: var(--gray-400, #9ca3af);
+}
+
+.rentalInput:focus {
+  border-color: var(--teal, #06799B);
+}
+
+.rentalSubmit {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 8px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+}
+
+.rentalSubmit:hover:not(:disabled) {
+  background: var(--navy-light, #2A5694);
+}
+
+.rentalSubmit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rentalError {
+  font-size: 12px;
+  color: var(--error, #D93025);
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+.rentalSuccess {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.rentalSuccessTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 6px;
+}
+
+.rentalSuccessSub {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  margin: 0;
+}
+
 /* Concierge Band */
 .concierge {
   background: var(--navy);
@@ -448,6 +636,17 @@
 
   .topicGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .rentalInner {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  .rentalSub {
+    max-width: 100%;
   }
 }
 
