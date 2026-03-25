@@ -74,7 +74,7 @@ const FEATURES = [
   'Steel frame', 'Metal roof', 'Utilities included', 'Detached garage',
 ];
 
-const STEPS = ['Home Type', 'Size & Age', 'Specifics', 'Valuation'];
+const STEPS = ['Home Type', 'Size & Age', 'Specifics', 'Features', 'Your Results'];
 
 function fmt(n) {
   return '$' + n.toLocaleString('en-US');
@@ -92,10 +92,12 @@ export default function WhatsMine() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState('');
-  const [captureEmail, setCaptureEmail] = useState('');
-  const [captureName, setCaptureName] = useState('');
+  // Email gate (step 5 — required before results)
+  const [gateEmail, setGateEmail] = useState('');
+  const [gateName, setGateName] = useState('');
+  const [gateLoading, setGateLoading] = useState(false);
+  // Post-result soft share (already saved via gate)
   const [captureSaved, setCaptureSaved] = useState(false);
-  const [captureLoading, setCaptureLoading] = useState(false);
 
   function scrollToWizard() {
     wizardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -736,7 +738,7 @@ export default function WhatsMine() {
                 {[
                   { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>, title: 'Reach 100k+ Buyers Monthly', desc: "Our platform is the #1 destination for tiny living enthusiasts and serious cash buyers globally." },
                   { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, title: 'Expert Listing Support', desc: 'Get professional photography advice and title transfer support from our dedicated concierge team.' },
-                  { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>, title: 'Low 1% Seller Fees', desc: "Keep more of your equity. Our fee structure beats traditional real estate agents every time." },
+                  { icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>, title: 'Transparent 4.9% Seller Fee', desc: "Keep more of your equity. Just 4.9% total — still well below the 5–6% traditional agents charge, with full transaction support." },
                 ].map((item, i) => (
                   <div key={i} className={styles.moveItem}>
                     <div className={styles.moveItemIcon}>{item.icon}</div>
@@ -791,7 +793,7 @@ export default function WhatsMine() {
             {[
               { num: '01', title: 'Get Value (Instant)', desc: 'Enter your specs and get a precise market value estimate immediately.' },
               { num: '02', title: 'Match with Buyers', desc: 'Tap into our network of 100k+ active owners looking for homes like yours.' },
-              { num: '03', title: 'List & Sell (1% Fee)', desc: 'List your space with professional support and industry-low transaction costs.' },
+              { num: '03', title: 'List & Sell (4.9% Fee)', desc: 'List with professional support and a transparent 4.9% seller fee — well below traditional agent commissions.' },
             ].map((item, i) => (
               <div key={i} className={styles.featureBarItem}>
                 <span className={styles.featureBarNum}>{item.num}</span>

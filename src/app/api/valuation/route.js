@@ -46,8 +46,10 @@ Respond ONLY with valid JSON, no markdown, no explanation:
       messages: [{ role: 'user', content: prompt }],
     });
 
-    const text = message.content[0].text.trim();
-    const data = JSON.parse(text);
+    const raw = message.content[0].text.trim();
+    // Strip markdown code fences if the model wrapped the JSON
+    const jsonStr = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+    const data = JSON.parse(jsonStr);
 
     // Round to nearest $500 for cleaner display
     data.low = Math.round(data.low / 500) * 500;
