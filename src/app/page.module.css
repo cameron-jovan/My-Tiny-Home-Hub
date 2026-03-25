@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  min-height: 85vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
@@ -18,7 +18,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(27,64,115,0.85) 0%, rgba(18,43,80,0.6) 100%);
+  background: linear-gradient(115deg, rgba(18,43,80,0.93) 0%, rgba(18,43,80,0.75) 55%, rgba(6,121,155,0.3) 100%);
   z-index: 1;
 }
 
@@ -29,16 +29,31 @@
   margin: 0 auto;
   padding: var(--space-3xl) var(--space-lg);
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: var(--space-3xl);
   align-items: center;
 }
 
+/* Eyebrow */
+.heroEyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime, #8CC540);
+  border: 1px solid rgba(140,197,64,0.4);
+  border-radius: 9999px;
+  padding: 5px 14px;
+  margin-bottom: 20px;
+}
+
+/* Headline */
 .heroContent h1 {
   color: var(--white);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2.6rem, 4.5vw, 3.75rem);
   font-weight: 900;
-  line-height: 1.05;
+  line-height: 1.06;
   letter-spacing: -0.03em;
   margin-bottom: var(--space-lg);
 }
@@ -47,56 +62,69 @@
   color: var(--lime);
 }
 
+/* Subtitle */
 .heroSubtitle {
-  color: rgba(255,255,255,0.75);
-  font-size: 1.125rem;
-  line-height: 1.6;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.0625rem;
+  line-height: 1.7;
   margin-bottom: var(--space-xl);
-  max-width: 520px;
+  max-width: 500px;
 }
 
-/* Search Bar */
-.searchBar {
+/* CTAs */
+.heroCtas {
   display: flex;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 6px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-  max-width: 560px;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
 }
 
-.searchInput {
-  flex: 1;
-  padding: 16px 20px;
-  border: none;
-  background: transparent;
-  font-size: 1rem;
-  color: var(--gray-800);
-  outline: none;
+.heroCtaGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.85);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast), gap var(--transition-fast);
 }
 
-.searchInput::placeholder {
-  color: var(--gray-400);
+.heroCtaGhost:hover {
+  color: var(--white);
+  gap: 10px;
 }
 
-.searchBtn {
-  padding: 14px 28px;
-  border-radius: var(--radius-md);
+/* Trust strip */
+.heroTrust {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.01em;
+}
+
+.heroTrustDot {
+  color: rgba(255,255,255,0.2);
 }
 
 /* Hero Image Grid */
 .heroImages {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: var(--space-md);
-  height: 420px;
+  height: 440px;
 }
 
 .heroImg {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
 }
 
 .heroImg:first-child {
@@ -107,13 +135,53 @@
   position: absolute;
   bottom: var(--space-md);
   left: var(--space-md);
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.55);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: var(--white);
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: var(--radius-sm);
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Floating market stat card */
+.heroMarketCard {
+  position: absolute;
+  bottom: -20px;
+  left: -24px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.18);
+  max-width: 220px;
+  z-index: 3;
+}
+
+.heroMarketStat {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.heroMarketLabel {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+
+.heroMarketSub {
+  font-size: 0.6875rem;
+  color: var(--gray-500);
+  line-height: 1.4;
 }
 
 /* As Seen On */
@@ -349,8 +417,20 @@
     margin-right: auto;
   }
 
-  .searchBar {
-    margin: 0 auto;
+  .heroCtas {
+    justify-content: center;
+  }
+
+  .heroTrust {
+    justify-content: center;
+  }
+
+  .heroEyebrow {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
   }
 
   .heroImages {

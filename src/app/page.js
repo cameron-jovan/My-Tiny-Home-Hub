@@ -77,24 +77,32 @@ export default function HomePage() {
         </div>
         <div className={styles.heroInner}>
           <div className={styles.heroContent}>
+            <div className={styles.heroEyebrow}>Less Home, More Living</div>
             <h1>
-              Find Your Freedom.<br />
-              One Tiny Home at<br />
-              a <span>Time.</span>
+              Buying a tiny home<br />
+              should be as easy as<br />
+              <span>buying a car.</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              Browse, learn, and buy with confidence. The world&apos;s most curated marketplace for modern tiny living and alternative housing.
+              The tiny home market is growing fast — but buying one has always been fragmented, opaque, and full of risk. My Tiny Home Hub is the first end-to-end marketplace: verified listings, financing guidance, and expert concierge service, all in one place.
             </p>
-            <div className={styles.searchBar}>
-              <input
-                type="text"
-                placeholder="Search by model, builder, or feature..."
-                className={styles.searchInput}
-                id="hero-search"
-              />
-              <Link href="/browse" className={`btn btn-secondary ${styles.searchBtn}`}>
-                Browse Tiny Homes
+            <div className={styles.heroCtas}>
+              <Link href="/browse" className="btn btn-primary btn-lg">
+                Browse Homes
               </Link>
+              <Link href="/#concierge" className={styles.heroCtaGhost}>
+                Get Concierge Service
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </Link>
+            </div>
+            <div className={styles.heroTrust}>
+              <span>Verified Listings</span>
+              <span className={styles.heroTrustDot} aria-hidden="true">·</span>
+              <span>Financing Guidance</span>
+              <span className={styles.heroTrustDot} aria-hidden="true">·</span>
+              <span>Expert Concierge</span>
             </div>
           </div>
 
@@ -125,6 +133,11 @@ export default function HomePage() {
                 style={{ objectFit: 'cover' }}
               />
               <span className={styles.heroImgLabel}>Desert Modern</span>
+            </div>
+            <div className={styles.heroMarketCard}>
+              <div className={styles.heroMarketStat}>40M+</div>
+              <div className={styles.heroMarketLabel}>Americans considering alternative housing</div>
+              <div className={styles.heroMarketSub}>Affordable housing crisis driving demand to record highs</div>
             </div>
           </div>
         </div>
