@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 /* ===== RESET ===== */
 *, *::before, *::after {
@@ -79,6 +84,21 @@
   --max-width: 1280px;
   --nav-height: 72px;
   --ticker-height: 0px;
+
+  /* Dashboard specific from mockup */
+  --on-surface: #051f1e;
+  --primary-navy: #1B4073;
+  --lime-brand: #8CC540;
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+.glass-dark { 
+  background: rgba(27, 64, 115, 0.85); 
+  backdrop-filter: blur(12px); 
 }
 
 /* ===== BASE STYLES ===== */
