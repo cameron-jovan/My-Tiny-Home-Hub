@@ -135,9 +135,9 @@ export default function HomePage() {
               <span className={styles.heroImgLabel}>Desert Modern</span>
             </div>
             <div className={styles.heroMarketCard}>
-              <div className={styles.heroMarketStat}>40M+</div>
-              <div className={styles.heroMarketLabel}>Americans considering alternative housing</div>
-              <div className={styles.heroMarketSub}>Affordable housing crisis driving demand to record highs</div>
+              <div className={styles.heroMarketStat}>4.03M</div>
+              <div className={styles.heroMarketLabel}>Homes missing from the U.S. market</div>
+              <div className={styles.heroMarketSub}>1.82M young households priced out of homeownership</div>
             </div>
           </div>
         </div>
