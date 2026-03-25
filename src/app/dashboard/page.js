@@ -10,6 +10,7 @@ import Footer from '@/components/Footer';
 function DashboardContent() {
   const { user } = useAuth();
   const userName = user?.displayName?.split(' ')[0] || 'Julian';
+  const userPhoto = user?.photoURL || "https://lh3.googleusercontent.com/aida-public/AB6AXuAqIZtwpTdMRgcCWrJDVheSJThmacoY8CAYwlpLajwDkFLkgoa-K-IFs2bzv-jRKK2GUZshjbBinBeLRKdwVnZhW3HX7hHG_3dTAmgmDEQDn-E2swT2vlDXQH4yEVQBjuXg6cTttFgOX6h47fOUWAbpalpIkgR0JfBUQo3Eq8lS_M9azQPEGywkHYvLkEoyXyX4hqOmB6f0B1NJbAN0Cv9c3d0jc5rZlEb55z-zigm7SMODWmMUcMdYajTRGvKX4RZTSO_9xmWWxg";
 
   return (
     <div className="bg-[#F9FBFC] min-h-screen text-on-surface antialiased font-body">
@@ -62,7 +63,7 @@ function DashboardContent() {
               <img 
                 alt="Architecture Background" 
                 className="w-full h-full object-cover" 
-                src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&q=80" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt5D75AEleT6dcAWbVWqS2W0uD8FX4TtR4offH9-jU665TzATiGaZHba4YWudst0jgZDmQkfjnafpQ6QyiWZoQBoDlTXNp1vF4T7p2g1TeJcPzSt4tRl4BwUT0tIKRf7wfuMJTdvmfrx5anki06HoLj6iJf1L2c8Bm8TzI4BOx41RgTbxC8iWLJjyGLxmBBp_1SLqfS_mEm_jG3TIMmrZB3QqAWD1AvDnTEecA2LLfWmltT3HIyLf6A32LsF8E9seggWXb7qQFvQ" 
               />
             </div>
             <div className="relative z-10 p-8 md:p-12 flex flex-col xl:flex-row xl:items-center justify-between gap-12">
@@ -153,7 +154,7 @@ function DashboardContent() {
                   {/* Property Card 1 */}
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100">
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img alt="Cabin" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80" />
+                      <img alt="Cabin" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtSoXkIAs1u8Cnr5gc_yxvFJtNeocpVKj5__ZE9D7UBRi217ip_clrQ61DfxL3oblY10yuoAx0CZFQ26ZDOiLPTIrASP6yrxh7EDJQt7fFJWBPkjkZO_3E2DP6s8AA20lRBLonHXd99dnFctCgo-tXOluqzJv87LXO8k0zZM_WDSZukgDavogJbfWth24-v-2_f_8ocHfpihJd8r7cBp-OgQfvnZEekLg1--hfvzq08cIiESCUPIAqr3XnOAnUhOIWQMnkOAmyxQ" />
                       <div className="absolute top-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-black text-[#1B4073] shadow-lg">FROM $84,000</div>
                       <button className="absolute bottom-4 right-4 bg-white/20 backdrop-blur p-2 rounded-full text-white hover:bg-white hover:text-red-500 transition-all">
                         <span className="material-symbols-outlined">favorite</span>
@@ -176,7 +177,7 @@ function DashboardContent() {
                   {/* Property Card 2 */}
                   <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100">
                     <div className="relative aspect-[16/10] overflow-hidden">
-                      <img alt="Tiny Home" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80" />
+                      <img alt="Tiny Home" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI7mwRFIwh3pkjwEVDxNc7qgLy1h-Kgff4CnTdHRanACcvemC7ka4llLJdOSBXqkEshotUUzejQoQu8lSVWmx79O0V0hg04y_P_rUw1ycUOcHCCRuzEk9TGKJXV3Y6wfVWI6awhYlJJwCooqYvF4b5qMUHofVjlE9Ty0orv0d68_rDdYD-20jQ3Ern5WTJFoCPqZMsHpGuwoT2gQxNa9z2nmNwSv-98Fu-vzI8SdmoRlt_cDhCKh8m0uxvEwbV67OPVKTdTjVR9Q" />
                       <div className="absolute top-4 right-4 bg-white/95 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-black text-[#1B4073] shadow-lg">FROM $112,000</div>
                       <button className="absolute bottom-4 right-4 bg-white/20 backdrop-blur p-2 rounded-full text-white hover:bg-white hover:text-red-500 transition-all">
                         <span className="material-symbols-outlined">favorite</span>
@@ -229,7 +230,7 @@ function DashboardContent() {
                     <div className="p-6 flex flex-col md:flex-row md:items-center justify-between hover:bg-slate-50/50 transition-colors gap-6">
                       <div className="flex items-center gap-5">
                         <div className="w-20 h-16 rounded-xl overflow-hidden bg-slate-100">
-                          <img alt="Listing" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1464146072230-91cabc968266?auto=format&fit=crop&q=80" />
+                          <img alt="Listing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7wiikrbe-UJ_fpA5JGBLXfJyPNIHv5SdkBng66HY7Lu8rtHINaVnS0l3jvwi79IzFAtchjGmQkyEhsYM_AGyK5wNd9jA6o7w2Q4xJs3UMfFuP_jBtY5vitJMvX9EZ1PsoRhYtPzlHOGqE-lpKxs-ezJJps2fUS7lWcEkXFk-FvnR1w5HHPzGQsWI4K-tzIA7rb35i9NCipAHtXLPn2av7Lr5V2LXPjUZsLncW5WOtT3L-5TYr0IVzJHWhW9ZvCI805b-QkKjRrw" />
                         </div>
                         <div>
                           <p className="font-bold text-[#1B4073] text-lg">Skyline Loft Studio</p>
@@ -261,7 +262,7 @@ function DashboardContent() {
                     <div className="p-6 flex flex-col md:flex-row md:items-center justify-between hover:bg-slate-50/50 transition-colors gap-6">
                       <div className="flex items-center gap-5">
                         <div className="w-20 h-16 rounded-xl overflow-hidden bg-slate-100">
-                          <img alt="Listing" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1449156001437-37a59fdfefdd?auto=format&fit=crop&q=80" />
+                          <img alt="Listing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXsqFK_Lmq2ktj5Hso6AnEUi_3j9z4bcC72DZcAUhHV--Jl5fdGHjXMi6yy9j8QeJtJYhnk5lQ1WbFznIF257LbA85zzxR5sxWeld646gyHG7VdqclBTEiqra7pb0Ni3MzVjL-TpIR-Uk6DsaND7xQGUMWBd4VAHHzVIyp60RE_FEz4OVgPz7h7oYAj54CAFYeofe7oFe0ZMOaDrh_siEP_aHe67mS6kPAQMh0srB2T3B0653elD5bDSU1rTiRM1ebrh9jOmtCTQ" />
                         </div>
                         <div>
                           <p className="font-bold text-[#1B4073] text-lg">The Artisan Hideaway</p>
@@ -339,7 +340,11 @@ function DashboardContent() {
                 <h3 className="text-sm font-black uppercase tracking-widest text-slate-400 mb-6">Your Personal Concierge</h3>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full overflow-hidden bg-slate-200 ring-4 ring-slate-50">
-                    <img alt="Concierge" className="w-full h-full object-cover" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80" />
+                    <img 
+                      alt="Concierge" 
+                      className="w-full h-full object-cover" 
+                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8QTRfPMMjRRxv2iVgFpQ9dauAZgUj_5Zdz5kCKNIwqbUBYq_WM6eWCxa14A-58D629qi8N3_cqW2TtAwiC6hDpjCpFO10LLgjxskDNr7Bf1iO0iYezbX-Mj_RCKr6djypAuHJPsWZFaTunk1gbnoiIkzpPXozxKobCQRG3-CgzWlSd6OE1rjQIKo-qnQEAWgI3GqdiWvOPYDD3iEQtxK86fPWdg1pc13TZ1MfoddSMB-K_pGMyCjlsKMqfvEDR-dsiBgLyy_C0Q" 
+                    />
                   </div>
                   <div>
                     <p className="font-bold text-[#1B4073] text-lg">Elena Rossi</p>
@@ -349,7 +354,7 @@ function DashboardContent() {
                 <div className="space-y-3 mb-8">
                   <div className="flex items-start gap-3 bg-slate-50 p-4 rounded-2xl">
                     <span className="material-symbols-outlined text-[#1B4073] mt-0.5">chat_bubble</span>
-                    <p className="text-xs text-slate-600 leading-relaxed italic">"Julian, I found two new modular designs in Oregon that fit your $150k target perfectly. Want a quick review?"</p>
+                    <p className="text-xs text-slate-600 leading-relaxed italic">"{userName}, I found two new modular designs in Oregon that fit your $150k target perfectly. Want a quick review?"</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
@@ -438,8 +443,8 @@ function DashboardContent() {
 
 export default function DashboardPage() {
   return (
-    /* <ProtectedRoute> */
+    <ProtectedRoute>
       <DashboardContent />
-    /* </ProtectedRoute> */
+    </ProtectedRoute>
   );
 }
