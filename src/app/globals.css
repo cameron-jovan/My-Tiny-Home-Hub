@@ -221,6 +221,17 @@ h4 { font-size: 1.25rem; }
   background: var(--gray-50);
 }
 
+.btn-outline-white {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255,255,255,0.35);
+}
+
+.btn-outline-white:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.1);
+}
+
 .btn-lg {
   padding: 16px 32px;
   font-size: 1.0625rem;

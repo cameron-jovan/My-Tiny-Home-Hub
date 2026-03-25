@@ -619,7 +619,4 @@
     flex-direction: row;
   }
 
-  .unused_delete {
-    padding: var(--space-xl);
-  }
 }
