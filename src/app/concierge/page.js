@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CalInlineEmbed from '@/components/CalInlineEmbed';
+import CalBookingButton from '@/components/CalBookingButton';
 import styles from './page.module.css';
 
 export const metadata = {
@@ -78,7 +79,9 @@ export default function ConciergePage() {
               <span className={styles.priceAmount}>$297</span>
               <span className={styles.priceSub}>one-time consultation · no hidden fees</span>
             </div>
-            <a href="#booking" className={styles.heroCta}>Book my consultation</a>
+            <CalBookingButton calLink={CAL_LINK} className={styles.heroCta}>
+              Book my consultation
+            </CalBookingButton>
           </div>
         </section>
 
