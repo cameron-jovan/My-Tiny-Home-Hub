@@ -386,6 +386,59 @@
   line-height: 1.6;
 }
 
+/* ===== EMAIL GATE (Step 5) ===== */
+.gateIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(27, 64, 115, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--navy);
+  margin: 0 auto var(--space-lg);
+}
+
+.gateForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 400px;
+  align-items: stretch;
+}
+
+.gateInput {
+  height: 52px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 0 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--gray-800);
+  background: var(--white);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.gateInput:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(27, 64, 115, 0.08);
+}
+
+.gateInput::placeholder {
+  color: var(--gray-400);
+}
+
+.gateNote {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  text-align: center;
+  margin: var(--space-xs) 0 0;
+}
+
 /* ===== TYPE GRID (Step 1) ===== */
 .typeGrid {
   display: grid;

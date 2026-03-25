@@ -107,10 +107,20 @@ export default function WhatsMine() {
     setFeatures(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f]);
   }
 
-  async function calculateValuation() {
-    setLoading(true);
+  async function submitGateAndCalculate(e) {
+    e.preventDefault();
+    if (!gateEmail || gateLoading) return;
+    setGateLoading(true);
     setError('');
     try {
+      // Save lead first (fire-and-forget — don't block on Firestore)
+      addDoc(collection(db, 'valuationLeads'), {
+        name: gateName, email: gateEmail,
+        homeType, sqft, yearRange, condition, state, features,
+        createdAt: serverTimestamp(),
+      }).catch(console.error);
+
+      // Call valuation API
       const res = await fetch('/api/valuation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -119,31 +129,13 @@ export default function WhatsMine() {
       const data = await res.json();
       if (data.error) throw new Error(data.error);
       setResult(data);
+      setCaptureSaved(true); // Mark email already saved
       setTimeout(() => wizardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     } catch (err) {
       setError('Something went wrong. Please try again.');
       console.error(err);
     } finally {
-      setLoading(false);
-    }
-  }
-
-  async function saveEmailCapture(e) {
-    e.preventDefault();
-    if (!captureEmail || captureLoading) return;
-    setCaptureLoading(true);
-    try {
-      await addDoc(collection(db, 'valuationLeads'), {
-        name: captureName, email: captureEmail,
-        homeType, sqft, yearRange, condition, state, features,
-        valuationLow: result.low, valuationMid: result.mid, valuationHigh: result.high,
-        createdAt: serverTimestamp(),
-      });
-      setCaptureSaved(true);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setCaptureLoading(false);
+      setGateLoading(false);
     }
   }
 
@@ -380,11 +372,47 @@ export default function WhatsMine() {
                   </div>
                 ))}
               </div>
-              {error && <p className={styles.wizardError}>{error}</p>}
-              <button className={styles.valuationBtn} onClick={calculateValuation}>
-                Get My Valuation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              <button className={styles.nextBtn} onClick={() => setStep(5)}>
+                Continue to Results
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
+            </>
+          )}
+
+          {/* Step 5: Email gate — required to unlock results */}
+          {step === 5 && (
+            <>
+              <div className={styles.gateIcon} aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </div>
+              <h2 className={styles.wizardQ}>Where should we send your report?</h2>
+              <p className={styles.wizardSub}>Your valuation is ready. Enter your details to unlock it — we'll also email you a copy.</p>
+              <form className={styles.gateForm} onSubmit={submitGateAndCalculate}>
+                <input
+                  type="text"
+                  className={styles.gateInput}
+                  placeholder="Your first name"
+                  value={gateName}
+                  onChange={e => setGateName(e.target.value)}
+                />
+                <input
+                  type="email"
+                  className={styles.gateInput}
+                  placeholder="Email address"
+                  value={gateEmail}
+                  onChange={e => setGateEmail(e.target.value)}
+                  required
+                />
+                {error && <p className={styles.wizardError}>{error}</p>}
+                <button type="submit" className={styles.valuationBtn} disabled={!gateEmail || gateLoading}>
+                  {gateLoading ? 'Calculating…' : 'Unlock My Valuation'}
+                  {!gateLoading && <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/></svg>}
+                </button>
+                <p className={styles.gateNote}>No spam. Unsubscribe anytime.</p>
+              </form>
             </>
           )}
         </div>
