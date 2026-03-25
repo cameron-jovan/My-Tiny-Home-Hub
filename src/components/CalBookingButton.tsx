@@ -2,13 +2,14 @@
 
 import { useEffect } from 'react';
 
-/**
- * A button component that triggers the Cal.com booking modal.
- * @param {string} calLink - e.g. "mytinyhomehub/30min"
- * @param {string} children - Button text
- * @param {string} className - Optional CSS classes
- */
-export default function CalBookingButton({ calLink, children, className, style }) {
+interface CalBookingButtonProps {
+  calLink: string;
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export default function CalBookingButton({ calLink, children, className, style }: CalBookingButtonProps) {
   useEffect(() => {
     (async function () {
       const cal = await import("@calcom/embed-react").then(mod => mod.getCalApi);
