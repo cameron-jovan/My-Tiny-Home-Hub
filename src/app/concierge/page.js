@@ -78,6 +78,7 @@ export default function ConciergePage() {
               <span className={styles.priceAmount}>$297</span>
               <span className={styles.priceSub}>one-time consultation · no hidden fees</span>
             </div>
+            <a href="#booking" className={styles.heroCta}>Book my consultation</a>
           </div>
         </section>
 
@@ -145,7 +146,7 @@ export default function ConciergePage() {
         </section>
 
         {/* Booking */}
-        <section className={styles.booking}>
+        <section id="booking" className={styles.booking}>
           <div className={styles.bookingInner}>
             <h2 className={styles.sectionTitle}>Pick a time. We&apos;ll handle the rest.</h2>
 
