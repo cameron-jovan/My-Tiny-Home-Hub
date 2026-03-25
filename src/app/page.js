@@ -362,7 +362,7 @@ export default function HomePage() {
               {rentalStatus === 'success' ? (
                 <div className={styles.rentalSuccess}>
                   <p className={styles.rentalSuccessTitle}>You&apos;re on the list.</p>
-                  <p className={styles.rentalSuccessSub}>We&apos;ll reach out when My Tiny Rent launches.</p>
+                  <p className={styles.successSub}>We'll be in touch when the full version is ready.</p>
                 </div>
               ) : (
                 <form onSubmit={handleRentalWaitlist} noValidate>
@@ -397,7 +397,7 @@ export default function HomePage() {
                     className={styles.rentalSubmit}
                     disabled={rentalStatus === 'loading'}
                   >
-                    {rentalStatus === 'loading' ? 'Joining...' : 'Join the Waitlist'}
+                    {rentalStatus === 'loading' ? 'Joining...' : 'Full Version Coming Soon'}
                   </button>
                   {rentalStatus === 'error' && (
                     <p className={styles.rentalError}>Something went wrong. Please try again.</p>

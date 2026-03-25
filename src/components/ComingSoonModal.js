@@ -79,7 +79,7 @@ export default function ComingSoonModal() {
         {status === 'success' ? (
           <div className={styles.successBox}>
             <p className={styles.successTitle}>You're on the list.</p>
-            <p className={styles.successSub}>We'll be in touch when we launch.</p>
+            <p className={styles.successSub}>We'll be in touch when the full version is ready.</p>
           </div>
         ) : (
           <form className={styles.form} onSubmit={handleSubmit} noValidate>

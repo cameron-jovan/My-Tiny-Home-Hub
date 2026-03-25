@@ -1,5 +1,5 @@
 .pageWrapper {
-  min-h-screen;
+  min-height: 100vh;
   background-color: #FDFCFB;
   color: #1A1A1A;
 }
@@ -182,14 +182,14 @@
 
 .surgeGrid {
   display: grid;
-  grid-template-cols: 1fr;
+  grid-template-columns: 1fr;
   gap: 64px;
   align-items: center;
 }
 
 @media (min-width: 768px) {
   .surgeGrid {
-    grid-template-cols: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -366,13 +366,13 @@
 
 .homeTypeGrid {
   display: grid;
-  grid-template-cols: 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
 @media (min-width: 640px) {
   .homeTypeGrid {
-    grid-template-cols: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -413,13 +413,13 @@
 
 .featuresGrid {
   display: grid;
-  grid-template-cols: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
 }
 
 @media (min-width: 640px) {
   .featuresGrid {
-    grid-template-cols: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -458,13 +458,13 @@
 
 .urgencyGrid {
   display: grid;
-  grid-template-cols: 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
 @media (min-width: 640px) {
   .urgencyGrid {
-    grid-template-cols: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -572,13 +572,13 @@
 
 .resultActions {
   display: grid;
-  grid-template-cols: 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
 @media (min-width: 640px) {
   .resultActions {
-    grid-template-cols: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
