@@ -319,23 +319,6 @@ export default function ValuationPage() {
               </div>
             </div>
             <div className={styles.valueContent}>
-              <h2 className={styles.marketH2}>Move from valuation to sold.</h2>
-              <div className={styles.valueItems}>
-                <div className={styles.valueItem}>
-                  <div className={styles.valueItemIcon}>👥</div>
-                  <div>
-                    <p className={styles.valueItemTitle}>100k+ Monthly Buyers</p>
-                    <p className={styles.valueItemDesc}>The world's largest dedicated marketplace for tiny lifestyle enthusiasts and verified cash buyers.</p>
-                  </div>
-                </div>
-                <div className={styles.valueItem}>
-                  <div className={styles.valueItemIcon}>🛡️</div>
-                  <div>
-                    <p className={styles.valueItemTitle}>Concierge Support</p>
-                    <p className={styles.valueItemDesc}>From proactive guidelines to title transfers, our experts handle the heavy lifting of your sale.</p>
-                  </div>
-                </div>
-                <div className={styles.valueItem}>
                   <div className={styles.valueItemIcon}>💎</div>
                   <div>
                     <p className={styles.valueItemTitle}>Industry-Low 1% Fee</p>
