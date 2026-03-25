@@ -106,14 +106,11 @@ export default function HomePage() {
               Browse curated tiny homes, ADUs, and off-grid spaces built for the way you want to live, work, and dream.
             </p>
             <div className={styles.heroCtas}>
-              <Link href="/browse" className="btn btn-primary btn-lg">
-                Browse Homes
-              </Link>
-              <Link href="/#concierge" className={styles.heroCtaGhost}>
+              <Link href="/#concierge" className="btn btn-primary btn-lg">
                 Get Concierge Service
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+              </Link>
+              <Link href="/browse" className="btn btn-secondary btn-lg">
+                Browse Homes
               </Link>
             </div>
             <div className={styles.heroTrust}>
@@ -152,11 +149,6 @@ export default function HomePage() {
                 style={{ objectFit: 'cover' }}
               />
               <span className={styles.heroImgLabel}>Desert Modern</span>
-            </div>
-            <div className={styles.heroMarketCard}>
-              <div className={styles.heroMarketStat}>4.03M</div>
-              <div className={styles.heroMarketLabel}>Homes missing from the U.S. market</div>
-              <div className={styles.heroMarketSub}>1.82M young households priced out of homeownership</div>
             </div>
           </div>
         </div>

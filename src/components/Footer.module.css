@@ -76,7 +76,7 @@
 }
 
 .socialIcon:hover {
-  background: var(--lime);
+  background: var(--teal);
   color: var(--white);
 }
 
