@@ -12,6 +12,10 @@ function getErrorMessage(err) {
   if (code === 'auth/user-not-found' || code === 'auth/wrong-password' || code === 'auth/invalid-credential') return 'Incorrect email or password.';
   if (code === 'auth/too-many-requests') return 'Too many attempts. Try again in a few minutes.';
   if (code === 'auth/user-disabled') return 'This account has been disabled.';
+  if (code === 'auth/unauthorized-domain') return 'This domain is not authorized for Google Sign-In. Please check Firebase Console.';
+  if (code === 'auth/operation-not-allowed') return 'Google Sign-In is not enabled in Firebase Console.';
+  if (code === 'auth/popup-blocked') return 'Sign-in popup was blocked by your browser.';
+  if (code === 'auth/cancelled-popup-request') return 'Sign-in was cancelled.';
   return 'Something went wrong. Please try again.';
 }
 

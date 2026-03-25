@@ -100,10 +100,14 @@ export function AuthProvider({ children }) {
       const result = await signInWithPopup(auth, googleProvider);
       await createUserProfile(result.user);
     } catch (error) {
+      console.error("Firebase Google Auth Error:", {
+        code: error.code,
+        message: error.message,
+        customData: error.customData
+      });
       if (error.code === 'auth/popup-blocked' || error.code === 'auth/popup-closed-by-user') {
         await signInWithRedirect(auth, googleProvider);
       } else {
-        console.error("Error logging in with Google:", error);
         throw error;
       }
     }
