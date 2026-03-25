@@ -9,7 +9,7 @@ import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
 import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
-import { collection, query, getDocs, limit, where } from 'firebase/firestore';
+import { collection, query, getDocs, limit } from 'firebase/firestore';
 import styles from './page.module.css';
 
 export default function HomePage() {
@@ -84,7 +84,7 @@ export default function HomePage() {
               <span>buying a car.</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              The tiny home market is growing fast — but buying one has always been fragmented, opaque, and full of risk. My Tiny Home Hub is the first end-to-end marketplace: verified listings, financing guidance, and expert concierge service, all in one place.
+              Browse curated tiny homes, ADUs, and off-grid spaces built for the way you want to live, work, and dream.
             </p>
             <div className={styles.heroCtas}>
               <Link href="/browse" className="btn btn-primary btn-lg">
