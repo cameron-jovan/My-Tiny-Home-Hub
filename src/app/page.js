@@ -7,7 +7,6 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
-import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
 import { collection, query, getDocs, limit, addDoc, serverTimestamp } from 'firebase/firestore';
 import styles from './page.module.css';
@@ -19,7 +18,6 @@ export default function HomePage() {
   const [categories, setCategories] = useState([]);
   const [topicHubs, setTopicHubs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showInquiry, setShowInquiry] = useState(false);
   const [rentalEmail, setRentalEmail] = useState('');
   const [rentalRole, setRentalRole] = useState('owner');
   const [rentalStatus, setRentalStatus] = useState('idle');
@@ -79,8 +77,50 @@ export default function HomePage() {
     </>
   );
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': 'https://mytinyhomehub.com/#website',
+        url: 'https://mytinyhomehub.com',
+        name: 'My Tiny Home Hub',
+        description: 'The premier marketplace for tiny homes, ADUs, and alternative housing.',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: 'https://mytinyhomehub.com/browse?q={search_term_string}',
+          'query-input': 'required name=search_term_string',
+        },
+      },
+      {
+        '@type': 'Organization',
+        '@id': 'https://mytinyhomehub.com/#organization',
+        name: 'My Tiny Home Hub',
+        url: 'https://mytinyhomehub.com',
+        logo: 'https://mytinyhomehub.com/logo-white.png',
+        sameAs: [
+          'https://facebook.com/mytinyhomehub',
+          'https://instagram.com/mytinyhomehub',
+          'https://tiktok.com/@mytinyhomehub.com',
+          'https://pinterest.com/mytinyhomehub',
+          'https://youtube.com/@mytinyhomehub',
+          'https://threads.net/@mytinyhomehub',
+        ],
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: 'hello@mytinyhomehub.com',
+          contactType: 'customer support',
+        },
+      },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
 
       {/* ===== HERO ===== */}
@@ -106,7 +146,7 @@ export default function HomePage() {
               Browse curated tiny homes, ADUs, and off-grid spaces built for the way you want to live, work, and dream.
             </p>
             <div className={styles.heroCtas}>
-              <Link href="/#concierge" className="btn btn-primary btn-lg">
+              <Link href="/concierge" className="btn btn-primary btn-lg">
                 Get Concierge Service
               </Link>
               <Link href="/browse" className="btn btn-secondary btn-lg">
@@ -343,22 +383,12 @@ export default function HomePage() {
             <p>
               Our experts handle the complex details so you can focus on finding your perfect home.
             </p>
-            <button 
-              className="btn btn-primary btn-lg" 
-              onClick={() => setShowInquiry(true)}
-            >
+            <Link href="/concierge" className="btn btn-primary btn-lg">
               Book Concierge Service
-            </button>
+            </Link>
           </div>
         </div>
       </section>
-
-      {showInquiry && (
-        <InquiryModal 
-          onClose={() => setShowInquiry(false)} 
-          type="concierge" 
-        />
-      )}
 
       {/* ===== NEWSLETTER ===== */}
       <Newsletter variant="default" />

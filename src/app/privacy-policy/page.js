@@ -122,7 +122,6 @@ export default function PrivacyPolicyPage() {
           <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us:</p>
           <ul>
             <li><strong>Email:</strong> <a href="mailto:hello@mytinyhomehub.com">hello@mytinyhomehub.com</a></li>
-            <li><strong>Phone:</strong> <a href="tel:+14042349876">+1 (404) 234-9876</a></li>
             <li><strong>Address:</strong> My Tiny Home Hub, LLC, United States</li>
           </ul>
         </div>

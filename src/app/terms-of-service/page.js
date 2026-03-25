@@ -126,7 +126,6 @@ export default function TermsOfServicePage() {
           <p>For questions about these Terms, please contact us:</p>
           <ul>
             <li><strong>Email:</strong> <a href="mailto:hello@mytinyhomehub.com">hello@mytinyhomehub.com</a></li>
-            <li><strong>Phone:</strong> <a href="tel:+14042349876">+1 (404) 234-9876</a></li>
           </ul>
         </div>
       </div>

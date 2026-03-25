@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
-  const { user, loginWithGoogle, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -58,7 +58,7 @@ export default function Navbar() {
             </>
           ) : null}
           <Link
-            href="/#concierge"
+            href="/concierge"
             className={`btn btn-primary ${styles.ctaBtn}`}
             onClick={() => setMobileOpen(false)}
           >
@@ -78,7 +78,7 @@ export default function Navbar() {
             <Link href="/login" className={styles.link}>Sign In</Link>
           )}
 
-          <Link href="/#concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
+          <Link href="/concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
             Get Concierge Service
           </Link>
         </div>

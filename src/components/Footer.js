@@ -22,8 +22,8 @@ export default function Footer() {
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Platform</h4>
             <Link href="/browse" className={styles.activeLink}>Inventory</Link>
-            <Link href="/#concierge">Sell Your Tiny</Link>
-            <Link href="/#concierge">Affiliates</Link>
+            <Link href="/list-your-home">Sell Your Tiny</Link>
+            <Link href="/concierge">Affiliates</Link>
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Legal</h4>
@@ -34,7 +34,6 @@ export default function Footer() {
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Contact</h4>
             <a href="mailto:hello@mytinyhomehub.com">hello@mytinyhomehub.com</a>
-            <a href="tel:+14042349876">+1 (404) 234-9876</a>
             <div className={styles.social}>
               <a href="https://facebook.com/mytinyhomehub" aria-label="Facebook" className={styles.socialIcon} target="_blank" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>

@@ -222,7 +222,7 @@ export default function ListingDetailPage({ params }) {
                 <p className={styles.financeNote}>
                   *Based on 6.5% APR, 20-year term. Subject to credit approval.
                 </p>
-                <Link href="/#concierge" className="btn btn-primary" style={{ width: '100%' }}>
+                <Link href="/concierge" className="btn btn-primary" style={{ width: '100%' }}>
                   Get Pre-Approved
                 </Link>
               </div>

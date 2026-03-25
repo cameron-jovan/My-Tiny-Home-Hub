@@ -1,5 +1,6 @@
 import { AuthProvider } from "@/context/AuthContext";
 import ComingSoonModal from "@/components/ComingSoonModal";
+import ChatWidget from "@/components/ChatWidget";
 import Script from "next/script";
 import "./globals.css";
 
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
         <AuthProvider>
           <ComingSoonModal />
           {children}
+          <ChatWidget />
         </AuthProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JT53K4C5WG"

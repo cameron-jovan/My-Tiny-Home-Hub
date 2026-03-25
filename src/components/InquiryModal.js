@@ -11,7 +11,6 @@ export default function InquiryModal({ listing, onClose, type = 'general' }) {
   const [formData, setFormData] = useState({
     name: user?.displayName || '',
     email: user?.email || '',
-    phone: '',
     message: type === 'listing' ? `I'm interested in the ${listing?.title}.` : 'I would like to book a concierge consultation.',
   });
   const [sending, setSending] = useState(false);
@@ -77,15 +76,7 @@ export default function InquiryModal({ listing, onClose, type = 'general' }) {
                   required 
                 />
               </div>
-              <div className={styles.formGroup}>
-                <label>Phone (Optional)</label>
-                <input 
-                  type="tel" 
-                  value={formData.phone}
-                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                />
-              </div>
-              <div className={styles.formGroup}>
+<div className={styles.formGroup}>
                 <label>Message</label>
                 <textarea 
                   value={formData.message}

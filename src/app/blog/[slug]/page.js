@@ -120,7 +120,7 @@ export default async function ArticlePage({ params }) {
                 <div className={styles.ctaCard}>
                   <h4>Need Expert Help?</h4>
                   <p>Our concierge team specializes in matching buyers with their perfect tiny home.</p>
-                  <Link href="/#concierge" className="btn btn-primary" style={{ width: '100%' }}>
+                  <Link href="/concierge" className="btn btn-primary" style={{ width: '100%' }}>
                     Book a Call
                   </Link>
                 </div>
