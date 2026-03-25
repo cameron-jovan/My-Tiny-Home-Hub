@@ -1,13 +1,14 @@
+import React from 'react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CalInlineEmbed from '@/components/CalInlineEmbed';
 import CalBookingButton from '@/components/CalBookingButton';
 import styles from './page.module.css';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Concierge Service — Expert Tiny Home Buying Guidance | My Tiny Home Hub',
   description: 'Book a $297 concierge consultation with a tiny home expert. We guide you through listings, financing, zoning, delivery, and setup — every step covered.',
   openGraph: {
@@ -50,7 +51,7 @@ export default function ConciergePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Navbar />
-      <div className="container">
+      <div className="container" style={{ paddingTop: '1rem' }}>
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Concierge Service' }]} />
       </div>
       <div className={styles.page}>
@@ -58,7 +59,7 @@ export default function ConciergePage() {
         {/* Hero */}
         <section className={styles.hero}>
           <Image
-            src="/images/hero-concierge.jpg"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHm0eJz7wz8u_vU-0H2l_0B6x2Wq8qZ_vJp3Pz5W-3t8_z4yU_z2g"
             alt="Hero background"
             fill
             style={{ objectFit: 'cover', objectPosition: 'center' }}

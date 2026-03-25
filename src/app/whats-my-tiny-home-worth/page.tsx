@@ -1,21 +1,50 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Link from 'next/link';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+
+interface OffGridConfig {
+  solar: boolean;
+  compost: boolean;
+  catchment: boolean;
+  greywater: boolean;
+}
+
+interface ContactInfo {
+  name: string;
+  email: string;
+  phone: string;
+}
+
+interface ValuationFormData {
+  category: string;
+  sqft: number;
+  beds: number;
+  baths: number;
+  yearBuilt: number;
+  offGrid: OffGridConfig;
+  contact: ContactInfo;
+}
+
+interface ValuationResult {
+  value: number;
+  range: [number, number];
+  confidence: number;
+  demand: string;
+}
 
 export default function ValuationPage() {
   const [zip, setZip] = useState('');
   const [step, setStep] = useState(1);
   const [isCalculating, setIsCalculating] = useState(false);
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState<ValuationResult | null>(null);
   
   // Valuation Data State
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ValuationFormData>({
     category: '',
     sqft: 250,
     beds: 1,
@@ -34,25 +63,25 @@ export default function ValuationPage() {
     }
   });
 
-  const handleCategorySelect = (cat) => {
+  const handleCategorySelect = (cat: string) => {
     setFormData(prev => ({ ...prev, category: cat }));
     setStep(2);
     // Smooth scroll to wizard if needed
     document.getElementById('valuation-wizard')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   };
 
-  const handleSpecChange = (field, value) => {
+  const handleSpecChange = (field: keyof ValuationFormData, value: any) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const toggleOffGrid = (feature) => {
+  const toggleOffGrid = (feature: keyof OffGridConfig) => {
     setFormData(prev => ({
       ...prev,
       offGrid: { ...prev.offGrid, [feature]: !prev.offGrid[feature] }
     }));
   };
 
-  const handleContactChange = (field, value) => {
+  const handleContactChange = (field: keyof ContactInfo, value: string) => {
     setFormData(prev => ({
       ...prev,
       contact: { ...prev.contact, [field]: value }
@@ -79,9 +108,10 @@ export default function ValuationPage() {
     if (formData.offGrid.compost) baseValue += 1500;
     if (formData.offGrid.catchment) baseValue += 3000;
     
-    // Condition/Year adjustment (Research shows newer builds hold value better)
-    const age = new Date().getFullYear() - formData.yearBuilt;
-    const ageAdjustment = 1 - (age * 0.02); // 2% depreciation per year for this mock
+    // Condition/Year adjustment
+    const currentYear = new Date().getFullYear();
+    const age = currentYear - formData.yearBuilt;
+    const ageAdjustment = 1 - (Math.max(0, age) * 0.02); 
     
     let estimatedValue = baseValue * ageAdjustment;
     
@@ -283,7 +313,7 @@ export default function ValuationPage() {
                   className="absolute top-1/2 left-0 h-1 bg-[#06799B] -translate-y-1/2 z-0 transition-all duration-500"
                   style={{ width: `${(step / 4) * 100}%` }}
                 ></div>
-                {[1, 2, 3, 4].map((i) => (
+                {( [1, 2, 3, 4] ).map((i) => (
                   <div key={i} className="relative z-10 flex flex-col items-center gap-3">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold shadow-lg transition-colors ${step >= i ? 'bg-[#06799B] text-white' : 'bg-gray-200 text-gray-400'}`}>
                       {i}
@@ -408,10 +438,10 @@ export default function ValuationPage() {
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {[
-                      { id: 'solar', title: 'Solar Power System', desc: 'Panels, Inverter & Battery Bank', icon: 'solar_power' },
-                      { id: 'compost', title: 'Composting Toilet', desc: 'No-flush eco solutions', icon: 'nest_eco_leaf' },
-                      { id: 'catchment', title: 'Rainwater Catchment', desc: 'Filtration and storage systems', icon: 'water_drop' },
-                      { id: 'greywater', title: 'Greywater System', desc: 'Used water recycling', icon: 'waves' }
+                      { id: 'solar' as keyof OffGridConfig, title: 'Solar Power System', desc: 'Panels, Inverter & Battery Bank', icon: 'solar_power' },
+                      { id: 'compost' as keyof OffGridConfig, title: 'Composting Toilet', desc: 'No-flush eco solutions', icon: 'nest_eco_leaf' },
+                      { id: 'catchment' as keyof OffGridConfig, title: 'Rainwater Catchment', desc: 'Filtration and storage systems', icon: 'water_drop' },
+                      { id: 'greywater' as keyof OffGridConfig, title: 'Greywater System', desc: 'Used water recycling', icon: 'waves' }
                     ].map((item) => (
                       <button 
                         key={item.id}

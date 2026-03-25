@@ -1,16 +1,22 @@
 'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/context/AuthContext';
 import styles from './Navbar.module.css';
 
+interface NavLink {
+  label: string;
+  href: string;
+}
+
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const userMenuRef = useRef(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -20,8 +26,8 @@ export default function Navbar() {
 
   // Close user dropdown on outside click
   useEffect(() => {
-    function handleClick(e) {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+    function handleClick(e: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
         setUserMenuOpen(false);
       }
     }
@@ -29,7 +35,7 @@ export default function Navbar() {
     return () => document.removeEventListener('mousedown', handleClick);
   }, []);
 
-  const navLinks = [
+  const navLinks: NavLink[] = [
     { label: 'Home', href: '/' },
     { label: 'Browse', href: '/browse' },
     { label: 'Financing', href: '/blog?category=Financing' },

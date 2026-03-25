@@ -1,8 +1,23 @@
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './EditorialCard.module.css';
 
-export default function EditorialCard({ post, variant = 'default' }) {
+interface PostSnippet {
+  id: string;
+  slug: string;
+  image: string;
+  title: string;
+  category: string;
+  excerpt: string;
+}
+
+interface EditorialCardProps {
+  post: PostSnippet;
+  variant?: 'default' | 'large' | 'compact';
+}
+
+export default function EditorialCard({ post, variant = 'default' }: EditorialCardProps) {
   return (
     <article className={`${styles.card} ${styles[variant]}`} id={`post-${post.id}`}>
       <Link href={`/blog/${post.slug}`} className={styles.imageWrap}>

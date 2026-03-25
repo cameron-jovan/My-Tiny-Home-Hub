@@ -1,16 +1,21 @@
 'use client';
-import { useState } from 'react';
+
+import React, { useState, FormEvent } from 'react';
 import { Check } from 'lucide-react';
 import styles from './Newsletter.module.css';
 
-export default function Newsletter({ variant = 'default' }) {
+interface NewsletterProps {
+  variant?: 'default' | 'compact' | 'home';
+}
+
+export default function Newsletter({ variant = 'default' }: NewsletterProps) {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Submit to Beehiiv
-    const form = e.target;
+    const form = e.currentTarget;
     const formData = new FormData(form);
     fetch('https://subscribe-forms.beehiiv.com/api/submit', {
       method: 'POST',

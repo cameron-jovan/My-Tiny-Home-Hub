@@ -1,14 +1,23 @@
 'use client';
+
+import React from 'react';
 import Link from 'next/link';
 import styles from './Breadcrumbs.module.css';
 
+interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface BreadcrumbsProps {
+  items: BreadcrumbItem[];
+  className?: string;
+}
+
 /**
- * Breadcrumbs component
- * @param {Array<{ label: string, href?: string }>} items
- *   Last item should have no href (current page).
- * @param {string} [className]
+ * Breadcrumbs component with JSON-LD structured data.
  */
-export default function Breadcrumbs({ items = [], className = '' }) {
+export default function Breadcrumbs({ items = [], className = '' }: BreadcrumbsProps) {
   if (!items.length) return null;
 
   const jsonLd = {

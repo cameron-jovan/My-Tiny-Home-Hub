@@ -1,11 +1,28 @@
 'use client';
-import { useState } from 'react';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Heart } from 'lucide-react';
 import styles from './ListingCard.module.css';
 
-export default function ListingCard({ listing }) {
+interface Listing {
+  id: string | number;
+  title: string;
+  image: string;
+  price: number;
+  description: string;
+  sqft: number;
+  beds: number | string;
+  status: string;
+  financingAvailable?: boolean;
+}
+
+interface ListingCardProps {
+  listing: Listing;
+}
+
+export default function ListingCard({ listing }: ListingCardProps) {
   const [saved, setSaved] = useState(false);
 
   return (
@@ -27,7 +44,10 @@ export default function ListingCard({ listing }) {
         )}
         <button 
           className={`save-btn ${saved ? 'saved' : ''}`}
-          onClick={() => setSaved(!saved)}
+          onClick={(e) => {
+            e.preventDefault();
+            setSaved(!saved);
+          }}
           aria-label={saved ? 'Remove from saved' : 'Save listing'}
         >
           <Heart className={saved ? 'fill-primary' : ''} size={20} />

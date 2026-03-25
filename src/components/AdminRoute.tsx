@@ -1,37 +1,40 @@
 'use client';
 
+import React, { ReactNode, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter, usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth();
+export default function AdminRoute({ children }: { children: ReactNode }) {
+  const { user, userData, loading } = useAuth();
   const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
-    if (!loading && !user) {
-      // Save the intended path to redirect back after login
-      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+    if (!loading) {
+      if (!user) {
+        router.push('/login');
+      } else if (userData && userData.role !== 'admin') {
+        router.push('/dashboard');
+      }
     }
-  }, [user, loading, router, pathname]);
+  }, [user, userData, loading, router]);
 
   if (loading) {
     return (
       <div style={{
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
         background: 'var(--white-off)'
       }}>
         <div className="spinner"></div>
-        <style jsx>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           .spinner {
             width: 40px;
             height: 40px;
             border: 4px solid var(--white-smoke);
-            border-top: 4px solid var(--navy);
+            border-top: 4px solid var(--navy-accent);
             border-radius: 50%;
             animation: spin 1s linear infinite;
           }
@@ -39,14 +42,14 @@ export default function ProtectedRoute({ children }) {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
           }
-        `}</style>
+        ` }} />
       </div>
     );
   }
 
-  if (!user) {
-    return null; // Will redirect via useEffect
+  if (!user || (userData && userData.role !== 'admin')) {
+    return null;
   }
 
-  return children;
+  return <>{children}</>;
 }

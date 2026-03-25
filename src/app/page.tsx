@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
@@ -9,21 +10,39 @@ import EditorialCard from '@/components/EditorialCard';
 import Newsletter from '@/components/Newsletter';
 import NewsTicker from '@/components/NewsTicker';
 import { db } from '@/lib/firebase';
-import { collection, query, getDocs, limit, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, query, getDocs, limit, addDoc, serverTimestamp, DocumentData } from 'firebase/firestore';
 import styles from './page.module.css';
 
+// Types for Home Data
+interface Listing extends DocumentData {
+  id: string;
+}
+
+interface Post extends DocumentData {
+  id: string;
+  featured?: boolean;
+}
+
+interface Category extends DocumentData {
+  id: string;
+}
+
+interface TopicHub extends DocumentData {
+  id: string;
+}
+
 export default function HomePage() {
-  const [featuredListings, setFeaturedListings] = useState([]);
-  const [featuredPosts, setFeaturedPosts] = useState([]);
-  const [latestGuides, setLatestGuides] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [topicHubs, setTopicHubs] = useState([]);
+  const [featuredListings, setFeaturedListings] = useState<Listing[]>([]);
+  const [featuredPosts, setFeaturedPosts] = useState<Post[]>([]);
+  const [latestGuides, setLatestGuides] = useState<Post[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [topicHubs, setTopicHubs] = useState<TopicHub[]>([]);
   const [loading, setLoading] = useState(true);
   const [rentalEmail, setRentalEmail] = useState('');
   const [rentalRole, setRentalRole] = useState('owner');
-  const [rentalStatus, setRentalStatus] = useState('idle');
+  const [rentalStatus, setRentalStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
-  async function handleRentalWaitlist(e) {
+  async function handleRentalWaitlist(e: React.FormEvent) {
     e.preventDefault();
     if (!rentalEmail || rentalStatus === 'loading') return;
     setRentalStatus('loading');
@@ -44,21 +63,21 @@ export default function HomePage() {
       try {
         // Fetch listings
         const lSnap = await getDocs(query(collection(db, 'listings'), limit(6)));
-        setFeaturedListings(lSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        setFeaturedListings(lSnap.docs.map(d => ({ id: d.id, ...d.data() } as Listing)));
 
         // Fetch posts
         const pSnap = await getDocs(query(collection(db, 'posts'), limit(6)));
-        const allPosts = pSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const allPosts = pSnap.docs.map(d => ({ id: d.id, ...d.data() } as Post));
         setFeaturedPosts(allPosts.filter(p => p.featured).slice(0, 3));
         setLatestGuides(allPosts.slice(0, 4));
 
         // Fetch categories
         const cSnap = await getDocs(collection(db, 'categories'));
-        setCategories(cSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        setCategories(cSnap.docs.map(d => ({ id: d.id, ...d.data() } as Category)));
 
         // Fetch topicHubs
         const tSnap = await getDocs(collection(db, 'topicHubs'));
-        setTopicHubs(tSnap.docs.map(d => ({ id: d.id, ...d.data() })));
+        setTopicHubs(tSnap.docs.map(d => ({ id: d.id, ...d.data() } as TopicHub)));
       } catch (err) {
         console.error('Error fetching homepage data:', err);
       } finally {

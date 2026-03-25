@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "my-tiny-home-hub"
+    "default": "my-tiny-home-hub",
+    "production": "my-tiny-home-hub"
   },
   "targets": {},
   "etags": {}

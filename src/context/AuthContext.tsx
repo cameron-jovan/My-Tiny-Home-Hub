@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import {
   onAuthStateChanged,
   signInWithPopup,
@@ -9,24 +9,45 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  updateProfile
+  updateProfile,
+  User,
+  UserCredential
 } from 'firebase/auth';
 import { auth, googleProvider, db } from '@/lib/firebase';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 
-const AuthContext = createContext({
+interface UserProfile {
+  uid: string;
+  email: string | null;
+  displayName: string;
+  photoURL: string;
+  role: string;
+  createdAt: Date;
+}
+
+interface AuthContextType {
+  user: User | null;
+  userData: UserProfile | null;
+  loading: boolean;
+  loginWithGoogle: () => Promise<void>;
+  loginWithEmail: (email: string, password: string) => Promise<void>;
+  signup: (email: string, password: string, displayName: string) => Promise<User>;
+  logout: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextType>({
   user: null,
   userData: null,
   loading: true,
-  loginWithGoogle: () => {},
-  loginWithEmail: () => {},
-  signup: () => {},
-  logout: () => {},
+  loginWithGoogle: async () => {},
+  loginWithEmail: async () => {},
+  signup: async () => ({} as User),
+  logout: async () => {},
 });
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [userData, setUserData] = useState(null);
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
+  const [userData, setUserData] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,21 +60,25 @@ export function AuthProvider({ children }) {
       console.error("Redirect sign-in error:", error);
     });
 
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setUser(user);
-      if (user) {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
         // Fetch custom user data from Firestore
-        const userRef = doc(db, 'users', user.uid);
+        const userRef = doc(db, 'users', currentUser.uid);
         const snap = await getDoc(userRef);
         if (snap.exists()) {
-          setUserData(snap.data());
+          const data = snap.data();
+          setUserData({
+            ...data,
+            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(data.createdAt)
+          } as UserProfile);
         } else {
           // If profile doesn't exist, create it (e.g. for users who didn't use signup function)
-          const newUserProfile = {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName || '',
-            photoURL: user.photoURL || '',
+          const newUserProfile: UserProfile = {
+            uid: currentUser.uid,
+            email: currentUser.email,
+            displayName: currentUser.displayName || '',
+            photoURL: currentUser.photoURL || '',
             role: 'user',
             createdAt: new Date(),
           };
@@ -68,17 +93,17 @@ export function AuthProvider({ children }) {
     return () => unsubscribe();
   }, []);
 
-  const createUserProfile = async (user, additionalData = {}) => {
-    if (!user) return;
-    const userRef = doc(db, 'users', user.uid);
+  const createUserProfile = async (firebaseUser: User, additionalData: Partial<UserProfile> = {}) => {
+    if (!firebaseUser) return;
+    const userRef = doc(db, 'users', firebaseUser.uid);
     const snap = await getDoc(userRef);
 
     if (!snap.exists()) {
-      const { email, displayName, photoURL } = user;
+      const { email, displayName, photoURL } = firebaseUser;
       const createdAt = new Date();
       try {
-        const profile = {
-          uid: user.uid,
+        const profile: UserProfile = {
+          uid: firebaseUser.uid,
           email,
           displayName: displayName || additionalData.displayName || '',
           photoURL: photoURL || '',
@@ -97,9 +122,9 @@ export function AuthProvider({ children }) {
   const loginWithGoogle = async () => {
     try {
       // Try popup first; fall back to redirect if blocked
-      const result = await signInWithPopup(auth, googleProvider);
+      const result: UserCredential = await signInWithPopup(auth, googleProvider);
       await createUserProfile(result.user);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Firebase Google Auth Error:", {
         code: error.code,
         message: error.message,
@@ -113,7 +138,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const loginWithEmail = async (email, password) => {
+  const loginWithEmail = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
@@ -122,7 +147,7 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const signup = async (email, password, displayName) => {
+  const signup = async (email: string, password: string, displayName: string): Promise<User> => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       if (displayName) {

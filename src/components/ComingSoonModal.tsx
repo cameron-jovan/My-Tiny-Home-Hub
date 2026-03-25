@@ -1,15 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, FormEvent, MouseEvent } from 'react';
 import styles from './ComingSoonModal.module.css';
 
 const STORAGE_KEY = 'mthh_coming_soon_dismissed';
 const BEEHIIV_ENDPOINT = 'https://subscribe-forms.beehiiv.com/1707f6a6-7f94-46e2-a94b-07e6d351d33a';
 
+type Status = 'idle' | 'loading' | 'success' | 'error';
+
 export default function ComingSoonModal() {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | loading | success | error
+  const [status, setStatus] = useState<Status>('idle');
 
   useEffect(() => {
     if (!localStorage.getItem(STORAGE_KEY)) setVisible(true);
@@ -20,11 +22,11 @@ export default function ComingSoonModal() {
     setVisible(false);
   }
 
-  function handleOverlayClick(e) {
+  function handleOverlayClick(e: MouseEvent<HTMLDivElement>) {
     if (e.target === e.currentTarget) dismiss();
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email || status === 'loading') return;
     setStatus('loading');
@@ -78,8 +80,8 @@ export default function ComingSoonModal() {
 
         {status === 'success' ? (
           <div className={styles.successBox}>
-            <p className={styles.successTitle}>You're on the list.</p>
-            <p className={styles.successSub}>We'll be in touch when the full version is ready.</p>
+            <p className={styles.successTitle}>You&apos;re on the list.</p>
+            <p className={styles.successSub}>We&apos;ll be in touch when the full version is ready.</p>
           </div>
         ) : (
           <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -120,7 +122,7 @@ export default function ComingSoonModal() {
         </div>
 
         <button className={styles.dismissText} onClick={dismiss}>
-          No thanks, I'll check back later
+          No thanks, I&apos;ll check back later
         </button>
 
       </div>

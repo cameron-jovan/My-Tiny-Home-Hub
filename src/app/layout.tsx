@@ -1,10 +1,12 @@
+import React, { ReactNode } from "react";
+import { Metadata } from "next";
 import { AuthProvider } from "@/context/AuthContext";
 import ComingSoonModal from "@/components/ComingSoonModal";
 import ChatWidget from "@/components/ChatWidget";
 import Script from "next/script";
 import "./globals.css";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "My Tiny Home Hub | Browse, Learn & Buy Tiny Homes",
   description: "The world's most curated marketplace for tiny homes, ADUs, and alternative housing. Browse listings, financing guides, and expert concierge services. Less Home, More Living.",
   keywords: "tiny homes, tiny houses, ADU, accessory dwelling unit, tiny home marketplace, tiny living, off-grid homes",
@@ -16,7 +18,7 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>

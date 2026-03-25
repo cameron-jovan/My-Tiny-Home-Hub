@@ -1,5 +1,6 @@
 'use client';
-import { useState, useMemo, useEffect } from 'react';
+
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar';
@@ -11,8 +12,28 @@ import { Search, Info, Home, Ruler, MapPin, Sparkles } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
+interface SqFtRange {
+  label: string;
+  min: number;
+  max: number;
+}
+
+interface Listing {
+  id: string;
+  title: string;
+  image: string;
+  price: number;
+  description: string;
+  sqft: number;
+  beds: number | string;
+  status: string;
+  type: string;
+  amenities?: string[];
+  financingAvailable?: boolean;
+}
+
 const HOME_TYPES = ['Tiny House on Wheels', 'Modular Foundation', 'ADU / Backyard Suite', 'Container Home', 'Park Model'];
-const SQ_FT_RANGES = [
+const SQ_FT_RANGES: SqFtRange[] = [
   { label: 'Under 250', min: 0, max: 250 },
   { label: '250 - 400', min: 250, max: 400 },
   { label: '400 - 600', min: 400, max: 600 },
@@ -21,14 +42,14 @@ const SQ_FT_RANGES = [
 const AMENITIES = ['Off-grid Ready', 'Solar Packages', 'Smart Home Tech'];
 
 export default function BrowsePage() {
-  const [listings, setListings] = useState([]);
+  const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [sortBy, setSortBy] = useState('popular');
-  const [priceRange, setPriceRange] = useState([30000, 250000]);
-  const [selectedTypes, setSelectedTypes] = useState([]);
-  const [selectedSqFt, setSelectedSqFt] = useState([]);
-  const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([30000, 250000]);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [selectedSqFt, setSelectedSqFt] = useState<string[]>([]);
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
   const [location, setLocation] = useState('');
   const [showAll, setShowAll] = useState(false);
 
@@ -40,7 +61,7 @@ export default function BrowsePage() {
         const results = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
-        }));
+        } as Listing));
         setListings(results);
       } catch (err) {
         console.error('Error fetching listings:', err);
@@ -51,19 +72,19 @@ export default function BrowsePage() {
     fetchListings();
   }, []);
 
-  const toggleType = (type) => {
+  const toggleType = (type: string) => {
     setSelectedTypes(prev =>
       prev.includes(type) ? prev.filter(t => t !== type) : [...prev, type]
     );
   };
 
-  const toggleSqFt = (range) => {
+  const toggleSqFt = (range: SqFtRange) => {
     setSelectedSqFt(prev =>
       prev.includes(range.label) ? prev.filter(r => r !== range.label) : [...prev, range.label]
     );
   };
 
-  const toggleAmenity = (amenity) => {
+  const toggleAmenity = (amenity: string) => {
     setSelectedAmenities(prev =>
       prev.includes(amenity) ? prev.filter(a => a !== amenity) : [...prev, amenity]
     );
@@ -91,7 +112,7 @@ export default function BrowsePage() {
       results = results.filter(l => {
         return selectedSqFt.some(rangeLabel => {
           const range = SQ_FT_RANGES.find(r => r.label === rangeLabel);
-          return l.sqft >= range.min && l.sqft <= range.max;
+          return range ? (l.sqft >= range.min && l.sqft <= range.max) : false;
         });
       });
     }
@@ -124,19 +145,20 @@ export default function BrowsePage() {
   return (
     <>
       <Navbar />
-      <div className="container">
+      <div className="container" style={{ paddingTop: '1rem' }}>
         <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Browse Listings' }]} />
       </div>
       <main className={styles.page}>
         {/* Search Header */}
         <div className={styles.searchHeader}>
           <Image
-            src="/images/hero-browse.jpg"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHm0eJz7wz8u_vU-0H2l_0B6x2Wq8qZ_vJp3Pz5W-3t8_z4yU_z2g"
             alt=""
             fill
             className={styles.searchHeaderBg}
             priority
             quality={80}
+            style={{ objectFit: 'cover' }}
           />
           <div className="container" style={{ position: 'relative' }}>
             <div className={styles.searchRow}>
@@ -168,9 +190,12 @@ export default function BrowsePage() {
                   <option value="sqft">Largest First</option>
                 </select>
               </div>
-              <Link href="/browse" className="btn btn-secondary">
+              <button 
+                  onClick={() => {}}
+                  className="btn btn-secondary"
+                >
                 Find Homes
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -257,7 +282,7 @@ export default function BrowsePage() {
 
               <button
                 className="btn btn-primary"
-                style={{ width: '100%', marginTop: 'var(--space-md)' }}
+                style={{ width: '100%', marginTop: '1.5rem' }}
                 onClick={() => {}}
               >
                 Apply Filters

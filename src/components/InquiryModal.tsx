@@ -1,13 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { Sparkles } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from '@/context/AuthContext';
 import styles from './InquiryModal.module.css';
 
-export default function InquiryModal({ listing, onClose, type = 'general' }) {
+interface ListingSnippet {
+  id: string;
+  title: string;
+}
+
+interface InquiryModalProps {
+  listing?: ListingSnippet;
+  onClose: () => void;
+  type?: 'listing' | 'general';
+}
+
+export default function InquiryModal({ listing, onClose, type = 'general' }: InquiryModalProps) {
   const { user } = useAuth();
   const [formData, setFormData] = useState({
     name: user?.displayName || '',
@@ -17,7 +28,7 @@ export default function InquiryModal({ listing, onClose, type = 'general' }) {
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSending(true);
     try {
@@ -77,13 +88,13 @@ export default function InquiryModal({ listing, onClose, type = 'general' }) {
                   required 
                 />
               </div>
-<div className={styles.formGroup}>
+              <div className={styles.formGroup}>
                 <label>Message</label>
                 <textarea 
                   value={formData.message}
                   onChange={(e) => setFormData({...formData, message: e.target.value})}
                   required
-                  rows="4"
+                  rows={4}
                 />
               </div>
               <button 
