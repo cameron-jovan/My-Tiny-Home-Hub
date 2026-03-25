@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { Check } from 'lucide-react';
 import styles from './Newsletter.module.css';
 
 export default function Newsletter({ variant = 'default' }) {
@@ -28,7 +29,7 @@ export default function Newsletter({ variant = 'default' }) {
         </p>
         {submitted ? (
           <div className={styles.success}>
-            <span className={styles.checkIcon}>✓</span>
+            <Check className={styles.checkIcon} size={24} />
             <p>You&apos;re in! Check your email for your free ADU Zoning Checklist.</p>
           </div>
         ) : (

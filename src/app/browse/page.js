@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
 import { db } from '@/lib/firebase';
 import { collection, query, getDocs } from 'firebase/firestore';
+import { Search, Info, Home, Ruler, MapPin, Sparkles } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
@@ -142,7 +143,7 @@ export default function BrowsePage() {
               <div>
                 <p className={styles.searchLabel}>SEARCH YOUR DREAM HOME</p>
                 <div className={styles.searchInputWrap}>
-                  <span className={styles.searchIcon}>🔍</span>
+                  <Search className={styles.searchIcon} size={20} />
                   <input
                     type="text"
                     placeholder="Search by model, builder, or feature..."
@@ -182,7 +183,7 @@ export default function BrowsePage() {
               <p className={styles.filterSubtitle}>Narrow your search</p>
 
               <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>💰 Price Range</h4>
+                <h4 className={styles.filterLabel}><Info size={16} /> Price Range</h4>
                 <div className={styles.priceInputs}>
                   <span className={styles.priceTag}>${(priceRange[0]/1000).toFixed(0)}k</span>
                   <input
@@ -199,7 +200,7 @@ export default function BrowsePage() {
               </div>
 
               <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>🏠 Home Type</h4>
+                <h4 className={styles.filterLabel}><Home size={16} /> Home Type</h4>
                 {HOME_TYPES.map(type => (
                   <label key={type} className={styles.checkboxLabel}>
                     <input
@@ -214,7 +215,7 @@ export default function BrowsePage() {
               </div>
 
               <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>📐 Sq Footage</h4>
+                <h4 className={styles.filterLabel}><Ruler size={16} /> Sq Footage</h4>
                 <div className={styles.sqftGrid}>
                   {SQ_FT_RANGES.map(range => (
                     <button
@@ -229,7 +230,7 @@ export default function BrowsePage() {
               </div>
 
               <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>📍 Location</h4>
+                <h4 className={styles.filterLabel}><MapPin size={16} /> Location</h4>
                 <input
                   type="text"
                   placeholder="Zip code or state..."
@@ -240,7 +241,7 @@ export default function BrowsePage() {
               </div>
 
               <div className={styles.filterGroup}>
-                <h4 className={styles.filterLabel}>✨ Amenities</h4>
+                <h4 className={styles.filterLabel}><Sparkles size={16} /> Amenities</h4>
                 {AMENITIES.map(amenity => (
                   <label key={amenity} className={styles.checkboxLabel}>
                     <input

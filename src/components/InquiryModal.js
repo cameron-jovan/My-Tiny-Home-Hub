@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Sparkles } from 'lucide-react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuth } from '@/context/AuthContext';
@@ -46,7 +47,7 @@ export default function InquiryModal({ listing, onClose, type = 'general' }) {
         
         {success ? (
           <div className={styles.success}>
-            <div className={styles.successIcon}>✨</div>
+            <div className={styles.successIcon}><Sparkles size={48} className="text-secondary" /></div>
             <h2>Inquiry Sent!</h2>
             <p>Our team will reach out to you within 24 hours.</p>
           </div>

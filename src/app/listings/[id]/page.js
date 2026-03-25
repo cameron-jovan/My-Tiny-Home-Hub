@@ -10,6 +10,7 @@ import Newsletter from '@/components/Newsletter';
 import InquiryModal from '@/components/InquiryModal';
 import { db } from '@/lib/firebase';
 import { doc, getDoc, collection, query, limit, getDocs } from 'firebase/firestore';
+import { MapPin, CheckCircle } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
@@ -111,7 +112,7 @@ export default function ListingDetailPage({ params }) {
               <div className={styles.titleRow}>
                 <div>
                   <h1 className={styles.title}>{listing.title}</h1>
-                  <p className={styles.location}>📍 {listing.location}</p>
+                  <p className={styles.location}><MapPin size={16} inline="true" /> {listing.location}</p>
                 </div>
                 <div className={styles.priceBlock}>
                   <span className={styles.price}>${listing.price.toLocaleString()}</span>
@@ -160,7 +161,7 @@ export default function ListingDetailPage({ params }) {
                   <h2>Amenities & Features</h2>
                   <div className={styles.amenitiesList}>
                     {listing.amenities.map(a => (
-                      <span key={a} className={styles.amenityTag}>✓ {a}</span>
+                      <span key={a} className={styles.amenityTag}><CheckCircle size={14} inline="true" /> {a}</span>
                     ))}
                   </div>
                 </div>
@@ -178,7 +179,7 @@ export default function ListingDetailPage({ params }) {
                   <div>
                     <h4 className={styles.sellerName}>{listing.seller.name}</h4>
                     {listing.seller.verified && (
-                      <span className={styles.verifiedBadge}>✓ Verified Seller</span>
+                      <span className={styles.verifiedBadge}><CheckCircle size={12} inline="true" /> Verified Seller</span>
                     )}
                   </div>
                 </div>
