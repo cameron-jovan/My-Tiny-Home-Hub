@@ -10,13 +10,18 @@
 }
 
 .heroInner {
-  max-width: var(--max-width);
+  max-width: 680px;
   margin: 0 auto;
   padding: 0 var(--space-lg);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3xl);
-  align-items: center;
+  text-align: center;
+}
+
+.heroCtas {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-xl);
 }
 
 .eyebrow {
@@ -56,6 +61,8 @@
 .heroStats {
   display: flex;
   gap: var(--space-xl);
+  justify-content: center;
+  margin-top: var(--space-lg);
 }
 
 .stat {
@@ -431,10 +438,137 @@
   margin: 0 0 var(--space-xl);
 }
 
+.bottomCtaBtns {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.benefitsCta {
+  text-align: center;
+  margin-top: var(--space-2xl);
+}
+
+/* ===== HERO VISUAL ===== */
+.heroVisual {
+  max-width: var(--max-width);
+  margin: var(--space-3xl) auto 0;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  justify-content: center;
+}
+
+.listingMockup {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+  width: 100%;
+  max-width: 420px;
+  flex-shrink: 0;
+}
+
+.mockupImg {
+  height: 220px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy-dark);
+}
+
+.mockupBody {
+  padding: var(--space-lg);
+}
+
+.mockupTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.mockupMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: 10px;
+}
+
+.mockupPrice {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+
+.mockupBadge {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--lime);
+  background: rgba(140,197,64,0.1);
+  border: 1px solid rgba(140,197,64,0.25);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+}
+
+.mockupDetails {
+  display: flex;
+  gap: var(--space-md);
+  font-size: 0.8125rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.mockupStat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+}
+
+.mockupStatItem {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-xl);
+  text-align: center;
+}
+
+.mockupStatNum {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.mockupStatLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .heroInner {
-    grid-template-columns: 1fr;
+  .heroVisual {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mockupStat {
+    flex-direction: row;
+    padding: 0;
   }
 
   .benefitsGrid {
@@ -459,12 +593,9 @@
     gap: var(--space-lg);
   }
 
-  .formGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .formGroup.full {
-    grid-column: 1;
+  .heroCtas {
+    flex-direction: column;
+    align-items: center;
   }
 
   .benefitsGrid {
@@ -479,7 +610,16 @@
     grid-template-columns: 1fr;
   }
 
-  .formCard {
+  .bottomCtaBtns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mockupStat {
+    flex-direction: row;
+  }
+
+  .unused_delete {
     padding: var(--space-xl);
   }
 }
