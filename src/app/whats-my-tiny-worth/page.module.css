@@ -128,6 +128,7 @@
   border: none;
   border-radius: var(--radius-lg);
   padding: 16px 32px;
+  animation: heroFadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s both;
   font-size: 1.0625rem;
   font-weight: 700;
   font-family: inherit;
@@ -141,6 +142,17 @@
   background: var(--lime-hover);
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(140, 197, 64, 0.45);
+}
+
+.heroScroll {
+  position: absolute;
+  bottom: var(--space-2xl);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: scrollBounce 2s ease-in-out infinite, heroFadeIn 1s 1.2s both;
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .heroProof {
@@ -241,7 +253,7 @@
 
 /* ===== WIZARD SECTION ===== */
 .wizardSection {
-  background: var(--gray-50);
+  background: linear-gradient(180deg, var(--gray-50) 0%, var(--off-white) 100%);
   padding: var(--space-4xl) var(--space-lg);
   display: flex;
   justify-content: center;
@@ -254,6 +266,7 @@
   max-width: 840px;
   box-shadow: 0 24px 80px rgba(27, 64, 115, 0.1), 0 4px 16px rgba(0, 0, 0, 0.04);
   overflow: hidden;
+  animation: wizardSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* ===== WIZARD PROGRESS ===== */
@@ -798,6 +811,7 @@
 .resultCard {
   padding: var(--space-2xl);
   width: 100%;
+  animation: resultReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .resultEyebrow {
@@ -827,6 +841,42 @@
   padding: var(--space-2xl) var(--space-xl);
   text-align: center;
   margin-bottom: var(--space-lg);
+}
+
+.valuationCard .resultLabel {
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-sm);
+}
+
+.valuationCard .resultMid {
+  color: var(--white);
+  text-shadow: 0 2px 32px rgba(140, 197, 64, 0.3);
+}
+
+.valuationCard .rangeBar {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.valuationCard .rangeBarFill {
+  background: linear-gradient(to right, rgba(140, 197, 64, 0.45), var(--lime), rgba(140, 197, 64, 0.45));
+}
+
+.valuationCard .rangeAmount {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.valuationCard .rangeText {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.valuationCard .confidenceBadge {
+  color: var(--lime);
+  background: rgba(140, 197, 64, 0.12);
+  border-color: rgba(140, 197, 64, 0.28);
 }
 
 /* When resultMid sits directly in resultCard (no .valuationCard wrapper), use navy color */
@@ -1312,16 +1362,20 @@
 }
 
 .trustLogoName {
-  font-size: 1.25rem;
+  font-size: 0.9375rem;
   font-weight: 800;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: color var(--transition-fast);
+  padding: 10px 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
 }
 
 .trustLogo:hover .trustLogoName {
   color: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ===== BOTTOM CTA ===== */
@@ -1383,12 +1437,18 @@
 
 .featureBarItem {
   padding: var(--space-2xl);
-  border-right: 1px solid var(--gray-100);
   text-align: center;
+  position: relative;
 }
 
-.featureBarItem:last-child {
-  border-right: none;
+.featureBarItem:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: var(--gray-100);
 }
 
 .featureBarNum {
@@ -1414,6 +1474,47 @@
   color: var(--gray-500);
   line-height: 1.65;
   margin: 0;
+}
+
+/* ===== RESULT LIST CTA ===== */
+.resultListCta {
+  margin-top: var(--space-xl);
+  padding: var(--space-xl);
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.resultListCtaText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.resultListCtaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--lime);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  padding: 12px 24px;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  text-decoration: none;
+}
+
+.resultListCtaBtn:hover {
+  background: var(--lime-hover);
+  transform: translateY(-1px);
 }
 
 /* ===== RESPONSIVE ===== */
