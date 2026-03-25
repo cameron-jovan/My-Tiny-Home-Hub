@@ -74,6 +74,15 @@ export default function GuidesPage() {
       </div>
       <main className={styles.main}>
         <section className={styles.hero}>
+          <Image
+            src="/images/hero-guides.jpg"
+            alt="Hero background"
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+            quality={85}
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(18,43,80,0.82) 0%, rgba(27,64,115,0.65) 60%, rgba(6,121,155,0.55) 100%)' }} aria-hidden="true" />
           <div className="container">
             <h1>Technical Guides & Resources</h1>
             <p className={styles.heroSubtitle}>

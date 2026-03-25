@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import EditorialCard from '@/components/EditorialCard';
@@ -59,6 +60,15 @@ export default function BlogPage() {
             className={styles.heroSection}
             style={{ backgroundImage: `url(${featured.image})` }}
           >
+            <Image
+              src="/images/hero-blog.jpg"
+              alt="Hero background"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              priority
+              quality={85}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(18,43,80,0.82) 0%, rgba(27,64,115,0.65) 60%, rgba(6,121,155,0.55) 100%)' }} aria-hidden="true" />
             <div className={styles.heroOverlay} />
             <div className={`container ${styles.heroContent}`}>
               <span className={styles.heroTag}>{featured.category}</span>

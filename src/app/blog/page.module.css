@@ -6,6 +6,7 @@
 /* Featured Hero */
 .heroSection {
   position: relative;
+  overflow: hidden;
   min-height: 50vh;
   display: flex;
   align-items: flex-end;
