@@ -2,20 +2,18 @@
 
 import { useEffect, useRef } from 'react';
 
-/**
- * Cal.com inline embed component.
- * Uses the official Cal.com embed script for the best booking experience.
- * @param {string} calLink - e.g. "mytinyhomehub/30min"
- */
-export default function CalInlineEmbed({ calLink }) {
-  const containerRef = useRef(null);
+interface CalInlineEmbedProps {
+  calLink: string;
+}
+
+export default function CalInlineEmbed({ calLink }: CalInlineEmbedProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const initialized = useRef(false);
 
   useEffect(() => {
     if (!calLink || initialized.current) return;
     initialized.current = true;
 
-    // Load Cal.com embed script once
     const scriptId = 'cal-embed-script';
     if (!document.getElementById(scriptId)) {
       const script = document.createElement('script');
@@ -25,7 +23,6 @@ export default function CalInlineEmbed({ calLink }) {
       script.onload = () => initCal(calLink, containerRef.current);
       document.head.appendChild(script);
     } else {
-      // Script already loaded
       initCal(calLink, containerRef.current);
     }
   }, [calLink]);
@@ -40,9 +37,9 @@ export default function CalInlineEmbed({ calLink }) {
   );
 }
 
-function initCal(calLink, el) {
-  if (typeof window === 'undefined' || !window.Cal) return;
-  const Cal = window.Cal;
+function initCal(calLink: string, el: HTMLElement | null) {
+  if (typeof window === 'undefined' || !(window as any).Cal) return;
+  const Cal = (window as any).Cal;
   Cal('init', { origin: 'https://cal.com' });
   Cal('inline', {
     elementOrSelector: el,

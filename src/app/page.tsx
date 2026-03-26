@@ -16,10 +16,23 @@ import styles from './page.module.css';
 // Types for Home Data
 interface Listing extends DocumentData {
   id: string;
+  title: string;
+  image: string;
+  price: number;
+  description: string;
+  sqft: number;
+  beds: number | string;
+  status: string;
+  financingAvailable?: boolean;
 }
 
 interface Post extends DocumentData {
   id: string;
+  slug: string;
+  image: string;
+  title: string;
+  category: string;
+  excerpt: string;
   featured?: boolean;
 }
 
@@ -29,6 +42,10 @@ interface Category extends DocumentData {
 
 interface TopicHub extends DocumentData {
   id: string;
+  slug: string;
+  icon: string;
+  name: string;
+  description: string;
 }
 
 export default function HomePage() {
