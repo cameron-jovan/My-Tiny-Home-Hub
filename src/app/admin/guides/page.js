@@ -1,9 +1,8 @@
-'use client';
 
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styles from '../admin.module.css';
 
 export default function AdminGuides() {
@@ -45,7 +44,7 @@ export default function AdminGuides() {
     <div className={styles.adminSection}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2>Downloadable Guides ({guides.length})</h2>
-        <Link href="/admin/guides/new" className={styles.buttonPrimary}>
+        <Link to="/admin/guides/new" className={styles.buttonPrimary}>
           + Add New Guide
         </Link>
       </div>
@@ -69,7 +68,7 @@ export default function AdminGuides() {
                 <td>{guide.fileName}</td>
                 <td>{guide.downloadCount || 0}</td>
                 <td className={styles.actions}>
-                  <Link href={`/admin/guides/edit/${guide.id}`} className={styles.btnEdit}>
+                  <Link to={`/admin/guides/edit/${guide.id}`} className={styles.btnEdit}>
                     Edit
                   </Link>
                   <button 

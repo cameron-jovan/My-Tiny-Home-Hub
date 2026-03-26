@@ -59,13 +59,10 @@ export default function BlogPage() {
             className={styles.heroSection}
             style={{ backgroundImage: `url(${featured.image})` }}
           >
-            <Image
+            <img
               src="/images/hero-blog.jpg"
               alt="Hero background"
-              fill
-              style={{ objectFit: 'cover', objectPosition: 'center' }}
-              priority
-              quality={85}
+              style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
             />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(18,43,80,0.82) 0%, rgba(27,64,115,0.65) 60%, rgba(6,121,155,0.55) 100%)' }} aria-hidden="true" />
             <div className={styles.heroOverlay} />

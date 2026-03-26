@@ -1,14 +1,13 @@
-'use client';
 
 import { useState, useEffect } from 'react';
 import { db, storage } from '@/lib/firebase';
 import { doc, setDoc, getDoc, addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import styles from '../admin.module.css';
 
 export default function ListingForm({ id }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -109,8 +108,7 @@ export default function ListingForm({ id }) {
         });
       }
 
-      router.push('/admin/listings');
-      router.refresh();
+      navigate('/admin/listings');
 
     } catch (error) {
       console.error("Error saving listing:", error);
@@ -240,7 +238,7 @@ export default function ListingForm({ id }) {
         <button 
           type="button" 
           className={styles.buttonSecondary} 
-          onClick={() => router.push('/admin/listings')}
+          onClick={() => navigate('/admin/listings')}
         >
           Cancel
         </button>

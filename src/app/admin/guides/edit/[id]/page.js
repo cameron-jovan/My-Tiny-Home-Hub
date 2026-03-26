@@ -1,10 +1,9 @@
-'use client';
-
+import { useParams } from 'react-router-dom';
 import GuideForm from '../../GuideForm';
 import styles from '../../../admin.module.css';
 
-export default function EditGuide({ params }) {
-  const { id } = params;
+export default function EditGuide() {
+  const { id } = useParams();
 
   return (
     <div className={styles.adminSection}>

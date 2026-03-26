@@ -1,12 +1,11 @@
-'use client';
 
 import AdminRoute from '@/components/AdminRoute';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styles from './admin.module.css';
 
 export default function AdminLayout({ children }) {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   const navItems = [
     { name: 'Dashboard', href: '/admin' },
@@ -36,7 +35,7 @@ export default function AdminLayout({ children }) {
             ))}
           </nav>
           <div className={styles.sidebarFooter}>
-            <Link href="/dashboard" className={styles.backLink}>
+            <Link to="/dashboard" className={styles.backLink}>
               ← User Dashboard
             </Link>
           </div>

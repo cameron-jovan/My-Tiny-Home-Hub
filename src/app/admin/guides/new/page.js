@@ -1,4 +1,3 @@
-'use client';
 
 import GuideForm from '../GuideForm';
 import styles from '../../admin.module.css';

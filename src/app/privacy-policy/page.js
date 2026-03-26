@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from '../legal.module.css';
 
@@ -20,7 +20,7 @@ export default function PrivacyPolicyPage() {
         <header className={styles.header}>
           <div className={styles.headerInner}>
             <p className={styles.breadcrumb}>
-              <Link href="/">Home</Link>
+              <Link to="/">Home</Link>
               <span>/</span>
               Privacy Policy
             </p>
@@ -85,7 +85,7 @@ export default function PrivacyPolicyPage() {
           <hr className={styles.divider} />
 
           <h2>4. Cookies</h2>
-          <p>We use cookies and similar tracking technologies to enhance your experience on the Site. For a full explanation of the cookies we use and how to manage them, please see our <Link href="/cookie-policy">Cookie Policy</Link>.</p>
+          <p>We use cookies and similar tracking technologies to enhance your experience on the Site. For a full explanation of the cookies we use and how to manage them, please see our <Link to="/cookie-policy">Cookie Policy</Link>.</p>
 
           <hr className={styles.divider} />
 

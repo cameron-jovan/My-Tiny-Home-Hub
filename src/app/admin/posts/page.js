@@ -1,9 +1,8 @@
-'use client';
 
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styles from '../admin.module.css';
 
 export default function AdminPosts() {
@@ -45,7 +44,7 @@ export default function AdminPosts() {
     <div className={styles.adminSection}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2>Blog Posts ({posts.length})</h2>
-        <Link href="/admin/posts/new" className={styles.buttonPrimary}>
+        <Link to="/admin/posts/new" className={styles.buttonPrimary}>
           + Create New Post
         </Link>
       </div>
@@ -71,7 +70,7 @@ export default function AdminPosts() {
                 <td>{post.date}</td>
                 <td>{post.featured ? '⭐' : ''}</td>
                 <td className={styles.actions}>
-                  <Link href={`/admin/posts/edit/${post.id}`} className={styles.btnEdit}>
+                  <Link to={`/admin/posts/edit/${post.id}`} className={styles.btnEdit}>
                     Edit
                   </Link>
                   <button 

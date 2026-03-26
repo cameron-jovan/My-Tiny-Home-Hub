@@ -1,7 +1,6 @@
-'use client';
 
 import { useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { db, storage } from '@/lib/firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
@@ -91,7 +90,7 @@ const BUILD_STATUSES = ['Ready to Move In', 'Pre-Order', 'Custom Build', 'In Sto
 
 export default function NewListingWizard() {
   const { user } = useAuth();
-  const router = useRouter();
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [submitting, setSubmitting] = useState(false);
   const [aiLoading, setAiLoading] = useState(false);
@@ -182,7 +181,7 @@ export default function NewListingWizard() {
         updatedAt: serverTimestamp(),
       });
 
-      router.push('/dashboard?submitted=1');
+      navigate('/dashboard?submitted=1');
     } catch (err) {
       console.error('Listing submission error:', err);
       alert('Something went wrong. Please try again.');

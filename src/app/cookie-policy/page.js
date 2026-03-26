@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from '../legal.module.css';
 
@@ -20,7 +20,7 @@ export default function CookiePolicyPage() {
         <header className={styles.header}>
           <div className={styles.headerInner}>
             <p className={styles.breadcrumb}>
-              <Link href="/">Home</Link>
+              <Link to="/">Home</Link>
               <span>/</span>
               Cookie Policy
             </p>
@@ -110,7 +110,7 @@ export default function CookiePolicyPage() {
           <p>If you have questions about our use of cookies, please contact us:</p>
           <ul>
             <li><strong>Email:</strong> <a href="mailto:hello@mytinyhomehub.com">hello@mytinyhomehub.com</a></li>
-            <li><strong>More information:</strong> See our <Link href="/privacy-policy">Privacy Policy</Link> for a full picture of how we handle your data.</li>
+            <li><strong>More information:</strong> See our <Link to="/privacy-policy">Privacy Policy</Link> for a full picture of how we handle your data.</li>
           </ul>
         </div>
       </div>

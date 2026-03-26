@@ -1,7 +1,5 @@
-
-import { use, useState, useEffect } from 'react';
-
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
@@ -13,8 +11,8 @@ import { MapPin, CheckCircle } from 'lucide-react';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
-export default function ListingDetailPage({ params }) {
-  const { id } = use(params);
+export default function ListingDetailPage() {
+  const { id } = useParams();
   const [listing, setListing] = useState(null);
   const [related, setRelated] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,10 +23,10 @@ export default function ListingDetailPage({ params }) {
       try {
         const docRef = doc(db, 'listings', id);
         const docSnap = await getDoc(docRef);
-        
+
         if (docSnap.exists()) {
           setListing({ id: docSnap.id, ...docSnap.data() });
-          
+
           // Fetch related
           const q = query(collection(db, 'listings'), limit(4));
           const relSnap = await getDocs(q);
@@ -74,7 +72,7 @@ export default function ListingDetailPage({ params }) {
     );
   }
 
-  const monthlyPayment = Math.round(listing.price * 0.008); 
+  const monthlyPayment = Math.round(listing.price * 0.008);
 
   return (
     <>
@@ -88,12 +86,10 @@ export default function ListingDetailPage({ params }) {
         <div className="container">
           <div className={styles.gallery}>
             <div className={styles.mainImage}>
-              <Image
+              <img
                 src={listing.image}
                 alt={listing.title}
-                fill
-                priority
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
               />
               {listing.financingAvailable && (
                 <span className="badge badge-financing financing-tag">
@@ -182,15 +178,15 @@ export default function ListingDetailPage({ params }) {
                     )}
                   </div>
                 </div>
-                <button 
-                  className="btn btn-secondary" 
+                <button
+                  className="btn btn-secondary"
                   style={{ width: '100%' }}
                   onClick={() => setShowInquiry(true)}
                 >
                   Contact Seller
                 </button>
-                <button 
-                  className="btn btn-outline" 
+                <button
+                  className="btn btn-outline"
                   style={{ width: '100%', marginTop: '8px' }}
                   onClick={() => setShowInquiry(true)}
                 >
@@ -241,10 +237,10 @@ export default function ListingDetailPage({ params }) {
       <Footer />
 
       {showInquiry && (
-        <InquiryModal 
-          listing={listing} 
-          onClose={() => setShowInquiry(false)} 
-          type="listing" 
+        <InquiryModal
+          listing={listing}
+          onClose={() => setShowInquiry(false)}
+          type="listing"
         />
       )}
 

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,23 +8,10 @@ import { seedPosts } from '@/lib/seedData';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from './page.module.css';
 
-export function generateStaticParams() {
-  return seedPosts.map(post => ({ slug: post.slug }));
-}
-
-export async function generateMetadata({ params }) {
-  const { slug } = await params;
+export default function ArticlePage() {
+  const { slug } = useParams();
   const post = seedPosts.find(p => p.slug === slug);
-  if (!post) return { title: 'Article Not Found' };
-  return {
-    title: `${post.title} | My Tiny Home Hub`,
-    description: post.excerpt,
-  };
-}
 
-export default async function ArticlePage({ params }) {
-  const { slug } = await params;
-  const post = seedPosts.find(p => p.slug === slug);
   if (!post) {
     return (
       <>
@@ -53,12 +40,10 @@ export default async function ArticlePage({ params }) {
       <main className={styles.page}>
         {/* Hero */}
         <section className={styles.hero}>
-          <Image
+          <img
             src={post.image}
             alt={post.title}
-            fill
-            priority
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
           />
           <div className={styles.heroOverlay} />
           <div className={`container ${styles.heroContent}`}>

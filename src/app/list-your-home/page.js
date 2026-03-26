@@ -1,6 +1,5 @@
-'use client';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -36,13 +35,10 @@ export default function ListYourHomePage() {
 
         {/* ===== HERO ===== */}
         <section className={styles.hero}>
-          <Image
+          <img
             src="/images/hero-list.jpg"
             alt="Hero background"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-            priority
-            quality={85}
+            style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(18,43,80,0.82) 0%, rgba(27,64,115,0.65) 60%, rgba(6,121,155,0.55) 100%)' }} aria-hidden="true" />
           <div className={styles.heroInner}>
@@ -55,10 +51,10 @@ export default function ListYourHomePage() {
               Facebook Marketplace is noise. My Tiny Home Hub is a curated audience of serious, pre-educated buyers who are ready to purchase.
             </p>
             <div className={styles.heroCtas}>
-              <Link href="/signup" className="btn btn-primary btn-lg">
+              <Link to="/signup" className="btn btn-primary btn-lg">
                 Get Started Free
               </Link>
-              <Link href="/login" className="btn btn-outline-white btn-lg">
+              <Link to="/login" className="btn btn-outline-white btn-lg">
                 I Already Have an Account
               </Link>
             </div>
@@ -209,7 +205,7 @@ export default function ListYourHomePage() {
               ))}
             </div>
             <div className={styles.benefitsCta}>
-              <Link href="/signup" className="btn btn-primary btn-lg">
+              <Link to="/signup" className="btn btn-primary btn-lg">
                 Start Listing for Free
               </Link>
             </div>
@@ -338,10 +334,10 @@ export default function ListYourHomePage() {
             <h2 className={styles.bottomCtaTitle}>Ready to find your buyer?</h2>
             <p className={styles.bottomCtaSub}>Two minutes to sign up. Zero dollars to list. Your next buyer is already here.</p>
             <div className={styles.bottomCtaBtns}>
-              <Link href="/signup" className="btn btn-primary btn-lg">
+              <Link to="/signup" className="btn btn-primary btn-lg">
                 Create Free Account
               </Link>
-              <Link href="/login" className="btn btn-outline-white btn-lg">
+              <Link to="/login" className="btn btn-outline-white btn-lg">
                 Sign In
               </Link>
             </div>

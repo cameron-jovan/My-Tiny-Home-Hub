@@ -1,12 +1,9 @@
-'use client';
-
-import { use } from 'react';
+import { useParams } from 'react-router-dom';
 import ListingForm from '../../ListingForm';
 import styles from '../../../admin.module.css';
 
-export default function EditListing({ params }) {
-  const resolvedParams = use(params);
-  const { id } = resolvedParams;
+export default function EditListing() {
+  const { id } = useParams();
 
   return (
     <div className={styles.adminSection}>

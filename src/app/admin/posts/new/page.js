@@ -1,4 +1,3 @@
-'use client';
 
 import PostForm from '../PostForm';
 import styles from '../../admin.module.css';

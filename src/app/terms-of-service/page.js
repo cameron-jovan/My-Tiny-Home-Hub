@@ -1,6 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import styles from '../legal.module.css';
 
@@ -20,7 +20,7 @@ export default function TermsOfServicePage() {
         <header className={styles.header}>
           <div className={styles.headerInner}>
             <p className={styles.breadcrumb}>
-              <Link href="/">Home</Link>
+              <Link to="/">Home</Link>
               <span>/</span>
               Terms of Service
             </p>

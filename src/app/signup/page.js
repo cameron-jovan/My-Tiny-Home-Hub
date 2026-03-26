@@ -22,14 +22,14 @@ function SignupContent() {
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const navigate = useNavigate();
   const searchParams = useSearchParams();
   const isSeller = searchParams.get('intent') === 'seller';
   const postSignupPath = isSeller ? '/dashboard?seller=1' : '/dashboard';
 
   const handleGoogle = async () => {
     setError(''); setLoading(true);
-    try { await loginWithGoogle(); router.push(postSignupPath); }
+    try { await loginWithGoogle(); navigate(postSignupPath); }
     catch (err) { setError(getErrorMessage(err)); setLoading(false); }
   };
 
@@ -37,7 +37,7 @@ function SignupContent() {
     e.preventDefault();
     setError(''); setLoading(true);
     if (password.length < 6) { setError('Password must be at least 6 characters.'); setLoading(false); return; }
-    try { await signup(email, password, name); router.push(postSignupPath); }
+    try { await signup(email, password, name); navigate(postSignupPath); }
     catch (err) { setError(getErrorMessage(err)); setLoading(false); }
   };
 

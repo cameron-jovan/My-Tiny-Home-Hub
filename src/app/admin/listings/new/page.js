@@ -1,4 +1,3 @@
-'use client';
 
 import ListingForm from '../ListingForm';
 import styles from '../../admin.module.css';

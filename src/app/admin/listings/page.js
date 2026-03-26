@@ -1,9 +1,8 @@
-'use client';
 
 import { useState, useEffect } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, getDocs, deleteDoc, doc, orderBy, query } from 'firebase/firestore';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styles from '../admin.module.css';
 
 export default function AdminListings() {
@@ -45,7 +44,7 @@ export default function AdminListings() {
     <div className={styles.adminSection}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <h2>Current Listings ({listings.length})</h2>
-        <Link href="/admin/listings/new" className={styles.buttonPrimary}>
+        <Link to="/admin/listings/new" className={styles.buttonPrimary}>
           + Add New Listing
         </Link>
       </div>
@@ -71,7 +70,7 @@ export default function AdminListings() {
                 <td>{listing.type}</td>
                 <td>{listing.status}</td>
                 <td className={styles.actions}>
-                  <Link href={`/admin/listings/edit/${listing.id}`} className={styles.btnEdit}>
+                  <Link to={`/admin/listings/edit/${listing.id}`} className={styles.btnEdit}>
                     Edit
                   </Link>
                   <button 

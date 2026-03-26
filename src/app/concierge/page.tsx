@@ -1,6 +1,4 @@
 import React from 'react';
-import { Metadata } from 'next';
-
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -8,19 +6,9 @@ import CalInlineEmbed from '@/components/CalInlineEmbed';
 import CalBookingButton from '@/components/CalBookingButton';
 import styles from './page.module.css';
 
-export const metadata: Metadata = {
-  title: 'Concierge Service — Expert Tiny Home Buying Guidance | My Tiny Home Hub',
-  description: 'Book a $297 concierge consultation with a tiny home expert. We guide you through listings, financing, zoning, delivery, and setup — every step covered.',
-  openGraph: {
-    title: 'Concierge Service | My Tiny Home Hub',
-    description: 'Expert guidance for your tiny home purchase. One call covers listings, financing, zoning, and delivery.',
-    url: 'https://mytinyhomehub.com/concierge',
-  },
-};
-
 // Replace with your Cal.com username once configured
 // e.g. "mthh-cameron/tiny-home-consultation"
-const CAL_LINK = process.env.NEXT_PUBLIC_CALCOM_LINK || '';
+const CAL_LINK = import.meta.env.VITE_CALCOM_LINK || '';
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -58,13 +46,10 @@ export default function ConciergePage() {
 
         {/* Hero */}
         <section className={styles.hero}>
-          <Image
+          <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHm0eJz7wz8u_vU-0H2l_0B6x2Wq8qZ_vJp3Pz5W-3t8_z4yU_z2g"
             alt="Hero background"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-            priority
-            quality={85}
+            style={{ objectFit: 'cover', objectPosition: 'center', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
           />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(18,43,80,0.82) 0%, rgba(27,64,115,0.65) 60%, rgba(6,121,155,0.55) 100%)' }} aria-hidden="true" />
           <div className={styles.heroInner}>

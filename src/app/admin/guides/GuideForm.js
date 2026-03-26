@@ -1,14 +1,13 @@
-'use client';
 
 import { useState, useEffect } from 'react';
 import { db, storage } from '@/lib/firebase';
 import { doc, setDoc, getDoc, addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import styles from '../admin.module.css';
 
 export default function GuideForm({ id }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -75,8 +74,7 @@ export default function GuideForm({ id }) {
         });
       }
 
-      router.push('/admin/guides');
-      router.refresh();
+      navigate('/admin/guides');
 
     } catch (error) {
       console.error("Error saving guide:", error);
@@ -155,7 +153,7 @@ export default function GuideForm({ id }) {
         <button 
           type="button" 
           className={styles.buttonSecondary} 
-          onClick={() => router.push('/admin/guides')}
+          onClick={() => navigate('/admin/guides')}
         >
           Cancel
         </button>

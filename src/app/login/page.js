@@ -25,20 +25,20 @@ function LoginContent() {
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const navigate = useNavigate();
   const searchParams = useSearchParams();
   const redirectPath = searchParams.get('redirect') || '/dashboard';
 
   const handleGoogle = async () => {
     setError(''); setLoading(true);
-    try { await loginWithGoogle(); router.push(redirectPath); }
+    try { await loginWithGoogle(); navigate(redirectPath); }
     catch (err) { setError(getErrorMessage(err)); setLoading(false); }
   };
 
   const handleEmail = async (e) => {
     e.preventDefault();
     setError(''); setLoading(true);
-    try { await loginWithEmail(email, password); router.push(redirectPath); }
+    try { await loginWithEmail(email, password); navigate(redirectPath); }
     catch (err) { setError(getErrorMessage(err)); setLoading(false); }
   };
 

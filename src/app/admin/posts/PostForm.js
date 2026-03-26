@@ -1,14 +1,13 @@
-'use client';
 
 import { useState, useEffect } from 'react';
 import { db, storage } from '@/lib/firebase';
 import { doc, setDoc, getDoc, addDoc, collection } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 import styles from '../admin.module.css';
 
 export default function PostForm({ id }) {
-  const router = useRouter();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: '',
@@ -82,8 +81,7 @@ export default function PostForm({ id }) {
         });
       }
 
-      router.push('/admin/posts');
-      router.refresh();
+      navigate('/admin/posts');
 
     } catch (error) {
       console.error("Error saving post:", error);
@@ -201,7 +199,7 @@ export default function PostForm({ id }) {
         <button 
           type="button" 
           className={styles.buttonSecondary} 
-          onClick={() => router.push('/admin/posts')}
+          onClick={() => navigate('/admin/posts')}
         >
           Cancel
         </button>

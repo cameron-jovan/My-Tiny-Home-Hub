@@ -1,12 +1,9 @@
-'use client';
-
-import { use } from 'react';
+import { useParams } from 'react-router-dom';
 import PostForm from '../../PostForm';
 import styles from '../../../admin.module.css';
 
-export default function EditPost({ params }) {
-  const resolvedParams = use(params);
-  const { id } = resolvedParams;
+export default function EditPost() {
+  const { id } = useParams();
 
   return (
     <div className={styles.adminSection}>
