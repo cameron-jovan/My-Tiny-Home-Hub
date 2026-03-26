@@ -1,22 +1,20 @@
-'use client';
-
 import React, { ReactNode, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminRoute({ children }: { children: ReactNode }) {
   const { user, userData, loading } = useAuth();
-  const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!loading) {
       if (!user) {
-        router.push('/login');
+        navigate('/login');
       } else if (userData && userData.role !== 'admin') {
-        router.push('/dashboard');
+        navigate('/dashboard');
       }
     }
-  }, [user, userData, loading, router]);
+  }, [user, userData, loading, navigate]);
 
   if (loading) {
     return (

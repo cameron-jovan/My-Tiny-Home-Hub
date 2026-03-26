@@ -1,8 +1,5 @@
-'use client';
-
 import React from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './DashboardSidebar.module.css';
 
 const NAV_ITEMS = [
@@ -40,7 +37,7 @@ const NAV_ITEMS = [
 ];
 
 export default function DashboardSidebar() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   return (
     <aside className={styles.sidebar}>
@@ -48,9 +45,9 @@ export default function DashboardSidebar() {
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           return (
-            <Link 
-              key={item.label} 
-              href={item.href} 
+            <Link
+              key={item.label}
+              to={item.href}
               className={`${styles.navItem} ${isActive ? styles.active : ''}`}
             >
               <div className={styles.icon}>

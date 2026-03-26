@@ -1,7 +1,5 @@
-'use client';
-
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styles from './Breadcrumbs.module.css';
 
 interface BreadcrumbItem {
@@ -44,7 +42,7 @@ export default function Breadcrumbs({ items = [], className = '' }: BreadcrumbsP
             return (
               <li key={i} className={styles.item}>
                 {!isLast && item.href ? (
-                  <Link href={item.href} className={styles.link}>
+                  <Link to={item.href} className={styles.link}>
                     {item.label}
                   </Link>
                 ) : (

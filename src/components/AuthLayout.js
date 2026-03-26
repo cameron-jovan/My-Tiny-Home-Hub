@@ -1,5 +1,4 @@
-'use client';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import styles from './AuthLayout.module.css';
 
 export default function AuthLayout({ brandTitle, brandSubtitle, children }) {
@@ -7,7 +6,7 @@ export default function AuthLayout({ brandTitle, brandSubtitle, children }) {
     <div className={styles.page}>
       <div className={styles.brand}>
         <div className={styles.brandInner}>
-          <Link href="/" className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             <span className={styles.logoMark}>MTHH</span>
             <span className={styles.logoName}>My Tiny Home Hub</span>
           </Link>

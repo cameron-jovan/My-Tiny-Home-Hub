@@ -1,20 +1,18 @@
-'use client';
-
 import React, { ReactNode, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter, usePathname } from 'next/navigation';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function ProtectedRoute({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
-  const router = useRouter();
-  const pathname = usePathname();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (!loading && !user) {
       // Save the intended path to redirect back after login
-      router.push(`/login?redirect=${encodeURIComponent(pathname || '/')}`);
+      navigate(`/login?redirect=${encodeURIComponent(pathname || '/')}`, { replace: true });
     }
-  }, [user, loading, router, pathname]);
+  }, [user, loading, navigate, pathname]);
 
   if (loading) {
     return (

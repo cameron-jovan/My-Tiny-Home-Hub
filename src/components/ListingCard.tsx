@@ -1,8 +1,5 @@
-'use client';
-
 import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import styles from './ListingCard.module.css';
 
@@ -28,12 +25,10 @@ export default function ListingCard({ listing }: ListingCardProps) {
   return (
     <article className={styles.card} id={`listing-${listing.id}`}>
       <div className={styles.imageWrap}>
-        <Link href={`/listings/${listing.id}`}>
-          <Image
+        <Link to={`/listings/${listing.id}`}>
+          <img
             src={listing.image}
             alt={listing.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
             className={styles.image}
           />
         </Link>
@@ -42,7 +37,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
             Financing Available
           </span>
         )}
-        <button 
+        <button
           className={`save-btn ${saved ? 'saved' : ''}`}
           onClick={(e) => {
             e.preventDefault();
@@ -56,7 +51,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
 
       <div className={styles.body}>
         <div className={styles.titleRow}>
-          <Link href={`/listings/${listing.id}`} className={styles.title}>
+          <Link to={`/listings/${listing.id}`} className={styles.title}>
             {listing.title}
           </Link>
           <span className={styles.price}>
