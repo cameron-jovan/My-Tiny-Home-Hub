@@ -108,10 +108,12 @@
         <p>My Tiny Home Hub is currently undergoing exciting changes to serve you better. We'll be back soon!</p>
         <p style="font-weight: 600; color: #1B4073;">Join our newsletter to be notified when we launch:</p>
         <form id="maintenance-form" onsubmit="submitEmail(event)">
-          <input type="email" id="email-input" placeholder="Enter your email" required />
+          <input type="hidden" name="form_id" value="1707f6a6-7f94-46e2-a94b-07e6d351d33a" />
+          <input type="hidden" name="authenticity_token" value="NlDrXEKzS-QDCToeYFY9QQ2yqDhzp-yKtPPY51MR3TG1uRwrjglQAp1K_H_OrQHfv8J31CRfO3CVQQPKUMNTUw" />
+          <input type="email" name="form[email]" id="email-input" placeholder="Enter your email" required />
           <button type="submit">Notify Me</button>
         </form>
-        <div id="maintenance-success">✓ Thank you! We'll notify you soon.</div>
+        <div id="maintenance-success">✓ Thank you! Check your email for your free ADU Zoning Checklist.</div>
       </div>
     </div>
 
@@ -120,26 +122,19 @@
     <script>
       function submitEmail(e) {
         e.preventDefault();
-        const email = document.getElementById('email-input').value;
+        const form = e.target;
+        const formData = new FormData(form);
 
-        // Send to Firebase Firestore
-        fetch('https://firestore.googleapis.com/v1/projects/my-tiny-home-hub/databases/(default)/documents/newsletter', {
+        // Submit to Beehiiv
+        fetch('https://subscribe-forms.beehiiv.com/api/submit', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            fields: {
-              email: { stringValue: email },
-              timestamp: { timestampValue: new Date().toISOString() },
-              source: { stringValue: 'maintenance_mode' }
-            }
-          })
+          body: formData,
         }).then(() => {
           document.getElementById('maintenance-form').style.display = 'none';
           document.getElementById('maintenance-success').style.display = 'block';
         }).catch(() => {
-          document.getElementById('maintenance-success').textContent = '✓ Thank you! We'll notify you soon.';
-          document.getElementById('maintenance-success').style.display = 'block';
           document.getElementById('maintenance-form').style.display = 'none';
+          document.getElementById('maintenance-success').style.display = 'block';
         });
       }
     </script>
