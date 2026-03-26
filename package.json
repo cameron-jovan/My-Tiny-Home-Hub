@@ -6,7 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "serve dist -l ${PORT:-4173} -s",
+    "start": "serve dist --single --listen ${PORT:-8080}",
     "serve": "npm run build && npm run start",
     "lint": "eslint"
   },
