@@ -6,6 +6,7 @@
     "dev": "vite",
     "build": "vite build",
     "start": "vite preview",
+    "serve": "npm run build && npm run start",
     "lint": "eslint"
   },
   "dependencies": {

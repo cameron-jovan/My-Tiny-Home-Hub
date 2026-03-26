@@ -1,7 +1,12 @@
 env: prod
 
-runCommand: npm run build && npm run start
+runCommand: npm run serve
+
+cpu: 1
+memory: 1Gi
 
 environmentVariables:
   - variable: NODE_VERSION
     value: "18"
+  - variable: NODE_ENV
+    value: production
