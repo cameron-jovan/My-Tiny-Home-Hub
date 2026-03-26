@@ -34,9 +34,114 @@
       gtag('js', new Date());
       gtag('config', 'G-JT53K4C5WG');
     </script>
+    <style>
+      #maintenance-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(27, 64, 115, 0.98);
+        z-index: 999999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+      }
+      #maintenance-content {
+        background: white;
+        padding: 60px 40px;
+        border-radius: 20px;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      }
+      #maintenance-content h1 {
+        color: #1B4073;
+        font-size: 32px;
+        margin-bottom: 20px;
+        font-weight: 700;
+      }
+      #maintenance-content p {
+        color: #666;
+        font-size: 16px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+      }
+      #maintenance-form input {
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        margin-bottom: 15px;
+        box-sizing: border-box;
+      }
+      #maintenance-form button {
+        width: 100%;
+        padding: 15px;
+        background: #1B4073;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      #maintenance-form button:hover {
+        background: #143052;
+      }
+      #maintenance-success {
+        display: none;
+        color: #22c55e;
+        font-weight: 600;
+        margin-top: 15px;
+      }
+    </style>
   </head>
   <body>
+    <!-- Maintenance Mode Overlay -->
+    <div id="maintenance-overlay">
+      <div id="maintenance-content">
+        <h1>🏡 We're Making Improvements</h1>
+        <p>My Tiny Home Hub is currently undergoing exciting changes to serve you better. We'll be back soon!</p>
+        <p style="font-weight: 600; color: #1B4073;">Join our newsletter to be notified when we launch:</p>
+        <form id="maintenance-form" onsubmit="submitEmail(event)">
+          <input type="email" id="email-input" placeholder="Enter your email" required />
+          <button type="submit">Notify Me</button>
+        </form>
+        <div id="maintenance-success">✓ Thank you! We'll notify you soon.</div>
+      </div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      function submitEmail(e) {
+        e.preventDefault();
+        const email = document.getElementById('email-input').value;
+
+        // Send to Firebase Firestore
+        fetch('https://firestore.googleapis.com/v1/projects/my-tiny-home-hub/databases/(default)/documents/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            fields: {
+              email: { stringValue: email },
+              timestamp: { timestampValue: new Date().toISOString() },
+              source: { stringValue: 'maintenance_mode' }
+            }
+          })
+        }).then(() => {
+          document.getElementById('maintenance-form').style.display = 'none';
+          document.getElementById('maintenance-success').style.display = 'block';
+        }).catch(() => {
+          document.getElementById('maintenance-success').textContent = '✓ Thank you! We'll notify you soon.';
+          document.getElementById('maintenance-success').style.display = 'block';
+          document.getElementById('maintenance-form').style.display = 'none';
+        });
+      }
+    </script>
   </body>
 </html>
