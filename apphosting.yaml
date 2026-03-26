@@ -1,12 +1,10 @@
-env: prod
+runConfig:
+  cpu: 1
+  memoryMiB: 1024
+  concurrency: 80
 
-runCommand: npm run serve
-
-cpu: 1
-memory: 1Gi
-
-environmentVariables:
+env:
   - variable: NODE_VERSION
     value: "18"
   - variable: NODE_ENV
-    value: production
+    value: "production"
