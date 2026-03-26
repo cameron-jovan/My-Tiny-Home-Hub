@@ -1,5 +1,4 @@
-runCommand: npm run build
-outputDirectory: dist
+runCommand: npm run build && npm run start
 
 env:
   - variable: NODE_VERSION
