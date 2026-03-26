@@ -1,8 +1,5 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
@@ -163,12 +160,10 @@ export default function HomePage() {
       {/* ===== HERO ===== */}
       <section className={styles.hero} id="hero">
         <div className={styles.heroBg}>
-          <Image
+          <img
             src="/images/listings/nordic.png"
             alt="Tiny home in scenic landscape"
-            fill
-            priority
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
           />
         </div>
         <div className={styles.heroInner}>
@@ -183,10 +178,10 @@ export default function HomePage() {
               Browse curated tiny homes, ADUs, and off-grid spaces built for the way you want to live, work, and dream.
             </p>
             <div className={styles.heroCtas}>
-              <Link href="/concierge" className="btn btn-primary btn-lg">
+              <Link to="/concierge" className="btn btn-primary btn-lg">
                 Get Concierge Service
               </Link>
-              <Link href="/browse" className="btn btn-secondary btn-lg">
+              <Link to="/browse" className="btn btn-secondary btn-lg">
                 Browse Homes
               </Link>
             </div>
@@ -201,29 +196,26 @@ export default function HomePage() {
 
           <div className={styles.heroImages}>
             <div className={styles.heroImg}>
-              <Image
+              <img
                 src="/images/listings/offgrid.png"
                 alt="Off-grid tiny home"
-                fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
               />
               <span className={styles.heroImgLabel}>Off-Grid Ready</span>
             </div>
             <div className={styles.heroImg}>
-              <Image
+              <img
                 src="/images/listings/urban-adu.png"
                 alt="Urban ADU"
-                fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
               />
               <span className={styles.heroImgLabel}>The Midwick Suite</span>
             </div>
             <div className={styles.heroImg}>
-              <Image
+              <img
                 src="/images/listings/desert.png"
                 alt="Desert tiny home"
-                fill
-                style={{ objectFit: 'cover' }}
+                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
               />
               <span className={styles.heroImgLabel}>Desert Modern</span>
             </div>
@@ -292,18 +284,17 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header">
             <h2>Browse by Style</h2>
-            <Link href="/browse" className="view-all-link">
+            <Link to="/browse" className="view-all-link">
               View All Styles →
             </Link>
           </div>
           <div className={styles.categoriesGrid}>
             {categories.map(cat => (
-              <Link href={`/browse?type=${cat.slug}`} key={cat.slug} className={styles.categoryCard}>
-                <Image
+              <Link to={`/browse?type=${cat.slug}`} key={cat.slug} className={styles.categoryCard}>
+                <img
                   src={cat.image}
                   alt={cat.name}
-                  fill
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
                 />
                 <div className={styles.categoryInfo}>
                   <div className={styles.categoryName}>{cat.name}</div>
@@ -325,7 +316,7 @@ export default function HomePage() {
                 Hand-picked homes ready for their next chapter.
               </p>
             </div>
-            <Link href="/browse" className="view-all-link">
+            <Link to="/browse" className="view-all-link">
               View All Listings →
             </Link>
           </div>
@@ -342,7 +333,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header">
             <h2>The Tiny Edit</h2>
-            <Link href="/blog" className="view-all-link">
+            <Link to="/blog" className="view-all-link">
               View All Stories →
             </Link>
           </div>
@@ -359,7 +350,7 @@ export default function HomePage() {
         <div className="container">
           <div className={styles.topicGrid}>
             {topicHubs.map(hub => (
-              <Link href={`/blog?category=${hub.slug}`} key={hub.slug} className={styles.topicCard}>
+              <Link to={`/blog?category=${hub.slug}`} key={hub.slug} className={styles.topicCard}>
                 <span className={styles.topicIcon}>{hub.icon}</span>
                 <div className={styles.topicName}>{hub.name}</div>
                 <div className={styles.topicDesc}>{hub.description}</div>
