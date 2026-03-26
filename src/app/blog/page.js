@@ -1,7 +1,6 @@
-'use client';
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import EditorialCard from '@/components/EditorialCard';
@@ -73,7 +72,7 @@ export default function BlogPage() {
             <div className={`container ${styles.heroContent}`}>
               <span className={styles.heroTag}>{featured.category}</span>
               <h1 className={styles.heroTitle}>
-                <Link href={`/blog/${featured.slug}`}>{featured.title}</Link>
+                <Link to={`/blog/${featured.slug}`}>{featured.title}</Link>
               </h1>
               <p className={styles.heroMeta}>
                 By {featured.author} &nbsp;·&nbsp; {featured.readTime}

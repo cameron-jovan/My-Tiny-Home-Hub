@@ -1,9 +1,8 @@
-'use client';
 
 import React, { useState, Suspense } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthLayout from '@/components/AuthLayout';
 import styles from './login.module.css';
 
@@ -90,7 +89,7 @@ function LoginContent() {
       </form>
 
       <p className={styles.footer}>
-        No account yet? <Link href="/signup">Create one free</Link>
+        No account yet? <Link to="/signup">Create one free</Link>
       </p>
     </AuthLayout>
   );

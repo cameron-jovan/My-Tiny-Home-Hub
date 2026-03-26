@@ -1,9 +1,8 @@
-'use client';
 
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
@@ -571,7 +570,7 @@ export default function ValuationPage() {
                         <div className="absolute inset-y-0 left-1/2 w-2 bg-[#06799B] -translate-x-1/2 rounded-full"></div>
                       </div>
                     </div>
-                    <Link href="/concierge" className="bg-[#06799B] text-white p-6 rounded-2xl flex items-center justify-between group hover:bg-[#002a58] transition-all">
+                    <Link to="/concierge" className="bg-[#06799B] text-white p-6 rounded-2xl flex items-center justify-between group hover:bg-[#002a58] transition-all">
                       <div>
                         <div className="font-extrabold text-lg">Claim Your Full Audit</div>
                         <div className="text-xs text-blue-100">Get the 12-page valuation PDF</div>

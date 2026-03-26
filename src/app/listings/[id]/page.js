@@ -1,8 +1,7 @@
-'use client';
 
 import { use, useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
@@ -66,7 +65,7 @@ export default function ListingDetailPage({ params }) {
           <div style={{ textAlign: 'center' }}>
             <h1>Listing Not Found</h1>
             <p style={{ marginTop: '16px' }}>
-              <Link href="/browse" className="btn btn-secondary">Browse All Listings</Link>
+              <Link to="/browse" className="btn btn-secondary">Browse All Listings</Link>
             </p>
           </div>
         </main>
@@ -217,7 +216,7 @@ export default function ListingDetailPage({ params }) {
                 <p className={styles.financeNote}>
                   *Based on 6.5% APR, 20-year term. Subject to credit approval.
                 </p>
-                <Link href="/concierge" className="btn btn-primary" style={{ width: '100%' }}>
+                <Link to="/concierge" className="btn btn-primary" style={{ width: '100%' }}>
                   Get Pre-Approved
                 </Link>
               </div>

@@ -1,9 +1,8 @@
-'use client';
 
 import React, { useState, Suspense } from 'react';
 import { useAuth } from '@/context/AuthContext';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthLayout from '@/components/AuthLayout';
 import styles from './signup.module.css';
 
@@ -94,12 +93,12 @@ function SignupContent() {
 
       <p className={styles.terms}>
         By creating an account you agree to our{' '}
-        <Link href="/terms-of-service">Terms</Link> and{' '}
-        <Link href="/privacy-policy">Privacy Policy</Link>.
+        <Link to="/terms-of-service">Terms</Link> and{' '}
+        <Link to="/privacy-policy">Privacy Policy</Link>.
       </p>
 
       <p className={styles.footer}>
-        Already have an account? <Link href="/login">Sign in</Link>
+        Already have an account? <Link to="/login">Sign in</Link>
       </p>
     </AuthLayout>
   );

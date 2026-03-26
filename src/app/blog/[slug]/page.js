@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
+
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Newsletter from '@/components/Newsletter';
@@ -33,7 +33,7 @@ export default async function ArticlePage({ params }) {
           <div style={{ textAlign: 'center' }}>
             <h1>Article Not Found</h1>
             <p style={{ marginTop: '16px' }}>
-              <Link href="/blog" className="btn btn-secondary">View All Articles</Link>
+              <Link to="/blog" className="btn btn-secondary">View All Articles</Link>
             </p>
           </div>
         </main>
@@ -62,7 +62,7 @@ export default async function ArticlePage({ params }) {
           />
           <div className={styles.heroOverlay} />
           <div className={`container ${styles.heroContent}`}>
-            <Link href="/blog" className={styles.backLink}>← Back to Blog</Link>
+            <Link to="/blog" className={styles.backLink}>← Back to Blog</Link>
             <span className={styles.tag}>{post.category}</span>
             <h1>{post.title}</h1>
             <div className={styles.meta}>
@@ -124,7 +124,7 @@ export default async function ArticlePage({ params }) {
                 <div className={styles.ctaCard}>
                   <h4>Need Expert Help?</h4>
                   <p>Our concierge team specializes in matching buyers with their perfect tiny home.</p>
-                  <Link href="/concierge" className="btn btn-primary" style={{ width: '100%' }}>
+                  <Link to="/concierge" className="btn btn-primary" style={{ width: '100%' }}>
                     Book a Call
                   </Link>
                 </div>
