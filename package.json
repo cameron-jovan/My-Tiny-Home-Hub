@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "vite preview",
+    "preview": "vite preview",
+    "start": "serve dist -l ${PORT:-4173} -s",
     "serve": "npm run build && npm run start",
     "lint": "eslint"
   },
@@ -21,6 +22,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-router-dom": "^6.28.0",
+    "serve": "^14.2.1",
     "tailwindcss": "^4.2.2",
     "typescript": "^5.9.3",
     "vite": "^6.0.0",
