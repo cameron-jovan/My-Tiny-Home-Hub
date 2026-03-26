@@ -1,8 +1,4 @@
-'use client';
-
 import React, { useState, useMemo, useEffect } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ListingCard from '@/components/ListingCard';
@@ -151,14 +147,11 @@ export default function BrowsePage() {
       <main className={styles.page}>
         {/* Search Header */}
         <div className={styles.searchHeader}>
-          <Image
+          <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHm0eJz7wz8u_vU-0H2l_0B6x2Wq8qZ_vJp3Pz5W-3t8_z4yU_z2g"
             alt=""
-            fill
             className={styles.searchHeaderBg}
-            priority
-            quality={80}
-            style={{ objectFit: 'cover' }}
+            style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', inset: 0 }}
           />
           <div className="container" style={{ position: 'relative' }}>
             <div className={styles.searchRow}>

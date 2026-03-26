@@ -444,7 +444,7 @@ export default function HomePage() {
             <p>
               Our experts handle the complex details so you can focus on finding your perfect home.
             </p>
-            <Link href="/concierge" className="btn btn-primary btn-lg">
+            <Link to="/concierge" className="btn btn-primary btn-lg">
               Book Concierge Service
             </Link>
           </div>
@@ -459,7 +459,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header">
             <h2>Latest Technical Guides</h2>
-            <Link href="/blog" className="view-all-link">
+            <Link to="/blog" className="view-all-link">
               View All Guides →
             </Link>
           </div>

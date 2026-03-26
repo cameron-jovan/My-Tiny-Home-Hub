@@ -1,7 +1,5 @@
-'use client';
-
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import Navbar from '@/components/Navbar';
@@ -21,28 +19,28 @@ function DashboardContent() {
         {/* Sidebar */}
         <aside className="h-screen w-64 fixed left-0 top-0 pt-24 bg-white border-r border-slate-100 flex flex-col hidden lg:flex z-40">
           <nav className="flex-1 px-4 space-y-1 mt-4">
-            <Link href="/dashboard" className="flex items-center gap-3 bg-slate-50 text-[#1B4073] rounded-xl px-4 py-3 font-bold text-sm">
+            <Link to="/dashboard" className="flex items-center gap-3 bg-slate-50 text-[#1B4073] rounded-xl px-4 py-3 font-bold text-sm">
               <span className="material-symbols-outlined">grid_view</span>
               <span>Dashboard</span>
             </Link>
-            <Link href="/dashboard/saved" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link to="/dashboard/saved" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">favorite</span>
               <span>Saved Homes</span>
             </Link>
-            <Link href="/dashboard/listings" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link to="/dashboard/listings" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">storefront</span>
               <span>My Listings</span>
             </Link>
-            <Link href="/dashboard/payments" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link to="/dashboard/payments" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">account_balance_wallet</span>
               <span>Payments</span>
             </Link>
             <div className="h-px bg-slate-100 my-4 mx-4"></div>
-            <Link href="/editorial" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link to="/editorial" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">auto_awesome</span>
               <span>Editorial Hub</span>
             </Link>
-            <Link href="/settings" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
+            <Link to="/settings" className="flex items-center gap-3 text-slate-500 hover:bg-slate-50 hover:text-[#1B4073] rounded-xl px-4 py-3 font-medium text-sm transition-all">
               <span className="material-symbols-outlined">settings</span>
               <span>Account Settings</span>
             </Link>
@@ -144,7 +142,7 @@ function DashboardContent() {
                     <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-1 block">Buyer's Toolkit</span>
                     <h2 className="text-3xl font-extrabold text-[#1B4073] tracking-tight">Saved Listings Gallery</h2>
                   </div>
-                  <Link href="/dashboard/saved" className="text-[#1B4073] font-bold text-sm flex items-center gap-2 group hover:underline">
+                  <Link to="/dashboard/saved" className="text-[#1B4073] font-bold text-sm flex items-center gap-2 group hover:underline">
                     Manage Watchlist 
                     <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                   </Link>
@@ -206,7 +204,7 @@ function DashboardContent() {
                     <span className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-1 block">Seller's Portal</span>
                     <h2 className="text-3xl font-extrabold text-[#1B4073] tracking-tight">Inventory & Performance</h2>
                   </div>
-                  <Link href="/list-your-home" className="bg-[#8CC540] text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-xs shadow-xl hover:-translate-y-1 transition-all text-center">
+                  <Link to="/list-your-home" className="bg-[#8CC540] text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-xs shadow-xl hover:-translate-y-1 transition-all text-center">
                     Launch New Listing
                   </Link>
                 </div>
