@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -9,29 +8,29 @@ export default function Footer() {
       <div className={`container ${styles.inner}`}>
         <div className={styles.grid}>
           <div className={styles.brand}>
-            <Image src="/logo-white.png" alt="My Tiny Home Hub" width={160} height={36} />
+            <img src="/logo-white.png" alt="My Tiny Home Hub" width={160} height={36} />
             <p className={styles.tagline}>
               Less Home, More Living. The marketplace for tiny homes, ADUs, and alternative living.
             </p>
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Guides</h4>
-            <Link href="/guides">Technical Guides</Link>
-            <Link href="/blog?category=Financing">Financing 101</Link>
-            <Link href="/blog?category=Lifestyle">Off-grid Guide</Link>
+            <Link to="/guides">Technical Guides</Link>
+            <Link to="/blog?category=Financing">Financing 101</Link>
+            <Link to="/blog?category=Lifestyle">Off-grid Guide</Link>
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Platform</h4>
-            <Link href="/browse" className={styles.activeLink}>Inventory</Link>
-            <Link href="/list-your-home">List Your Home</Link>
-            <Link href="/whats-my-tiny-home-worth">What&apos;s My Tiny Worth?</Link>
-            <Link href="/concierge">Concierge Service</Link>
+            <Link to="/browse" className={styles.activeLink}>Inventory</Link>
+            <Link to="/list-your-home">List Your Home</Link>
+            <Link to="/whats-my-tiny-home-worth">What&apos;s My Tiny Worth?</Link>
+            <Link to="/concierge">Concierge Service</Link>
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Legal</h4>
-            <Link href="/privacy-policy">Privacy Policy</Link>
-            <Link href="/terms-of-service">Terms of Service</Link>
-            <Link href="/cookie-policy">Cookie Policy</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/terms-of-service">Terms of Service</Link>
+            <Link to="/cookie-policy">Cookie Policy</Link>
           </div>
           <div className={styles.col}>
             <h4 className={styles.colTitle}>Contact</h4>

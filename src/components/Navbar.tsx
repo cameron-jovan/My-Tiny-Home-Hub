@@ -1,8 +1,5 @@
-'use client';
-
 import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import styles from './Navbar.module.css';
 
@@ -54,13 +51,12 @@ export default function Navbar() {
     <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`} id="main-nav">
       <div className={styles.inner}>
         {/* Logo */}
-        <Link href="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
-          <Image
+        <Link to="/" className={styles.logo} aria-label="My Tiny Home Hub Home">
+          <img
             src="/logo-color.png"
             alt="My Tiny Home Hub"
             width={202}
             height={36}
-            priority
           />
         </Link>
 
@@ -69,7 +65,7 @@ export default function Navbar() {
           {navLinks.map(link => (
             <Link
               key={link.href + link.label}
-              href={link.href}
+              to={link.href}
               className={styles.link}
               onClick={() => setMobileOpen(false)}
             >
@@ -81,7 +77,7 @@ export default function Navbar() {
           <hr className={styles.mobileDivider} />
           {user ? (
             <>
-              <Link href="/dashboard" className={styles.link} onClick={() => setMobileOpen(false)}>
+              <Link to="/dashboard" className={styles.link} onClick={() => setMobileOpen(false)}>
                 Dashboard
               </Link>
               <button onClick={() => { logout(); setMobileOpen(false); }} className="btn btn-secondary">
@@ -89,12 +85,12 @@ export default function Navbar() {
               </button>
             </>
           ) : (
-            <Link href="/login" className={styles.link} onClick={() => setMobileOpen(false)}>
+            <Link to="/login" className={styles.link} onClick={() => setMobileOpen(false)}>
               Sign In
             </Link>
           )}
           <Link
-            href="/concierge"
+            to="/concierge"
             className={`btn btn-primary ${styles.ctaBtn}`}
             onClick={() => setMobileOpen(false)}
           >
@@ -119,7 +115,7 @@ export default function Navbar() {
                 <div className={styles.dropdown}>
                   <p className={styles.dropdownName}>Hi, {displayName}</p>
                   <Link
-                    href="/dashboard"
+                    to="/dashboard"
                     className={styles.dropdownItem}
                     onClick={() => setUserMenuOpen(false)}
                   >
@@ -130,7 +126,7 @@ export default function Navbar() {
                     Dashboard
                   </Link>
                   <Link
-                    href="/profile"
+                    to="/profile"
                     className={styles.dropdownItem}
                     onClick={() => setUserMenuOpen(false)}
                   >
@@ -153,10 +149,10 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            <Link href="/login" className={styles.link}>Sign In</Link>
+            <Link to="/login" className={styles.link}>Sign In</Link>
           )}
 
-          <Link href="/concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
+          <Link to="/concierge" className={`btn btn-primary ${styles.ctaDesktop}`}>
             Get Concierge Service
           </Link>
         </div>
