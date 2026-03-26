@@ -1,5 +1,7 @@
+env: prod
+
 runCommand: npm run build && npm run start
 
-env:
+environmentVariables:
   - variable: NODE_VERSION
-    value: 18
+    value: "18"
